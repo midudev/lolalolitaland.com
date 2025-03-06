@@ -1,10 +1,25 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Layout from "../layouts/Layout.astro";
+import Particles from "../components/core/Particles.astro";
 ---
 
 <Layout>
+  <div class="absolute top-0 left-0 w-full h-full pointer-events-auto">
+    <Particles
+      backgroundColor="#000000"
+      particleColors={["#FFE5EC", "#FFC2D1", "#FFB3C6", "#FF8FAB", "#FB6F92"]}
+      particleCount={1000}
+      particleSpread={7}
+      speed={0.05}
+      particleBaseSize={100}
+      moveParticlesOnHover={true}
+      alphaParticles={true}
+      disableRotation={false}
+    />
+  </div>
+
   <img
-    class="block md:aspect-[1443/811] aspect-square object-cover max-w-6xl h-auto w-full"
+    class="block md:aspect-[1443/811] aspect-square object-cover max-w-6xl h-auto w-full pointer-events-none z-2 rounded-md"
     src="/landing.webp"
     alt="Lola Lolita Land - Entradas próximamente a la venta"
     width="100%"
@@ -12,7 +27,7 @@ import Layout from "../layouts/Layout.astro"
   />
   <img
     aria-hidden="true"
-    class="block md:aspect-[1443/811] aspect-square object-cover max-w-6xl h-auto w-full absolute inset-0 m-auto blur-3xl -z-10"
+    class="block md:aspect-[1443/811] aspect-square object-cover max-w-6xl h-auto w-full absolute inset-0 m-auto blur-3xl z-1 pointer-events-none"
     src="/landing.webp"
     alt="Landing Page"
     width="100%"
