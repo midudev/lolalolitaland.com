@@ -39,42 +39,46 @@ const {
 
     class LeafletMap extends HTMLElement {
       constructor() {
-        super()
+        super();
 
-        const latlng = [
+        const latlng: [number, number] = [
           Number(this.dataset.latitude),
           Number(this.dataset.longitude),
-        ]
+        ];
 
+        if (!this.dataset.container) {
+          throw new Error("Container ID is required");
+        }
         var map = window.L.map(this.dataset.container, {
           scrollWheelZoom: false, // Desactivar zoom con scroll
-          dragging: false // Desactivar arrastrar
-        }).setView(
-          latlng,
-          Number(this.dataset.zoom)
-        )
+          dragging: false, // Desactivar arrastrar
+        }).setView(latlng, Number(this.dataset.zoom))
 
         // Activar interactividad al hacer clic
         map.once("click", function () {
-          map.scrollWheelZoom.enable();
-          map.dragging.enable();
+          map.scrollWheelZoom.enable()
+          map.dragging.enable()
         });
 
-        window.L.tileLayer(this.dataset.tiles, {
-          attribution: this.dataset.attribution,
-        }).addTo(map)
-          
+        if (this.dataset.tiles) {
+          window.L.tileLayer(this.dataset.tiles, {
+            attribution: this.dataset.attribution,
+          }).addTo(map);
+        } else {
+          throw new Error("Tile layer URL is required")
+        }
+
         // Modificar el marker por defecto
         var myIcon = window.L.icon({
-          iconUrl: 'images/icons/marker.png',
+          iconUrl: "images/icons/marker.png",
           iconSize: [25, 41],
           iconAnchor: [12, 41],
           popupAnchor: [1, -34],
-          shadowSize: [41, 41]
+          shadowSize: [41, 41],
         });
-        window.L.marker(latlng, {icon: myIcon})
+        window.L.marker(latlng, { icon: myIcon })
           .addTo(map)
-          .bindPopup("Aquopolis Villanueva de la Cañada");
+          .bindPopup("Aquopolis Villanueva de la Cañada")
       }
     }
 
