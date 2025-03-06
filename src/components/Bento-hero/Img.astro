@@ -1,14 +1,20 @@
+---
+import BentoSpecialHover from "./BentoSpecialHover.astro"
+---
+
 <div
-  class="relative aspect-video rounded-2xl transition hover:scale-101 md:col-span-4 md:row-span-3"
+  class="group relative aspect-video overflow-hidden rounded-2xl transition md:col-span-4 md:row-span-3"
 >
-  <img
-    class="relative z-10 rounded-2xl"
-    src="/images/lolalolitaland-hero.webp"
-    alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
-  />
-  <img
-    class="absolute bottom-0 z-0 m-auto h-full w-auto blur-xl"
-    src="/images/lolalolitaland-hero.webp"
-    alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
-  />
+  <BentoSpecialHover>
+    <img
+      class="relative z-10 rounded-2xl"
+      src="/images/lolalolitaland-hero.webp"
+      alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
+    />
+    <img
+      class="absolute bottom-0 z-0 m-auto h-full w-auto blur-xl"
+      src="/images/lolalolitaland-hero.webp"
+      alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
+    />
+  </BentoSpecialHover>
 </div>

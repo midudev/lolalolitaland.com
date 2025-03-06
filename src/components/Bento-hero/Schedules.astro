@@ -1,7 +1,13 @@
+---
+import BentoSpecialHover from "./BentoSpecialHover.astro"
+---
+
 <div
-  class="bg-primary flex items-center justify-center rounded-2xl text-center text-4xl font-black text-white transition hover:scale-101 md:col-start-5 md:row-span-2"
+  class="bg-primary group flex items-center justify-center overflow-hidden rounded-2xl text-center text-4xl font-black text-white md:col-start-5 md:row-span-2"
 >
-  <div class="flex -rotate-3 flex-col">
-    <span>14 & 15</span><span>de junio</span>
-  </div>
+  <BentoSpecialHover>
+    <div class="flex -rotate-3 flex-col">
+      <span>14 & 15</span><span>de junio</span>
+    </div>
+  </BentoSpecialHover>
 </div>

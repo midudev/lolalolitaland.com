@@ -1,11 +1,17 @@
+---
+import BentoSpecialHover from "./BentoSpecialHover.astro"
+---
+
 <div
-  class="bg-primary relative overflow-hidden rounded-2xl transition hover:scale-101 md:col-span-2 md:row-start-4"
+  class="bg-primary group relative overflow-hidden rounded-2xl transition hover:scale-101 md:col-span-2 md:row-start-4"
 >
-  <a href="/#mapa">
-    <img
-      class="absolute -top-20"
-      src="/images/map.webp"
-      alt="Mapa de la ubicación del evento de Lola Lolita Land"
-    />
-  </a>
+  <BentoSpecialHover>
+    <a href="/#mapa">
+      <img
+        class="absolute -top-20"
+        src="/images/map.webp"
+        alt="Mapa de la ubicación del evento de Lola Lolita Land"
+      />
+    </a>
+  </BentoSpecialHover>
 </div>

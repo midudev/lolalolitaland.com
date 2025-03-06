@@ -1,5 +1,11 @@
+---
+import BentoSpecialHover from "./BentoSpecialHover.astro"
+---
+
 <div
-  class="bg-primary row-start-3 flex items-center justify-center rounded-2xl text-center text-4xl font-black text-white transition hover:scale-101 md:col-start-5 md:row-span-2"
+  class="bg-primary group row-start-3 flex items-center justify-center rounded-2xl text-center text-4xl font-black text-white md:col-start-5 md:row-span-2"
 >
-  <span class="flex -rotate-3 flex-col"> Compra tus entradas </span>
+  <BentoSpecialHover>
+    <div class="flex -rotate-3 flex-col">Compra tus entradas</div>
+  </BentoSpecialHover>
 </div>
