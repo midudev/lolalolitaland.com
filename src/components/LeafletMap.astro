@@ -1,15 +1,17 @@
 ---
+import "leaflet/dist/leaflet.css";
+
 export interface Props {
-  latitude: number
-  longitude: number
-  zoom: number
-  /** the DOM ID of a <div> element */
-  container: string
-  /** https://leafletjs.com/reference.html#tilelayer */
-  tileLayer: string
-  /** Most tile servers require attribution. */
-  attribution: string
-  containerstyle?: string
+  latitude: number;
+  longitude: number;
+  zoom: number;
+  /** ID del elemento contenedor */
+  container: string;
+  /** URL del tileLayer, ver: https://leafletjs.com/reference.html#tilelayer */
+  tileLayer: string;
+  /** Atribución requerida por la mayoría de tile servers */
+  attribution: string;
+  containerstyle?: string;
 }
 
 const {
@@ -20,7 +22,7 @@ const {
   tileLayer,
   attribution,
   containerstyle = "height: 61.8vh",
-} = Astro.props
+} = Astro.props;
 ---
 
 <leaflet-map
@@ -33,51 +35,45 @@ const {
   data-containerstyle={containerstyle}
 >
   <div id={container} style={containerstyle}></div>
-  <script>
-    import "leaflet/dist/leaflet"
-    import "leaflet/dist/leaflet.css"
+</leaflet-map>
 
+<script>
+  import "leaflet";
+
+  if (!window.customElements.get("leaflet-map")) {
     class LeafletMap extends HTMLElement {
-      constructor() {
-        super()
+      connectedCallback() {
+        const { latitude, longitude, zoom, container, tiles, attribution } =
+          this.dataset;
+        const latlng = [Number(latitude), Number(longitude)];
 
-        const latlng = [
-          Number(this.dataset.latitude),
-          Number(this.dataset.longitude),
-        ]
+        const map = window.L.map(container, {
+          scrollWheelZoom: false,
+          dragging: false,
+        }).setView(latlng, Number(zoom));
 
-        var map = window.L.map(this.dataset.container, {
-          scrollWheelZoom: false, // Desactivar zoom con scroll
-          dragging: false // Desactivar arrastrar
-        }).setView(
-          latlng,
-          Number(this.dataset.zoom)
-        )
-
-        // Activar interactividad al hacer clic
-        map.once("click", function () {
+        // Habilitar interactividad al hacer clic
+        map.once("click", () => {
           map.scrollWheelZoom.enable();
           map.dragging.enable();
         });
 
-        window.L.tileLayer(this.dataset.tiles, {
-          attribution: this.dataset.attribution,
-        }).addTo(map)
-          
-        // Modificar el marker por defecto
-        var myIcon = window.L.icon({
-          iconUrl: 'images/icons/marker.png',
+        window.L.tileLayer(tiles, { attribution }).addTo(map);
+
+        // Definir icono personalizado
+        const myIcon = window.L.icon({
+          iconUrl: "images/icons/marker.png",
           iconSize: [25, 41],
           iconAnchor: [12, 41],
           popupAnchor: [1, -34],
-          shadowSize: [41, 41]
+          shadowSize: [41, 41],
         });
-        window.L.marker(latlng, {icon: myIcon})
+
+        window.L.marker(latlng, { icon: myIcon })
           .addTo(map)
           .bindPopup("Aquopolis Villanueva de la Cañada");
       }
     }
-
-    window.customElements.define("leaflet-map", LeafletMap)
-  </script></leaflet-map
->
+    window.customElements.define("leaflet-map", LeafletMap);
+  }
+</script>

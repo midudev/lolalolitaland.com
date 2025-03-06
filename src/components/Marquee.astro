@@ -6,53 +6,13 @@ export type Props = {
 const { content } = Astro.props
 ---
 
-<div class="marquee">
+<div class="gap-x-4 py-8 flex overflow-hidden">
   {
     content.map((item, index) => (
-      <div class="marquee-content scroll">
-        <div class="text-block">{item}</div>
-        {index !== content.length - 1 && <div class="text-block"> · </div>}
+      <div class="marquee-content animate-marquee gap-x-4 flex-none justify-around flex [&>*]:uppercase [&>*]:text-[9vw] [&>*]:font-black [&>*]:leading-none">
+        <div>{item}</div>
+        {index !== content.length - 1 && <div> · </div>}
       </div>
     ))
   }
 </div>
-
-<style>
-  .marquee {
-    width: 100%;
-    grid-column-gap: 1rem;
-    margin-bottom: 1rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    display: flex;
-    overflow: hidden;
-  }
-
-  .marquee-content {
-    grid-column-gap: 1rem;
-    flex: none;
-    justify-content: space-around;
-    display: flex;
-  }
-
-  .scroll {
-    animation: scroll 10s linear infinite;
-  }
-
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-
-    100% {
-      transform: translateX(calc(-100% - 1rem));
-    }
-  }
-
-  .text-block {
-    text-transform: uppercase;
-    font-size: 9vw;
-    font-weight: 900;
-    line-height: 1;
-  }
-</style>

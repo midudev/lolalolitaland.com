@@ -11,6 +11,39 @@
   --color-theme-green-light: #98D354;
 
   --font-special: 'Amertha', sans-serif;
+
+  /* animations */
+
+  --animate-marquee: slide-left 10s linear infinite;
+
+  @keyframes slide-left {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-100% - 1rem));
+    }
+  }
+}
+
+@layer {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--color-primary-light);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: hsla(326, 100%, 51%, 0.658);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary);
+  }
 }
 
 @font-face {
