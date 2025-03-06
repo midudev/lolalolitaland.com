@@ -14,5 +14,8 @@
     "astro": "5.4.2",
     "leaflet": "1.9.4",
     "tailwindcss": "4.0.9"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.16"
   }
 }
