@@ -1,18 +1,20 @@
 ---
 export type Props = {
-  content: Array<string>
+  content: string
 }
 
 const { content } = Astro.props
 ---
 
-<div class="gap-x-4 py-8 flex overflow-hidden">
-  {
-    content.map((item, index) => (
-      <div class="marquee-content animate-marquee gap-x-4 flex-none justify-around flex [&>*]:uppercase [&>*]:text-[9vw] [&>*]:font-black [&>*]:leading-none">
-        <div>{item}</div>
-        {index !== content.length - 1 && <div> · </div>}
-      </div>
-    ))
-  }
+<div class="bg-theme-green-light mx-auto my-[3%] -ml-2 w-[110%] -rotate-3 text-white">
+  <div class="flex gap-x-4 overflow-hidden py-8">
+    {
+      Array.from({ length: 8 }).map((_, index) => (
+        <div class="marquee-content animate-marquee flex flex-none justify-around gap-x-4 [&>*]:text-[9vw] [&>*]:leading-none [&>*]:font-black [&>*]:uppercase">
+          <div>{content}</div>
+          {index !== 7 && <div> · </div>}
+        </div>
+      ))
+    }
+  </div>
 </div>

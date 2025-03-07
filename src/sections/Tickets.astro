@@ -1,20 +1,9 @@
 ---
-import Marquee from '@/components/Marquee.astro'
+import Marquee from "@/components/Marquee.astro"
 ---
 
-<div class="w-full overflow-hidden relative">
-  <div class="w-[110%] -rotate-3 bg-theme-green-light text-white -ml-2 my-[3%] mx-auto">
-    <Marquee
-      content={[
-        'Entradas',
-        'Entradas',
-        'Entradas',
-        'Entradas',
-        'Entradas',
-        'Entradas',
-        'Entradas',
-        'Entradas',
-      ]}
-    />
+<div class="relative w-full overflow-hidden">
+  <div class="bg-theme-green-light mx-auto my-[3%] -ml-2 w-[110%] -rotate-3 text-white">
+    <Marquee content="Entradas" />
   </div>
 </div>
