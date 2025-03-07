@@ -1,0 +1,36 @@
+---
+interface Props {
+  title?: string
+  image?: string
+  alt?: string
+  link?: string
+  cn?: 'rightTop' | 'rightBottom' | 'bottomLeft' | 'bottomRight'
+}
+
+const gridpos = { 
+  rightTop: 'md:row-span-2 md:col-start-5 flex flex-col p-4',
+  rightBottom: 'md:row-span-2 md:col-start-5 row-start-3 flex flex-col p-4',
+  bottomLeft: 'md:col-span-2 md:row-start-4 relative overflow-hidden',
+  bottomRight: 'md:col-span-2 md:col-start-3 row-start-4 flex flex-col p-4',
+}
+
+const { title, image, alt, link, cn } = Astro.props
+
+const classes = `${cn ? gridpos[cn] : ''} w-full h-full justify-center items-center bg-primary rounded-2xl text-2xl md:text-3xl lg:text-4xl text-white font-black text-center`;
+---
+
+<div class={classes}>
+  {title && (
+    <h2 class="md:-rotate-3">{title}</h2>
+  )}
+  {image && (
+    <a href={link} class="h-full w-full">
+      <img
+        class="absolute -top-15 aspect-video w-auto h-auto object-cover"
+        src={image}
+        alt={alt}
+      />
+    </a>
+  )}
+</div>
+

@@ -1,8 +1,12 @@
+---
+import BentoComponent from "@/components/BentoComponent.astro"
+---
+
 <section class="bg-primary-light pt-16 pb-24">
   <div
-    class="grid grid-cols-1 md:grid-cols-5 md:grid-rows-4 gap-4 max-w-5xl mx-auto"
+    class="grid grid-cols-1 px-4 lg:px-2 md:grid-cols-5 md:grid-rows-4 gap-4 max-w-5xl mx-auto"
   >
-    <div class="md:col-span-4 md:row-span-3 aspect-video rounded-2xl relative hover:scale-101 transition">
+    <div class="md:col-span-4 md:row-span-3 aspect-video rounded-2xl relative">
       <img
         class="rounded-2xl z-10 relative"
         src="/images/lolalolitaland-hero.webp"
@@ -14,33 +18,9 @@
         alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
       />
     </div>
-    <div
-      class="md:row-span-2 md:col-start-5 bg-primary rounded-2xl text-4xl text-center text-white font-black justify-center items-center flex hover:scale-101 transition"
-    >
-      <div class="-rotate-3 flex flex-col">
-        <span>14 & 15</span><span>de junio</span>
-      </div>
-    </div>
-    <div
-      class="md:row-span-2 md:col-start-5 row-start-3 bg-primary rounded-2xl text-4xl text-center text-white font-black justify-center items-center flex hover:scale-101 transition"
-    >
-      <span class="-rotate-3 flex flex-col"> Compra tus entradas </span>
-    </div>
-    <div
-      class="md:col-span-2 md:row-start-4 bg-primary rounded-2xl relative overflow-hidden hover:scale-101 transition"
-    >
-      <a href="/#mapa">
-        <img
-          class="absolute -top-20"
-          src="/images/map.webp"
-          alt="Mapa de la ubicación del evento de Lola Lolita Land"
-        />
-      </a>
-    </div>
-    <div
-      class="md:col-span-2 md:col-start-3 row-start-4 bg-primary rounded-2xl hover:scale-101 transition"
-    >
-      5
-    </div>
+    <BentoComponent title="14 & 15 de junio" cn="rightTop" />
+    <BentoComponent title="Compra tus entradas" cn="rightBottom" />
+    <BentoComponent cn="bottomLeft" link="/#mapa" image="/images/map.webp" alt="Mapa de la ubicación del evento de Lola Lolita Land" />
+    <BentoComponent title="5" cn="bottomRight" />
   </div>
 </section>
