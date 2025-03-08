@@ -1,31 +1,93 @@
-<header>
-  <div class="flex flex-row items-center justify-around p-2">
-    <a href="/">
-      <img src="/favicon.svg" alt="Lolalolitaland" class="size-16" />
+<header id="header" class="fixed top-0 right-0 left-0 z-50 transition-all duration-300">
+  <div
+    class="bg-primary-light/90 absolute inset-0 transition-all duration-300"
+    id="headerBackground"
+  >
+  </div>
+
+  <div class="relative flex flex-row items-center justify-around p-2">
+    <a
+      href="/"
+      class="relative z-10 rounded-md focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+    >
+      <img src="/favicon.svg" alt="Lolalolitaland" class="h-16 w-16 drop-shadow-lg" />
     </a>
 
-    <nav aria-label="Navegación principal">
+    <nav aria-label="Navegación principal" class="relative z-10">
       <ul class="flex flex-row gap-4 text-xl font-bold text-white">
-        <a
-          href="#"
-          class="relative after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
-          >Atracciones</a
-        >
-        <a
-          href="#"
-          class="relative after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
-          >Sponsors</a
-        >
-        <a
-          href="#"
-          class="relative after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
-          >FAQ</a
-        >
+        <li>
+          <a
+            href="#rides"
+            class="relative rounded-md px-2 py-1 drop-shadow-md after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+            >Atracciones</a
+          >
+        </li>
+        <li>
+          <a
+            href="#sponsors"
+            class="relative rounded-md px-2 py-1 drop-shadow-md after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+            >Sponsors</a
+          >
+        </li>
+        <li>
+          <a
+            href="#faq"
+            class="relative rounded-md px-2 py-1 drop-shadow-md after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+            >FAQ</a
+          >
+        </li>
       </ul>
     </nav>
 
-    <div>
-      <button class="bg-primary rounded-full px-4 py-2 text-white">Comprar</button>
+    <div class="relative z-10">
+      <button
+        class="bg-primary rounded-full px-4 py-2 text-white shadow-lg transition-all hover:brightness-110 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+        >Comprar</button
+      >
     </div>
   </div>
 </header>
+
+<script>
+  const headerContainer = document.getElementById("header")
+  const headerBackground = document.getElementById("headerBackground")
+
+  if (headerContainer && headerBackground) {
+    const limiteScroll = 100
+
+    const updateHeader = () => {
+      const posicionScroll = window.scrollY
+
+      if (posicionScroll > 0) {
+        const opacidad = Math.max(0.5, 1 - posicionScroll / limiteScroll)
+        const valorDesenfoque = Math.min(10, (posicionScroll / limiteScroll) * 10)
+
+        requestAnimationFrame(() => {
+          headerBackground.style.opacity = opacidad.toString()
+          headerBackground.style.backdropFilter = `blur(${valorDesenfoque}px)`
+
+          headerContainer.classList.add("shadow-md")
+        })
+      } else {
+        requestAnimationFrame(() => {
+          headerBackground.style.opacity = "1"
+          headerBackground.style.backdropFilter = "none"
+          headerContainer.classList.remove("shadow-md")
+        })
+      }
+    }
+
+    updateHeader()
+
+    let isScrolling = false
+    window.addEventListener("scroll", () => {
+      if (!isScrolling) {
+        isScrolling = true
+        setTimeout(() => {
+          updateHeader()
+          isScrolling = false
+        }, 10)
+      }
+    })
+  }
+</script>
