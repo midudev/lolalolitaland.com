@@ -61,3 +61,9 @@ const { latitude, longitude, zoom, container, tileLayer, attribution } = Astro.p
 
   window.customElements.define("leaflet-map", LeafletMap)
 </script>
+
+<style is:global>
+  .leaflet-tile {
+    filter: hue-rotate(220deg);
+  }
+</style>
