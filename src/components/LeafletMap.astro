@@ -1,5 +1,6 @@
 ---
 import "leaflet/dist/leaflet.css"
+import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson"
 
 export interface Props {
   latitude: number
@@ -9,9 +10,10 @@ export interface Props {
   tileLayer: string
   /** Atribución requerida por la mayoría de tile servers */
   attribution: string
+  geoJSON?: { data: FeatureCollection<Geometry, GeoJsonProperties>; color: string }[]
 }
 
-const { latitude, longitude, zoom, container, tileLayer, attribution } = Astro.props
+const { latitude, longitude, zoom, tileLayer, attribution, geoJSON } = Astro.props
 ---
 
 <leaflet-map
@@ -19,19 +21,20 @@ const { latitude, longitude, zoom, container, tileLayer, attribution } = Astro.p
   data-latitude={latitude}
   data-longitude={longitude}
   data-zoom={zoom}
-  data-container={container}
   data-tiles={tileLayer}
   data-attribution={attribution}
+  data-geojson={JSON.stringify(geoJSON)}
 >
 </leaflet-map>
 
 <script>
-  import L from "leaflet"
+  import L, { type LatLngTuple } from "leaflet"
+  import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson"
 
   class LeafletMap extends HTMLElement {
     connectedCallback() {
-      const { latitude, longitude, zoom, tiles, attribution } = this.dataset
-      const latlng = [Number(latitude), Number(longitude)]
+      const { latitude, longitude, zoom, tiles, attribution, geojson } = this.dataset
+      const latlng: LatLngTuple = [Number(latitude), Number(longitude)]
 
       const map = L.map(this, {
         scrollWheelZoom: false,
@@ -44,7 +47,7 @@ const { latitude, longitude, zoom, container, tileLayer, attribution } = Astro.p
         map.dragging.enable()
       })
 
-      L.tileLayer(tiles, { attribution }).addTo(map)
+      L.tileLayer(tiles as string, { attribution }).addTo(map)
 
       // Definir icono personalizado
       const myIcon = L.icon({
@@ -56,6 +59,23 @@ const { latitude, longitude, zoom, container, tileLayer, attribution } = Astro.p
       })
 
       L.marker(latlng, { icon: myIcon }).addTo(map).bindPopup("Aquopolis Villanueva de la Cañada")
+
+      if (!geojson) return
+
+      const geoJSONData = JSON.parse(geojson as string)
+      geoJSONData.forEach(
+        ({
+          data,
+          color,
+        }: {
+          data: FeatureCollection<Geometry, GeoJsonProperties>
+          color: string
+        }) => {
+          L.geoJSON(data, {
+            style: { color, weight: 5, opacity: 0.65 },
+          }).addTo(map)
+        }
+      )
     }
   }
 
