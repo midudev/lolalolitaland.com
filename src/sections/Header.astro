@@ -5,43 +5,65 @@
   >
   </div>
 
-  <div class="relative flex flex-row items-center justify-around p-2">
-    <a
-      href="/"
-      class="relative z-10 rounded-md focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
-    >
-      <img src="/favicon.svg" alt="Lolalolitaland" class="h-16 w-16 drop-shadow-lg" />
+  <div class="relative flex flex-row items-center justify-between p-4 md:justify-around">
+    <a href="/" class="relative z-10 rounded-md">
+      <img src="/favicon.svg" alt="Lolalolitaland" class="size-12 drop-shadow-lg md:size-16" />
     </a>
 
-    <nav aria-label="Navegación principal" class="relative z-10">
-      <ul class="flex flex-row gap-4 text-xl font-bold text-white">
-        <li>
-          <a
-            href="#rides"
-            class="relative rounded-md px-2 py-1 drop-shadow-md after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
-            >Atracciones</a
-          >
-        </li>
-        <li>
-          <a
-            href="#sponsors"
-            class="relative rounded-md px-2 py-1 drop-shadow-md after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
-            >Sponsors</a
-          >
-        </li>
-        <li>
-          <a
-            href="#faq"
-            class="relative rounded-md px-2 py-1 drop-shadow-md after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
-            >FAQ</a
-          >
-        </li>
-      </ul>
+    <div class="flex items-center gap-4 md:hidden">
+      <button
+        class="bg-primary rounded-full px-3 py-1.5 text-sm text-white shadow-lg transition-all hover:brightness-110"
+        >Comprar</button
+      >
+      <button id="menuButton" class="relative z-10 p-2" aria-label="Menú" aria-expanded="false">
+        <span class="block h-0.5 w-6 bg-white transition-all duration-300"></span>
+        <span class="mt-1.5 block h-0.5 w-6 bg-white transition-all duration-300"></span>
+        <span class="mt-1.5 block h-0.5 w-6 bg-white transition-all duration-300"></span>
+      </button>
+    </div>
+
+    <nav
+      id="navegador"
+      aria-label="Navegación principal"
+      class="bg-primary-light/95 fixed inset-0 z-0 translate-x-full transition-all duration-300 md:static md:z-10 md:translate-x-0 md:bg-transparent"
+    >
+      <div class="flex h-full flex-col items-center justify-center">
+        <ul
+          class="flex flex-col items-center justify-center gap-8 text-2xl font-bold text-white md:flex-row md:gap-4 md:text-xl"
+        >
+          <li>
+            <a
+              href="#rides"
+              class="relative rounded-md px-2 py-1 drop-shadow-md after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              >Atracciones</a
+            >
+          </li>
+          <li>
+            <a
+              href="#sponsors"
+              class="relative rounded-md px-2 py-1 drop-shadow-md after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              >Sponsors</a
+            >
+          </li>
+          <li>
+            <a
+              href="#faq"
+              class="relative rounded-md px-2 py-1 drop-shadow-md after:absolute after:left-1/2 after:block after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-white after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
+              >FAQ</a
+            >
+          </li>
+        </ul>
+
+        <button
+          class="bg-primary mt-8 rounded-full px-6 py-3 text-lg text-white shadow-lg transition-all hover:brightness-110 md:hidden"
+          >¡Comprar Ahora!</button
+        >
+      </div>
     </nav>
 
-    <div class="relative z-10">
+    <div class="relative z-10 hidden md:block">
       <button
-        class="bg-primary rounded-full px-4 py-2 text-white shadow-lg transition-all hover:brightness-110 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+        class="bg-primary rounded-full px-4 py-2 text-white shadow-lg transition-all hover:brightness-110"
         >Comprar</button
       >
     </div>
@@ -51,7 +73,37 @@
 <script>
   const headerContainer = document.getElementById("header")
   const headerBackground = document.getElementById("headerBackground")
+  const menuButton = document.getElementById("menuButton")
+  const navegador = document.getElementById("navegador")
 
+  if (menuButton && navegador) {
+    menuButton.addEventListener("click", () => {
+      const isExpanded = menuButton.getAttribute("aria-expanded") === "true"
+      menuButton.setAttribute("aria-expanded", (!isExpanded).toString())
+
+      const spans = menuButton.getElementsByTagName("span")
+      if (!isExpanded) {
+        navegador.classList.remove("translate-x-full")
+        spans[0].classList.add("rotate-45", "translate-y-2")
+        spans[1].classList.add("opacity-0")
+        spans[2].classList.add("-rotate-45", "-translate-y-2")
+      } else {
+        navegador.classList.add("translate-x-full")
+        spans[0].classList.remove("rotate-45", "translate-y-2")
+        spans[1].classList.remove("opacity-0")
+        spans[2].classList.remove("-rotate-45", "-translate-y-2")
+      }
+    })
+
+    const links = navegador.getElementsByTagName("a")
+    Array.from(links).forEach((link) => {
+      link.addEventListener("click", () => {
+        menuButton.click()
+      })
+    })
+  }
+
+  // Control de la transparencia y blur
   if (headerContainer && headerBackground) {
     const limiteScroll = 100
 
@@ -65,7 +117,6 @@
         requestAnimationFrame(() => {
           headerBackground.style.opacity = opacidad.toString()
           headerBackground.style.backdropFilter = `blur(${valorDesenfoque}px)`
-
           headerContainer.classList.add("shadow-md")
         })
       } else {
