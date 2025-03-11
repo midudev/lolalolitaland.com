@@ -1,5 +1,5 @@
 {
-  "name": "lolalolitaland-com",
+  "name": "lolalolitaland-com-v2",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,8 +9,19 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.0.3",
-    "astro": "^5.2.3",
-    "tailwindcss": "^4.0.3"
+    "@fontsource/poppins": "5.2.5",
+    "@midudev/tailwind-animations": "0.2.0",
+    "@tailwindcss/vite": "4.0.9",
+    "astro": "5.4.2",
+    "geojson": "0.5.0",
+    "leaflet": "1.9.4",
+    "tailwindcss": "4.0.9"
+  },
+  "devDependencies": {
+    "@types/geojson": "7946.0.16",
+    "@types/leaflet": "1.9.16",
+    "prettier": "3.5.3",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-tailwindcss": "0.6.11"
   }
 }

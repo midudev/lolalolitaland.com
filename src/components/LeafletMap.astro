@@ -1,0 +1,90 @@
+---
+import "leaflet/dist/leaflet.css"
+import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson"
+
+export interface Props {
+  latitude: number
+  longitude: number
+  zoom: number
+  /** URL del tileLayer, ver: https://leafletjs.com/reference.html#tilelayer */
+  tileLayer: string
+  /** Atribución requerida por la mayoría de tile servers */
+  attribution: string
+  geoJSON?: { data: FeatureCollection<Geometry, GeoJsonProperties>; color: string }[]
+}
+
+const { latitude, longitude, zoom, tileLayer, attribution, geoJSON } = Astro.props
+---
+
+<leaflet-map
+  class="block h-full"
+  data-latitude={latitude}
+  data-longitude={longitude}
+  data-zoom={zoom}
+  data-tiles={tileLayer}
+  data-attribution={attribution}
+  data-geojson={JSON.stringify(geoJSON)}
+>
+</leaflet-map>
+
+<script>
+  import L, { type LatLngTuple } from "leaflet"
+  import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson"
+
+  class LeafletMap extends HTMLElement {
+    connectedCallback() {
+      const { latitude, longitude, zoom, tiles, attribution, geojson } = this.dataset
+      const latlng: LatLngTuple = [Number(latitude), Number(longitude)]
+
+      const map = L.map(this, {
+        scrollWheelZoom: false,
+        dragging: false,
+        attributionControl: false,
+      }).setView(latlng, Number(zoom))
+
+      // Habilitar interactividad al hacer clic
+      map.once("click", () => {
+        map.scrollWheelZoom.enable()
+        map.dragging.enable()
+      })
+
+      L.tileLayer(tiles as string, { attribution }).addTo(map)
+
+      // Definir icono personalizado
+      const myIcon = L.icon({
+        iconUrl: "images/icons/marker.png",
+        iconSize: [25, 36],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      })
+
+      L.marker(latlng, { icon: myIcon }).addTo(map).bindPopup("Aquopolis Villanueva de la Cañada")
+
+      if (!geojson) return
+
+      const geoJSONData = JSON.parse(geojson as string)
+      geoJSONData.forEach(
+        ({
+          data,
+          color,
+        }: {
+          data: FeatureCollection<Geometry, GeoJsonProperties>
+          color: string
+        }) => {
+          L.geoJSON(data, {
+            style: { color, weight: 5, opacity: 0.65 },
+          }).addTo(map)
+        }
+      )
+    }
+  }
+
+  window.customElements.define("leaflet-map", LeafletMap)
+</script>
+
+<style is:global>
+  .leaflet-tile {
+    filter: hue-rotate(220deg);
+  }
+</style>

@@ -1,0 +1,141 @@
+<header class="relative">
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 pb-0 uppercase lg:px-8"
+    aria-label="Global"
+  >
+    <div class="flex flex-1">
+      <div class="hidden lg:flex lg:gap-x-12">
+        <a
+          href="/#info"
+          class="relative text-sm/6 font-semibold text-gray-900 after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-0 after:bg-[#FF0695] after:transition-all after:duration-300 hover:text-[#FF0695] hover:after:w-full"
+          >Info</a
+        >
+        <a
+          href="/#faq"
+          class="relative text-sm/6 font-semibold text-gray-900 after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-0 after:bg-[#FF0695] after:transition-all after:duration-300 hover:text-[#FF0695] hover:after:w-full"
+          >Preguntas</a
+        >
+        <a
+          href="/hoja-de-responsabilidad.pdf"
+          class="relative text-sm/6 font-semibold text-gray-900 after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-0 after:bg-[#FF0695] after:transition-all after:duration-300 hover:text-[#FF0695] hover:after:w-full"
+          >Aut. Menores</a
+        >
+      </div>
+      <div class="flex lg:hidden">
+        <button
+          type="button"
+          id="open-menu-button"
+          class="-m-2.5 inline-flex cursor-pointer items-center justify-center rounded-md p-2.5 text-gray-700"
+        >
+          <span class="sr-only">Abrir Menú Principal</span>
+          <svg
+            class="size-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+            data-slot="icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <a
+      href="https://lolalolitaland.com"
+      class="-m-1.5 inline-block p-1.5 transition hover:scale-125"
+    >
+      <span class="sr-only">Lola Lolita Land</span>
+      <span class="text-4xl">🌸</span>
+    </a>
+    <div class="flex flex-1 justify-end">
+      <div class="relative flex flex-col items-end">
+        <span class="relative cursor-not-allowed text-sm/6 font-semibold text-gray-400"
+          >Comprar Entradas <span aria-hidden="true">&rarr;</span></span
+        >
+        <span
+          class="absolute -bottom-4 mt-1 w-full text-center text-[10px] text-[#FF0695] normal-case"
+          >Próximamente...</span
+        >
+      </div>
+    </div>
+  </nav>
+  <div
+    class="fixed inset-0 z-[9999] h-full w-full -translate-x-full transform transition duration-300 lg:hidden"
+    id="mobile-menu"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="fixed inset-0 z-10"></div>
+    <div class="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-white px-6 py-6">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-1">
+          <button
+            type="button"
+            id="close-menu-button"
+            class="-m-2.5 rounded-md p-2.5 text-gray-700"
+          >
+            <span class="sr-only">Cerrar Menú</span>
+            <svg
+              class="size-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+              data-slot="icon"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mt-6 space-y-2">
+        <a
+          href="/#info"
+          class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-[#FF0695]/10 hover:text-[#FF0695]"
+          >Info</a
+        >
+        <a
+          href="/#faq"
+          class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-[#FF0695]/10 hover:text-[#FF0695]"
+          >Preguntas</a
+        >
+        <a
+          href="/hoja-de-responsabilidad.pdf"
+          class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-[#FF0695]/10 hover:text-[#FF0695]"
+          >Aut. Menores</a
+        >
+        <a
+          href="/#tickets"
+          class="border-primary-light bg-primary-light/20 -mx-3 block rounded-lg border px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-[#FF0695]/10 hover:text-[#FF0695]"
+          >Comprar Entradas</a
+        >
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Get the menu elements
+  const mobileMenu = document.getElementById("mobile-menu")
+  const openMenuButton = document.getElementById("open-menu-button")
+  const closeMenuButton = document.getElementById("close-menu-button")
+  const mobileItems = mobileMenu?.querySelectorAll("a")
+
+  const toggleMenu = () => {
+    mobileMenu?.classList.toggle("-translate-x-full")
+  }
+
+  // Add event listener to open menu button
+  openMenuButton?.addEventListener("click", toggleMenu)
+
+  // Add event listener to close menu button
+  closeMenuButton?.addEventListener("click", toggleMenu)
+
+  mobileItems?.forEach((item) => item.addEventListener("click", toggleMenu))
+</script>

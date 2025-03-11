@@ -1,4 +1,13 @@
 {
+<<<<<<< HEAD
   "recommendations": ["astro-build.astro-vscode"],
   "unwantedRecommendations": []
+=======
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig"
+  ]
+>>>>>>> upstream/main
 }

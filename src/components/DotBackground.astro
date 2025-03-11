@@ -1,0 +1,246 @@
+<div class="dot-background-container">
+  <canvas id="dotCanvas" class="dot-canvas"></canvas>
+</div>
+
+<style>
+  .dot-background-container {
+    position: fixed; /* Cambiado a fixed para seguir la ventana */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -10; /* Valor negativo para asegurar que esté detrás de todo */
+    pointer-events: none;
+  }
+
+  .dot-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Cambiado a none para que no interfiera con otros elementos */
+  }
+</style>
+
+<script>
+  class DotBackground {
+    canvas: HTMLCanvasElement
+    ctx: CanvasRenderingContext2D
+    dots: Array<{
+      x: number
+      y: number
+      color: string
+      targetColor: string
+      alpha: number
+      targetAlpha?: number
+      size: number
+    }>
+    mouse: { x: number; y: number }
+    radius: number
+    pinkColor: string
+    grayColor: string
+    dotSize: number
+    dotSpacing: number
+    animationFrameId: number | null
+
+    constructor() {
+      this.canvas = document.getElementById("dotCanvas") as HTMLCanvasElement
+      this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D
+      this.dots = []
+      this.mouse = { x: 0, y: 0 }
+      this.radius = 100 // Radio de influencia del ratón reducido
+      this.pinkColor = "#FF0695"
+      this.grayColor = "#f8f8f8"
+      this.dotSize = 1.0 // Puntos ligeramente más pequeños
+      this.dotSpacing = 30 // Puntos más juntos
+      this.animationFrameId = null
+
+      // Inicializar todo
+      this.init()
+    }
+
+    init() {
+      this.setupCanvas()
+      this.createDots()
+      this.setupEventListeners()
+      this.animate()
+    }
+
+    setupCanvas() {
+      // Configurar el canvas para que ocupe toda la ventana visible
+      const dpr = window.devicePixelRatio || 1
+      this.canvas.width = window.innerWidth * dpr
+      this.canvas.height = window.innerHeight * dpr
+      this.ctx.scale(dpr, dpr)
+      this.canvas.style.width = `${window.innerWidth}px`
+      this.canvas.style.height = `${window.innerHeight}px`
+    }
+
+    createDots() {
+      // Crear una cuadrícula de puntos que cubra la ventana visible
+      const cols = Math.floor(window.innerWidth / this.dotSpacing)
+      const rows = Math.floor(window.innerHeight / this.dotSpacing)
+
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          const x = i * this.dotSpacing + this.dotSpacing / 2
+          const y = j * this.dotSpacing + this.dotSpacing / 2
+
+          this.dots.push({
+            x: x,
+            y: y,
+            color: this.grayColor,
+            targetColor: this.grayColor,
+            alpha: 0.2,
+            size: this.dotSize,
+          })
+        }
+      }
+    }
+
+    setupEventListeners() {
+      // Manejar eventos de ventana y mouse
+      window.addEventListener("resize", this.handleResize.bind(this))
+      document.addEventListener("mousemove", this.handleMouseMove.bind(this))
+      document.addEventListener("touchmove", this.handleTouchMove.bind(this), { passive: true })
+    }
+
+    handleResize() {
+      // Actualizar el canvas y los puntos cuando cambia el tamaño de la ventana
+      if (this.animationFrameId !== null) {
+        cancelAnimationFrame(this.animationFrameId)
+      }
+      this.dots = []
+      this.setupCanvas()
+      this.createDots()
+      this.animate()
+    }
+
+    handleMouseMove(e: MouseEvent) {
+      // Actualizar posición del ratón relativa al canvas
+      this.mouse.x = e.clientX
+      this.mouse.y = e.clientY
+    }
+
+    handleTouchMove(e: TouchEvent) {
+      if (e.touches.length > 0) {
+        // Actualizar posición del toque relativa al canvas
+        this.mouse.x = e.touches[0].clientX
+        this.mouse.y = e.touches[0].clientY
+      }
+    }
+
+    animate() {
+      // Limpiar el canvas
+      this.ctx.clearRect(
+        0,
+        0,
+        this.canvas.width / (window.devicePixelRatio || 1),
+        this.canvas.height / (window.devicePixelRatio || 1)
+      )
+
+      // Actualizar y dibujar puntos
+      this.updateDots()
+      this.drawDots()
+
+      // Continuar la animación
+      this.animationFrameId = requestAnimationFrame(this.animate.bind(this))
+    }
+
+    updateDots() {
+      this.dots.forEach((dot) => {
+        const dx = this.mouse.x - dot.x
+        const dy = this.mouse.y - dot.y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+
+        // Actualizar color objetivo basado en la distancia al ratón
+        if (distance < this.radius) {
+          // Aplicar una curva de intensidad no lineal para acentuar el centro
+          const normalizedDistance = distance / this.radius
+          // Usar una función exponencial para que la intensidad caiga más rápidamente al alejarse del centro
+          const intensity = Math.pow(1 - normalizedDistance, 2.5)
+          dot.targetColor = this.pinkColor
+          
+          // Los puntos más cercanos mantienen alta intensidad, los lejanos son más sutiles
+          if (normalizedDistance < 0.3) {
+            // Puntos centrales (30% del radio) mantienen alta intensidad
+            dot.targetAlpha = 0.5 + intensity * 0.3
+          } else {
+            // Puntos exteriores tienen intensidad reducida
+            dot.targetAlpha = 0.3 + intensity * 0.2
+          }
+        } else {
+          dot.targetColor = this.grayColor
+          dot.targetAlpha = dot.alpha
+        }
+
+        // Transición suave de color
+        if (dot.color !== dot.targetColor) {
+          // Interpolación de color para transición suave
+          const currentColor = this.hexToRgb(dot.color)
+          const targetColor = this.hexToRgb(dot.targetColor)
+
+          // Velocidad de transición
+          const transitionSpeed = dot.targetColor === this.pinkColor ? 0.15 : 0.05
+
+          // Actualizar componentes RGB
+          currentColor.r += (targetColor.r - currentColor.r) * transitionSpeed
+          currentColor.g += (targetColor.g - currentColor.g) * transitionSpeed
+          currentColor.b += (targetColor.b - currentColor.b) * transitionSpeed
+
+          // Convertir de nuevo a hex
+          dot.color = this.rgbToHex(
+            Math.round(currentColor.r),
+            Math.round(currentColor.g),
+            Math.round(currentColor.b)
+          )
+        }
+      })
+    }
+
+    drawDots() {
+      this.dots.forEach((dot) => {
+        this.ctx.beginPath()
+        this.ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2)
+        this.ctx.fillStyle = dot.color
+        this.ctx.globalAlpha = dot.targetAlpha || dot.alpha
+        this.ctx.fill()
+      })
+    }
+
+    hexToRgb(hex: string) {
+      // Expandir formato abreviado (por ejemplo, "#03F") a formato completo (por ejemplo, "#0033FF")
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
+      hex = hex.replace(
+        shorthandRegex,
+        (m: string, r: string, g: string, b: string) => r + r + g + g + b + b
+      )
+
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+      return result
+        ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16),
+          }
+        : { r: 0, g: 0, b: 0 }
+    }
+
+    rgbToHex(r: number, g: number, b: number) {
+      return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`
+    }
+  }
+
+  // Inicializar cuando el DOM esté completamente cargado
+  // Iniciar el efecto cuando el DOM esté completamente cargado
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      new DotBackground()
+    })
+  } else {
+    // Si el documento ya está cargado, iniciar inmediatamente
+    new DotBackground()
+  }
+</script>

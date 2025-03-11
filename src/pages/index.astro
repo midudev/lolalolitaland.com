@@ -1,21 +1,23 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Layout from "@/layouts/Layout.astro"
+
+import FAQ from "@/sections/FAQ.astro"
+import Footer from "@/sections/Footer.astro"
+import Gallery from "@/sections/Gallery.astro"
+import Hero from "@/sections/Hero.astro"
+import Map from "@/sections/Map.astro"
+import Rides from "@/sections/Rides.astro"
+import Sponsors from "@/sections/Sponsors.astro"
+import Tickets from "@/sections/Tickets.astro"
 ---
 
 <Layout>
-  <img
-    class="block md:aspect-[1443/811] aspect-square object-cover max-w-6xl h-auto w-full"
-    src="/landing.webp"
-    alt="Lola Lolita Land - Entradas próximamente a la venta"
-    width="100%"
-    height="100%"
-  />
-  <img
-    aria-hidden="true"
-    class="block md:aspect-[1443/811] aspect-square object-cover max-w-6xl h-auto w-full absolute inset-0 m-auto blur-3xl -z-10"
-    src="/landing.webp"
-    alt="Landing Page"
-    width="100%"
-    height="100%"
-  />
+  <Hero />
+  <Tickets />
+  <Sponsors />
+  <Map />
+  <Rides />
+  <Gallery />
+  <FAQ />
+  <Footer />
 </Layout>

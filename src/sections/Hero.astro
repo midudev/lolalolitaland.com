@@ -1,0 +1,185 @@
+---
+import DotBackground from "../components/DotBackground.astro"
+---
+
+<section id="info" class="relative mx-4 pt-12 pb-24">
+  <DotBackground />
+  <div class="relative mx-auto mb-16 aspect-video max-w-6xl">
+    <img
+      class="animate-fade-in-down animate-delay-500 absolute top-0 right-0 left-0 z-50 mx-auto w-20 sm:w-32 md:w-56"
+      src="/favicon.svg"
+      alt="Logo de Lola Lolita Land"
+    />
+    <img
+      class="animate-fade-in relative z-10 rounded-[2rem]"
+      src="/images/hero.webp"
+      alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
+    />
+    <img
+      aria-hidden="true"
+      class="absolute bottom-0 z-0 m-auto h-full w-auto scale-105 opacity-50 blur-xl"
+      src="/images/hero-blur.jpg"
+      alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
+    />
+  </div>
+
+  <div class="mx-auto max-w-2xl lg:max-w-6xl">
+    <div
+      class="mx-auto flex flex-row items-center justify-center gap-x-4 text-lg font-semibold tracking-tight text-balance text-gray-950 md:gap-x-8 md:text-2xl lg:text-3xl xl:text-4xl"
+    >
+      <div class="shrink-0">
+        <img
+          class="mx-auto inline-block size-20 rounded-full md:size-24"
+          src="/lolalolita-avatar.webp"
+          alt="Lola Lolita"
+        />
+      </div>
+      <span class="text-primary inline-block py-4 text-left md:py-6 lg:py-8"
+        >¿Estáis preparados para<br />pasar dos días inolvidables?</span
+      >
+    </div>
+    <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
+      <div class="relative lg:col-span-3">
+        <div
+          class="absolute inset-px rounded-lg bg-white max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem]"
+        >
+        </div>
+        <div
+          class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] lg:rounded-tl-[calc(2rem+1px)]"
+        >
+          <div class="relative h-80 w-full overflow-hidden">
+            <img
+              class="relative h-full w-full object-cover object-center object-right [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+              src="/images/calendario.webp"
+              alt=""
+            />
+          </div>
+          <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
+            <h3 class="text-primary text-sm/4 font-semibold">14 y 15 de junio</h3>
+            <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
+              ¡Dos días de diversión!
+            </p>
+            <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
+              Apunta en tu calendario, porque LolaLolita Land abre sus puertas el 14 y 15 de junio
+              para darle la bienvenida al verano.
+            </p>
+          </div>
+        </div>
+        <div
+          class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem]"
+        >
+        </div>
+      </div>
+      <div class="relative lg:col-span-3">
+        <div class="absolute inset-px rounded-lg bg-white lg:rounded-tr-[2rem]"></div>
+        <div
+          class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]"
+        >
+          <div class="relative h-80 w-full overflow-hidden">
+            <img
+              class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+              src="/images/aquopolis.webp"
+              alt=""
+            />
+          </div>
+          <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
+            <h3 class="text-primary text-sm/4 font-semibold">La experiencia más refrescante</h3>
+            <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
+              Un parque acuático lleno de sorpresas
+            </p>
+            <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
+              Este año LolaLolita Land se celebra en Aquopolis, Madrid, un parque acuático lleno de
+              toboganes y piscinas.
+            </p>
+          </div>
+        </div>
+        <div
+          class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 lg:rounded-tr-[2rem]"
+        >
+        </div>
+      </div>
+      <div class="relative lg:col-span-2">
+        <div class="absolute inset-px rounded-lg bg-white lg:rounded-bl-[2rem]"></div>
+        <div
+          class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-bl-[calc(2rem+1px)]"
+        >
+          <div class="relative h-80 w-full overflow-hidden">
+            <img
+              class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+              src="/images/lolalolita.webp"
+              alt=""
+            />
+          </div>
+          <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
+            <h3 class="text-primary text-sm/4 font-semibold">Segunda edición</h3>
+            <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
+              Para crear recuerdos inolvidables
+            </p>
+            <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
+              El año pasado fue un éxito, y este año queremos que sea aún mejor.
+            </p>
+          </div>
+        </div>
+        <div
+          class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 lg:rounded-bl-[2rem]"
+        >
+        </div>
+      </div>
+      <div class="relative lg:col-span-2">
+        <div class="absolute inset-px rounded-lg bg-white"></div>
+        <div
+          class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]"
+        >
+          <div class="relative h-80 w-full overflow-hidden">
+            <img
+              class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+              src="/images/sorpresas.webp"
+              alt=""
+            />
+          </div>
+          <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
+            <h3 class="text-primary text-sm/4 font-semibold">¡Muchas sorpresas!</h3>
+            <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
+              Invitados especiales
+            </p>
+            <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
+              Dscubrirás a todos los invitados que nos acompañarán en el evento
+            </p>
+          </div>
+        </div>
+        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5">
+        </div>
+      </div>
+      <div class="relative lg:col-span-2">
+        <div
+          class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-br-[2rem]"
+        >
+        </div>
+        <div
+          class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-br-[calc(2rem+1px)]"
+        >
+          <div class="relative h-80 w-full overflow-hidden">
+            <img
+              class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+              src="/images/party.webp"
+              alt=""
+            />
+          </div>
+          <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
+            <h3 class="text-primary text-sm/4 font-semibold">Una fiesta para todos</h3>
+            <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
+              Una celebración inolvidable
+            </p>
+            <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
+              Pasaremos un día juntos rodeados de nuestros mejores amigos y familiares.
+            </p>
+          </div>
+        </div>
+        <div
+          class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 max-lg:rounded-b-[2rem] lg:rounded-br-[2rem]"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

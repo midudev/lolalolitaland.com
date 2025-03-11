@@ -1,0 +1,160 @@
+---
+import Marquee from "@/components/Marquee.astro"
+---
+
+<section class="relative w-full overflow-hidden" id="tickets">
+  <div class="bg-primary-light mx-auto my-[3%] -ml-2 w-[110%] -rotate-3 text-white">
+    <Marquee
+      content={[
+        "Entradas",
+        "Entradas",
+        "Entradas",
+        "Entradas",
+        "Entradas",
+        "Entradas",
+        "Entradas",
+        "Entradas",
+      ]}
+    />
+  </div>
+
+  <div class="container mx-auto px-4 py-12">
+    <div class="mb-12 text-center">
+      <p class="mx-auto max-w-2xl text-lg text-balance text-gray-600">
+        Elige el día y horario que mejor se adapte a ti para vivir la experiencia Lolalolitaland.
+      </p>
+      <div class="bg-primary/10 mt-6 inline-block rounded-lg px-4 py-2">
+        <p class="text-primary flex items-center font-medium">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="mr-2 h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+              clip-rule="evenodd"></path>
+          </svg>
+          Próximamente disponibles
+        </p>
+      </div>
+    </div>
+
+    <div class="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
+      <!-- Día 1: 15 de junio - Mañana -->
+      <div
+        class="overflow-hidden rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg"
+      >
+        <div class="p-6">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-primary text-xs font-semibold tracking-wide uppercase">Día 1</p>
+              <h3 class="mt-1 text-xl font-bold">15 de junio</h3>
+              <p class="mt-1 text-gray-600">Sesión de mañana</p>
+              <p class="mt-2 text-sm text-gray-500">10:00h - 14:00h</p>
+            </div>
+            <span class="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs font-medium"
+              >Mañana</span
+            >
+          </div>
+          <div class="mt-6">
+            <button
+              disabled
+              class="w-full cursor-not-allowed rounded-lg bg-gray-300 px-4 py-3 font-medium text-gray-600"
+            >
+              Comprar entrada
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Día 1: 15 de junio - Tarde -->
+      <div
+        class="overflow-hidden rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg"
+      >
+        <div class="p-6">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-primary text-xs font-semibold tracking-wide uppercase">Día 1</p>
+              <h3 class="mt-1 text-xl font-bold">15 de junio</h3>
+              <p class="mt-1 text-gray-600">Sesión de tarde</p>
+              <p class="mt-2 text-sm text-gray-500">16:00h - 20:00h</p>
+            </div>
+            <span class="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs font-medium"
+              >Tarde</span
+            >
+          </div>
+          <div class="mt-6">
+            <button
+              disabled
+              class="w-full cursor-not-allowed rounded-lg bg-gray-300 px-4 py-3 font-medium text-gray-600"
+            >
+              Comprar entrada
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Día 2: 16 de junio - Mañana -->
+      <div
+        class="overflow-hidden rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg"
+      >
+        <div class="p-6">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-primary text-xs font-semibold tracking-wide uppercase">Día 2</p>
+              <h3 class="mt-1 text-xl font-bold">16 de junio</h3>
+              <p class="mt-1 text-gray-600">Sesión de mañana</p>
+              <p class="mt-2 text-sm text-gray-500">10:00h - 14:00h</p>
+            </div>
+            <span class="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs font-medium"
+              >Mañana</span
+            >
+          </div>
+          <div class="mt-6">
+            <button
+              disabled
+              class="w-full cursor-not-allowed rounded-lg bg-gray-300 px-4 py-3 font-medium text-gray-600"
+            >
+              Comprar entrada
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Día 2: 16 de junio - Tarde -->
+      <div
+        class="overflow-hidden rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg"
+      >
+        <div class="p-6">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-primary text-xs font-semibold tracking-wide uppercase">Día 2</p>
+              <h3 class="mt-1 text-xl font-bold">16 de junio</h3>
+              <p class="mt-1 text-gray-600">Sesión de tarde</p>
+              <p class="mt-2 text-sm text-gray-500">16:00h - 20:00h</p>
+            </div>
+            <span class="bg-primary/10 text-primary rounded-full px-2 py-1 text-xs font-medium"
+              >Tarde</span
+            >
+          </div>
+          <div class="mt-6">
+            <button
+              disabled
+              class="w-full cursor-not-allowed rounded-lg bg-gray-300 px-4 py-3 font-medium text-gray-600"
+            >
+              Comprar entrada
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-sm text-gray-500">
+        Las entradas estarán disponibles próximamente. ¡Mantente atento!
+      </p>
+    </div>
+  </div>
+</section>
