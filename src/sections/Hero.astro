@@ -1,24 +1,40 @@
 ---
+import AquoPolisImage from "@/assets/images/aquopolis.webp"
+import CalendarImage from "@/assets/images/calendario.webp"
+import FaviconImage from "@/assets/images/favicon.svg"
+import HeroBlurImage from "@/assets/images/hero-blur.jpg"
+import HeroImage from "@/assets/images/hero.webp"
+import LolaLolitaImage from "@/assets/images/lolalolita.webp"
+import PartyImage from "@/assets/images/party.webp"
+import SurpriseImage from "@/assets/images/sorpresas.webp"
+import { Image } from "astro:assets"
 import DotBackground from "../components/DotBackground.astro"
 ---
 
 <section id="info" class="relative mx-4 pt-12 pb-24">
   <DotBackground />
   <div class="relative mx-auto mb-16 aspect-video max-w-6xl">
-    <img
-      class="animate-fade-in-down animate-delay-500 absolute top-0 right-0 left-0 z-50 mx-auto w-20 sm:w-32 md:w-56"
-      src="/favicon.svg"
+    <Image
+      src={FaviconImage}
+      width={300}
+      height={300}
       alt="Logo de Lola Lolita Land"
+      class="animate-fade-in-down animate-delay-500 absolute top-0 right-0 left-0 z-50 mx-auto w-20 sm:w-32 md:w-56"
     />
-    <img
+
+    <Image
       class="animate-fade-in relative z-10 rounded-[2rem]"
-      src="/images/hero.webp"
+      src={HeroImage}
+      width={1152}
+      height={648}
       alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
     />
-    <img
+    <Image
       aria-hidden="true"
       class="absolute bottom-0 z-0 m-auto h-full w-auto scale-105 opacity-50 blur-xl"
-      src="/images/hero-blur.jpg"
+      src={HeroBlurImage}
+      width={1210}
+      height={680}
       alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
     />
   </div>
@@ -48,10 +64,12 @@ import DotBackground from "../components/DotBackground.astro"
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] lg:rounded-tl-[calc(2rem+1px)]"
         >
           <div class="relative h-80 w-full overflow-hidden">
-            <img
-              class="relative h-full w-full object-cover object-center object-right [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-              src="/images/calendario.webp"
-              alt=""
+            <Image
+              class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+              src={CalendarImage}
+              width={672}
+              height={320}
+              alt="Calendario con la fecha del evento LolaLolita Land 14 y 15 de junio de 2025"
             />
           </div>
           <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
@@ -76,10 +94,12 @@ import DotBackground from "../components/DotBackground.astro"
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]"
         >
           <div class="relative h-80 w-full overflow-hidden">
-            <img
+            <Image
               class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-              src="/images/aquopolis.webp"
-              alt=""
+              src={AquoPolisImage}
+              width={672}
+              height={320}
+              alt="Un parque acuático lleno de personas de toboganes y piscinbas en  Aquopolis, Madrid"
             />
           </div>
           <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
@@ -104,10 +124,12 @@ import DotBackground from "../components/DotBackground.astro"
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-bl-[calc(2rem+1px)]"
         >
           <div class="relative h-80 w-full overflow-hidden">
-            <img
+            <Image
               class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-              src="/images/lolalolita.webp"
-              alt=""
+              src={LolaLolitaImage}
+              width={672}
+              height={320}
+              alt="Lola Lolita Land, primera edición del evento en 2024"
             />
           </div>
           <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
@@ -131,10 +153,12 @@ import DotBackground from "../components/DotBackground.astro"
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]"
         >
           <div class="relative h-80 w-full overflow-hidden">
-            <img
+            <Image
               class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-              src="/images/sorpresas.webp"
-              alt=""
+              src={SurpriseImage}
+              width={672}
+              height={320}
+              alt="Lola Lolita con Carlos Baute, como invitado especial en el evento Lola Lolita Land"
             />
           </div>
           <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
@@ -159,10 +183,12 @@ import DotBackground from "../components/DotBackground.astro"
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-br-[calc(2rem+1px)]"
         >
           <div class="relative h-80 w-full overflow-hidden">
-            <img
+            <Image
               class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-              src="/images/party.webp"
-              alt=""
+              src={PartyImage}
+              width={672}
+              height={320}
+              alt="Lola Lolita Land, una fiesta para todos"
             />
           </div>
           <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
