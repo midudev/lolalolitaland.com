@@ -1,0 +1,244 @@
+---
+export interface Props {
+  blur?: number
+  inactiveZone?: number
+  proximity?: number
+  spread?: number
+  variant?: "default" | "white" | "lolalolita"
+  glow?: boolean
+  className?: string
+  disabled?: boolean
+  movementDuration?: number
+  borderWidth?: number
+}
+
+const {
+  blur = 0,
+  glow = true,
+  disabled = true,
+  proximity = 64,
+  inactiveZone = 0.01,
+  spread = 40,
+  variant = "default",
+  className = "",
+  movementDuration = 2,
+  borderWidth = 1,
+} = Astro.props
+
+const getGradient = (variant: "white" | "lolalolita" | "default") => {
+  if (variant === "white") {
+    return `repeating-conic-gradient(
+      from 236.84deg at 50% 50%,
+      white,
+      white calc(25% / var(--repeating-conic-gradient-times))
+    )`
+  } else if (variant === "lolalolita") {
+    return `repeating-conic-gradient(
+      from 236.84deg at 50% 50%,
+      var(--color-primary),
+      var(--color-primary) 25%
+    )`
+  } else {
+    return `radial-gradient(circle, #dd7bbb 10%, #dd7bbb00 20%),
+      radial-gradient(circle at 40% 40%, #d79f1e 5%, #d79f1e00 15%),
+      radial-gradient(circle at 60% 60%, #5a922c 10%, #5a922c00 20%), 
+      radial-gradient(circle at 40% 60%, #4c7894 10%, #4c789400 20%),
+      repeating-conic-gradient(
+        from 236.84deg at 50% 50%,
+        #dd7bbb 0%,
+        #d79f1e calc(25% / var(--repeating-conic-gradient-times)),
+        #5a922c calc(50% / var(--repeating-conic-gradient-times)), 
+        #4c7894 calc(75% / var(--repeating-conic-gradient-times)),
+        #dd7bbb calc(100% / var(--repeating-conic-gradient-times))
+      )`
+  }
+}
+---
+
+<div
+  class:list={[
+    "pointer-events-none absolute -inset-px hidden rounded-[inherit] border opacity-0 transition-opacity",
+    glow && "opacity-100",
+    variant === "white" && "border-white",
+    variant === "lolalolita" && "border-0",
+    variant === "default" && "border-black",
+    disabled && "!block",
+  ]}
+>
+</div>
+
+<glowing-effect
+  data-blur={blur}
+  data-glow={glow}
+  data-disabled={disabled}
+  data-proximity={proximity}
+  data-inactive-zone={inactiveZone}
+  data-spread={spread}
+  data-variant={variant}
+  data-movement-duration={movementDuration}
+  data-border-width={borderWidth}
+  style={{
+    "--blur": `${blur}px`,
+    "--spread": spread,
+    "--start": "0",
+    "--active": "0",
+    "--glowingeffect-border-width": `${borderWidth}px`,
+    "--repeating-conic-gradient-times": "5",
+    "--gradient": getGradient(variant),
+  }}
+  class:list={[
+    "pointer-events-none absolute inset-0 rounded-[inherit] opacity-100 transition-opacity",
+    glow && "opacity-100",
+    blur > 0 && "blur-[var(--blur)]",
+    className,
+    disabled && "!hidden",
+  ]}
+>
+  <div
+    class:list={[
+      "glow",
+      "rounded-[inherit]",
+      'after:absolute after:inset-[calc(-1*var(--glowingeffect-border-width))] after:rounded-[inherit] after:content-[""]',
+      "after:[border:var(--glowingeffect-border-width)_solid_transparent]",
+      "after:[background-attachment:fixed] after:[background:var(--gradient)]",
+      "after:opacity-[var(--active)] after:transition-opacity after:duration-300",
+      "after:[mask-clip:padding-box,border-box]",
+      "after:[mask-composite:intersect]",
+      "after:[mask-image:linear-gradient(#0000,#0000),conic-gradient(from_calc((var(--start)-var(--spread))*1deg),#00000000_0deg,#fff,#00000000_calc(var(--spread)*2deg))]",
+    ]}
+  >
+  </div>
+</glowing-effect>
+
+<script>
+  import { animate } from "motion"
+
+  function parseBoolean(value) {
+    return value === "true"
+  }
+
+  class GlowingEffect extends HTMLElement {
+    // blur = 0;
+    inactiveZone = 0.7
+    proximity = 0
+    spread = 20
+    variant = "default"
+    glow = false
+    movementDuration = 2
+    borderWidth = 1
+    disabled = true
+    //
+    container = null
+    lastPosition = { x: 0, y: 0 }
+    animationFrame = 0
+
+    constructor() {
+      super()
+
+      const {
+        blur = 0,
+        glow = false,
+        disabled = true,
+        proximity = 0,
+        inactiveZone = 0.7,
+        spread = 20,
+        variant = "default",
+        movementDuration = 2,
+        borderWidth = 1,
+      } = this.dataset
+
+      //this.blur = parseBoolean(blur);
+      this.glow = parseBoolean(glow)
+      this.disabled = parseBoolean(disabled)
+      this.proximity = Number(proximity)
+      this.inactiveZone = Number(inactiveZone)
+      this.spread = Number(spread)
+      this.variant = variant
+      this.movementDuration = Number(movementDuration)
+      this.borderWidth = Number(borderWidth)
+
+      this.handleMove = this.handleMove.bind(this)
+      this.handleScroll = this.handleScroll.bind(this)
+      this.handlePointerMove = this.handlePointerMove.bind(this)
+    }
+
+    handleMove(e) {
+      if (this.animationFrame) {
+        cancelAnimationFrame(this.animationFrame)
+      }
+
+      this.animationFrame = requestAnimationFrame(() => {
+        const element = this
+        if (!element) return
+
+        const { left, top, width, height } = element.getBoundingClientRect()
+        const mouseX = e?.x ?? this.lastPosition.x
+        const mouseY = e?.y ?? this.lastPosition.y
+
+        if (e) {
+          this.lastPosition = { x: mouseX, y: mouseY }
+        }
+
+        const center = [left + width * 0.5, top + height * 0.5]
+        const distanceFromCenter = Math.hypot(mouseX - center[0], mouseY - center[1])
+        const inactiveRadius = 0.5 * Math.min(width, height) * this.inactiveZone
+
+        if (distanceFromCenter < inactiveRadius) {
+          element.style.setProperty("--active", "0")
+          return
+        }
+
+        const isActive =
+          mouseX > left - this.proximity &&
+          mouseX < left + width + this.proximity &&
+          mouseY > top - this.proximity &&
+          mouseY < top + height + this.proximity
+
+        element.style.setProperty("--active", isActive ? "1" : "0")
+
+        if (!isActive) return
+
+        const currentAngle = parseFloat(element.style.getPropertyValue("--start")) || 0
+        let targetAngle = (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) / Math.PI + 90
+
+        const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180
+        const newAngle = currentAngle + angleDiff
+
+        animate(currentAngle, newAngle, {
+          duration: this.movementDuration,
+          ease: [0.16, 1, 0.3, 1],
+          onUpdate: (value) => {
+            element.style.setProperty("--start", String(value))
+          },
+        })
+      })
+    }
+
+    handleScroll() {
+      this.handleMove()
+    }
+
+    handlePointerMove(e) {
+      this.handleMove(e)
+    }
+
+    connectedCallback() {
+      if (this.disabled) return
+
+      window.addEventListener("scroll", this.handleScroll, { passive: true })
+      document.body.addEventListener("pointermove", this.handlePointerMove, {
+        passive: true,
+      })
+    }
+
+    disconnectedCallback() {
+      if (this.animationFrame) {
+        cancelAnimationFrame(this.animationFrame)
+      }
+      window.removeEventListener("scroll", this.handleScroll)
+      document.body.removeEventListener("pointermove", this.handlePointerMove)
+    }
+  }
+
+  customElements.define("glowing-effect", GlowingEffect)
+</script>
