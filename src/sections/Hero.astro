@@ -1,4 +1,5 @@
 ---
+import GlowingEffect from "@/components/GlowingEffect.astro"
 import DotBackground from "../components/DotBackground.astro"
 ---
 
@@ -39,54 +40,83 @@ import DotBackground from "../components/DotBackground.astro"
         >
         </div>
         <div
-          class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] lg:rounded-tl-[calc(2rem+1px)]"
+          class="relative flex h-full flex-col rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] lg:rounded-tl-[calc(2rem+1px)]"
         >
-          <div class="relative h-80 w-full overflow-hidden">
-            <img
-              class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-              src="/images/calendario.webp"
-              alt=""
-            />
+          <GlowingEffect
+            spread={40}
+            glow={true}
+            disabled={false}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={2}
+            variant="lolalolita"
+          />
+          <div
+            class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] lg:rounded-tl-[calc(2rem+1px)]"
+          >
+            <div class="relative h-80 w-full overflow-hidden">
+              <img
+                class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+                src="/images/calendario.webp"
+                alt=""
+              />
+            </div>
+            <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
+              <h3 class="text-primary text-sm/4 font-semibold">14 y 15 de junio</h3>
+              <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
+                ¡Dos días de diversión!
+              </p>
+              <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
+                Apunta en tu calendario, porque LolaLolita Land abre sus puertas el 14 y 15 de junio
+                para darle la bienvenida al verano.
+              </p>
+            </div>
           </div>
-          <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
-            <h3 class="text-primary text-sm/4 font-semibold">14 y 15 de junio</h3>
-            <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
-              ¡Dos días de diversión!
-            </p>
-            <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
-              Apunta en tu calendario, porque LolaLolita Land abre sus puertas el 14 y 15 de junio
-              para darle la bienvenida al verano.
-            </p>
+          <div
+            class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem]"
+          >
           </div>
-        </div>
-        <div
-          class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem]"
-        >
         </div>
       </div>
       <div class="relative lg:col-span-3">
         <div class="absolute inset-px rounded-lg bg-white lg:rounded-tr-[2rem]"></div>
+
         <div
-          class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]"
+          class="relative flex h-full flex-col rounded-[calc(var(--radius-lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]"
         >
-          <div class="relative h-80 w-full overflow-hidden">
-            <img
-              class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-              src="/images/aquopolis.webp"
-              alt=""
-            />
-          </div>
-          <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
-            <h3 class="text-primary text-sm/4 font-semibold">La experiencia más refrescante</h3>
-            <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
-              Un parque acuático lleno de sorpresas
-            </p>
-            <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
-              Este año LolaLolita Land se celebra en Aquopolis, Madrid, un parque acuático lleno de
-              toboganes y piscinas.
-            </p>
+          <GlowingEffect
+            spread={40}
+            glow={true}
+            disabled={false}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={2}
+            variant="lolalolita"
+          />
+
+          <div
+            class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]"
+          >
+            <div class="relative h-80 w-full overflow-hidden">
+              <img
+                class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+                src="/images/aquopolis.webp"
+                alt=""
+              />
+            </div>
+            <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
+              <h3 class="text-primary text-sm/4 font-semibold">La experiencia más refrescante</h3>
+              <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
+                Un parque acuático lleno de sorpresas
+              </p>
+              <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
+                Este año LolaLolita Land se celebra en Aquopolis, Madrid, un parque acuático lleno
+                de toboganes y piscinas.
+              </p>
+            </div>
           </div>
         </div>
+
         <div
           class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5 lg:rounded-tr-[2rem]"
         >
@@ -95,23 +125,37 @@ import DotBackground from "../components/DotBackground.astro"
       <div class="relative lg:col-span-2">
         <div class="absolute inset-px rounded-lg bg-white lg:rounded-bl-[2rem]"></div>
         <div
-          class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-bl-[calc(2rem+1px)]"
+          class="relative flex h-full flex-col rounded-[calc(var(--radius-lg)+1px)] lg:rounded-bl-[calc(2rem+1px)]"
         >
-          <div class="relative h-80 w-full overflow-hidden">
-            <img
-              class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-              src="/images/lolalolita.webp"
-              alt=""
-            />
-          </div>
-          <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
-            <h3 class="text-primary text-sm/4 font-semibold">Segunda edición</h3>
-            <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
-              Para crear recuerdos inolvidables
-            </p>
-            <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
-              El año pasado fue un éxito, y este año queremos que sea aún mejor.
-            </p>
+          <GlowingEffect
+            spread={40}
+            glow={true}
+            disabled={false}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={2}
+            variant="lolalolita"
+          />
+
+          <div
+            class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-bl-[calc(2rem+1px)]"
+          >
+            <div class="relative h-80 w-full overflow-hidden">
+              <img
+                class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+                src="/images/lolalolita.webp"
+                alt=""
+              />
+            </div>
+            <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
+              <h3 class="text-primary text-sm/4 font-semibold">Segunda edición</h3>
+              <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
+                Para crear recuerdos inolvidables
+              </p>
+              <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
+                El año pasado fue un éxito, y este año queremos que sea aún mejor.
+              </p>
+            </div>
           </div>
         </div>
         <div
@@ -121,26 +165,40 @@ import DotBackground from "../components/DotBackground.astro"
       </div>
       <div class="relative lg:col-span-2">
         <div class="absolute inset-px rounded-lg bg-white"></div>
-        <div
-          class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]"
-        >
-          <div class="relative h-80 w-full overflow-hidden">
-            <img
-              class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
-              src="/images/sorpresas.webp"
-              alt=""
-            />
-          </div>
-          <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
-            <h3 class="text-primary text-sm/4 font-semibold">¡Muchas sorpresas!</h3>
-            <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
-              Invitados especiales
-            </p>
-            <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
-              Dscubrirás a todos los invitados que nos acompañarán en el evento
-            </p>
+
+        <div class="relative flex h-full flex-col rounded-[calc(var(--radius-lg)+1px)]">
+          <GlowingEffect
+            spread={40}
+            glow={true}
+            disabled={false}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={2}
+            variant="lolalolita"
+          />
+
+          <div
+            class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]"
+          >
+            <div class="relative h-80 w-full overflow-hidden">
+              <img
+                class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+                src="/images/sorpresas.webp"
+                alt=""
+              />
+            </div>
+            <div class="p-4 pt-4 sm:p-6 md:p-8 lg:p-10">
+              <h3 class="text-primary text-sm/4 font-semibold">¡Muchas sorpresas!</h3>
+              <p class="mx-auto mt-2 text-base font-medium tracking-tight text-gray-950 sm:text-lg">
+                Invitados especiales
+              </p>
+              <p class="mt-2 text-xs/5 text-pretty text-gray-600 sm:text-sm/6">
+                Dscubrirás a todos los invitados que nos acompañarán en el evento
+              </p>
+            </div>
           </div>
         </div>
+
         <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm ring-1 ring-black/5">
         </div>
       </div>
@@ -148,6 +206,20 @@ import DotBackground from "../components/DotBackground.astro"
         <div
           class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-br-[2rem]"
         >
+          <div
+            class="relative flex h-full flex-col rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-br-[calc(2rem+1px)]"
+          >
+          </div>
+
+          <GlowingEffect
+            spread={40}
+            glow={true}
+            disabled={false}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={2}
+            variant="lolalolita"
+          />
         </div>
         <div
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-br-[calc(2rem+1px)]"
