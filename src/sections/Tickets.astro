@@ -1,4 +1,5 @@
 ---
+import GlowingEffect from "@/components/GlowingEffect.astro"
 import Marquee from "@/components/Marquee.astro"
 ---
 
@@ -44,8 +45,17 @@ import Marquee from "@/components/Marquee.astro"
     <div class="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
       <!-- Día 1: 15 de junio - Mañana -->
       <div
-        class="overflow-hidden rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg"
+        class="relative rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all"
       >
+        <GlowingEffect
+          spread={50}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={2}
+          variant="lolalolita"
+        />
         <div class="p-6">
           <div class="flex items-start justify-between">
             <div>
@@ -71,8 +81,17 @@ import Marquee from "@/components/Marquee.astro"
 
       <!-- Día 1: 15 de junio - Tarde -->
       <div
-        class="overflow-hidden rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg"
+        class="relative rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all"
       >
+        <GlowingEffect
+          spread={50}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={2}
+          variant="lolalolita"
+        />
         <div class="p-6">
           <div class="flex items-start justify-between">
             <div>
@@ -98,8 +117,17 @@ import Marquee from "@/components/Marquee.astro"
 
       <!-- Día 2: 16 de junio - Mañana -->
       <div
-        class="overflow-hidden rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg"
+        class="relative rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all"
       >
+        <GlowingEffect
+          spread={50}
+          glow={false}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={2}
+          variant="lolalolita"
+        />
         <div class="p-6">
           <div class="flex items-start justify-between">
             <div>
@@ -125,8 +153,17 @@ import Marquee from "@/components/Marquee.astro"
 
       <!-- Día 2: 16 de junio - Tarde -->
       <div
-        class="overflow-hidden rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg"
+        class="relative rounded-xl border border-gray-100 bg-white opacity-75 shadow-md transition-all"
       >
+        <GlowingEffect
+          spread={50}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={2}
+          variant="lolalolita"
+        />
         <div class="p-6">
           <div class="flex items-start justify-between">
             <div>
