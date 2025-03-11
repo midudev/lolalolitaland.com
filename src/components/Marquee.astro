@@ -1,16 +1,16 @@
 ---
 export type Props = {
-  content: Array<string>
+  content: string
 }
 
 const { content } = Astro.props
 ---
 
-<div class="gap-x-4 py-2 flex overflow-hidden">
+<div class="flex gap-x-4 overflow-hidden py-2">
   {
-    content.map((item, index) => (
-      <div class="marquee-content animate-marquee gap-x-4 flex-none justify-around flex [&>*]:uppercase [&>*]:text-[4vw] [&>*]:font-black [&>*]:leading-none">
-        <div>{item}</div>
+    Array.from({ length: 8 }).map((_, index) => (
+      <div class="marquee-content animate-marquee flex flex-none justify-around gap-x-4 [&>*]:text-[4vw] [&>*]:leading-none [&>*]:font-black [&>*]:uppercase">
+        <div>{content}</div>
         {index !== content.length - 1 && <div> · </div>}
       </div>
     ))
