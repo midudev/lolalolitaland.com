@@ -64,9 +64,8 @@
       </div>
     </div>
   </nav>
-  <div class="relative z-50 hidden lg:hidden" id="mobile-menu" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 z-10"></div>
-    <div class="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-white px-6 py-6">
+  <div class="fixed top-0 z-50 w-full hidden lg:hidden [&.hidden]:translate-x-[-100%] starting:translate-x-[-100%] transition-translate-[0%] transition-(display) duration-[.3s] transition-discrete" id="mobile-menu" role="dialog" aria-modal="true">
+    <div class="z-10 max-h-screen h-screen w-full overflow-y-auto bg-white px-6 py-6">
       <div class="flex items-center justify-between">
         <div class="flex flex-1">
           <button
