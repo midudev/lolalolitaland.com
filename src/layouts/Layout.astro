@@ -5,12 +5,17 @@ import "@fontsource/poppins/600.css"
 import "@fontsource/poppins/700.css"
 import "@fontsource/poppins/800.css"
 import "@fontsource/poppins/900.css"
-
 import Header from "@/components/Header.astro"
 
-import "../styles/global.css"
+import "@/styles/global.css";
 
-const { title = "Lola Lolita Land · 14 y 15 de Junio en Aquopolis, Madrid" } = Astro.props
+interface Props {
+  title?: string;
+};
+
+const {
+  title = "Lola Lolita Land · 14 y 15 de Junio en Aquopolis, Madrid",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -21,18 +26,9 @@ const { title = "Lola Lolita Land · 14 y 15 de Junio en Aquopolis, Madrid" } = 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body class="w-screen overflow-x-hidden">
+
+  <body class="w-screen overflow-x-hidden scroll-smooth">
     <Header />
     <slot />
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    scroll-behavior: smooth;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

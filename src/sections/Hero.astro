@@ -5,15 +5,21 @@ import DotBackground from "../components/DotBackground.astro"
 
 <section id="info" class="relative mx-4 pt-12 pb-24">
   <DotBackground />
-  <div class="relative mx-auto mb-16 max-w-6xl">
+  <div class="relative mx-auto mb-16 aspect-video max-w-6xl">
     <img
-      class="relative z-10 rounded-[2rem]"
-      src="/images/lolalolitaland-hero.webp"
+      class="animate-fade-in-down animate-delay-500 absolute top-0 right-0 left-0 z-50 mx-auto w-20 sm:w-32 md:w-56"
+      src="/favicon.svg"
+      alt="Logo de Lola Lolita Land"
+    />
+    <img
+      class="animate-fade-in relative z-10 rounded-[2rem]"
+      src="/images/hero.webp"
       alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
     />
     <img
+      aria-hidden="true"
       class="absolute bottom-0 z-0 m-auto h-full w-auto scale-105 opacity-50 blur-xl"
-      src="/images/lolalolitaland-hero.webp"
+      src="/images/hero-blur.jpg"
       alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
     />
   </div>
@@ -56,7 +62,7 @@ import DotBackground from "../components/DotBackground.astro"
           >
             <div class="relative h-80 w-full overflow-hidden">
               <img
-                class="relative h-full w-full object-cover object-center [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+                class="relative h-full w-full object-cover object-center object-right [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
                 src="/images/calendario.webp"
                 alt=""
               />

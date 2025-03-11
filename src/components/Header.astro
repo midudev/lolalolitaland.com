@@ -1,4 +1,4 @@
-<header>
+<header class="relative">
   <nav
     class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 pb-0 uppercase lg:px-8"
     aria-label="Global"
@@ -64,7 +64,12 @@
       </div>
     </div>
   </nav>
-  <div class="relative z-50 hidden lg:hidden" id="mobile-menu" role="dialog" aria-modal="true">
+  <div
+    class="fixed inset-0 z-[9999] h-full w-full -translate-x-full transform transition duration-300 lg:hidden"
+    id="mobile-menu"
+    role="dialog"
+    aria-modal="true"
+  >
     <div class="fixed inset-0 z-10"></div>
     <div class="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-white px-6 py-6">
       <div class="flex items-center justify-between">
@@ -120,14 +125,17 @@
   const mobileMenu = document.getElementById("mobile-menu")
   const openMenuButton = document.getElementById("open-menu-button")
   const closeMenuButton = document.getElementById("close-menu-button")
+  const mobileItems = mobileMenu?.querySelectorAll("a")
+
+  const toggleMenu = () => {
+    mobileMenu?.classList.toggle("-translate-x-full")
+  }
 
   // Add event listener to open menu button
-  openMenuButton?.addEventListener("click", () => {
-    mobileMenu?.classList.remove("hidden")
-  })
+  openMenuButton?.addEventListener("click", toggleMenu)
 
   // Add event listener to close menu button
-  closeMenuButton?.addEventListener("click", () => {
-    mobileMenu?.classList.add("hidden")
-  })
+  closeMenuButton?.addEventListener("click", toggleMenu)
+
+  mobileItems?.forEach((item) => item.addEventListener("click", toggleMenu))
 </script>
