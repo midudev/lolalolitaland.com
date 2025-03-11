@@ -1,11 +1,21 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro"
 ---
 
 <Layout>
-	<Welcome />
+  <img
+    class="block md:aspect-[1443/811] aspect-square object-cover max-w-6xl h-auto w-full"
+    src="/landing.webp"
+    alt="Lola Lolita Land - Entradas próximamente a la venta"
+    width="100%"
+    height="100%"
+  />
+  <img
+    aria-hidden="true"
+    class="block md:aspect-[1443/811] aspect-square object-cover max-w-6xl h-auto w-full absolute inset-0 m-auto blur-3xl -z-10"
+    src="/landing.webp"
+    alt="Landing Page"
+    width="100%"
+    height="100%"
+  />
 </Layout>
