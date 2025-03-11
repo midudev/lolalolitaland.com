@@ -89,7 +89,7 @@
           </button>
         </div>
       </div>
-      <div class="mt-6 space-y-2">
+      <div class="mt-6 space-y-2 mobile-nav-links">
         <a
           href="/#info"
           class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-[#FF0695]/10 hover:text-[#FF0695]"
@@ -120,6 +120,7 @@
   const mobileMenu = document.getElementById("mobile-menu")
   const openMenuButton = document.getElementById("open-menu-button")
   const closeMenuButton = document.getElementById("close-menu-button")
+  const navLinks = document.querySelectorAll(".mobile-nav-links a")
 
   // Add event listener to open menu button
   openMenuButton?.addEventListener("click", () => {
@@ -130,4 +131,11 @@
   closeMenuButton?.addEventListener("click", () => {
     mobileMenu?.classList.add("hidden")
   })
+
+  // Add event listener to close menu when clicking on a link
+  for(const navLink of navLinks){
+    navLink.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden")
+    })
+  }
 </script>
