@@ -1,5 +1,6 @@
 ---
 import GalleryImg1 from "@/assets/images/gallery/gallery_01.webp"
+import GlowingEffect from "@/components/GlowingEffect.astro"
 import { galleryImages } from "@/consts/galleryImages"
 
 import { Image } from "astro:assets"
@@ -19,6 +20,14 @@ import { Image } from "astro:assets"
       {
         galleryImages.map(({ image, alt }) => (
           <li class="aspect-9/10 cursor-pointer rounded-md shadow-sm transition-transform duration-300 will-change-transform">
+            <GlowingEffect
+              spread={40}
+              proximity={64}
+              inactiveZone={0.01}
+              borderWidth={2}
+              color="var(--color-theme-blue-light)"
+            />
+
             <Image
               src={image}
               alt={alt}
