@@ -3,6 +3,7 @@ import Marquee from "@/components/Marquee.astro"
 
 import Ticket from "public/icons/ticket.svg"
 import Clock from "public/icons/clock.svg"
+import GlowingEffect from "@/components/GlowingEffect.astro"
 ---
 
 <section class="relative w-full overflow-hidden" id="tickets">
@@ -37,8 +38,16 @@ import Clock from "public/icons/clock.svg"
     <div class="mx-auto grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2">
       <!-- Día 1: 15 de junio -->
       <div
-        class="overflow-hidden rounded-[calc(var(--radius-lg)+1px)] rounded-t-[calc(2rem+1px)] border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg md:rounded-t-[calc(var(--radius-lg)+1px)] md:rounded-tl-[calc(2rem+1px)] md:rounded-bl-[calc(2rem+1px)]"
+        class="relative rounded-[calc(var(--radius-lg)+1px)] rounded-t-[calc(2rem+1px)] border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg md:rounded-t-[calc(var(--radius-lg)+1px)] md:rounded-tl-[calc(2rem+1px)] md:rounded-bl-[calc(2rem+1px)]"
       >
+        <GlowingEffect
+          spread={40}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+          color="var(--color-theme-blue-light)"
+        />
+
         <div class="p-6">
           <div class="flex items-start justify-between">
             <div>
@@ -61,8 +70,16 @@ import Clock from "public/icons/clock.svg"
 
       <!-- Día 2: 16 de junio -->
       <div
-        class="overflow-hidden rounded-[calc(var(--radius-lg)+1px)] rounded-b-[calc(2rem+1px)] border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg md:rounded-tr-[calc(2rem+1px)] md:rounded-b-[calc(var(--radius-lg)+1px)] md:rounded-br-[calc(2rem+1px)]"
+        class="relative rounded-[calc(var(--radius-lg)+1px)] rounded-b-[calc(2rem+1px)] border border-gray-100 bg-white opacity-75 shadow-md transition-all hover:shadow-lg md:rounded-tr-[calc(2rem+1px)] md:rounded-b-[calc(var(--radius-lg)+1px)] md:rounded-br-[calc(2rem+1px)]"
       >
+        <GlowingEffect
+          spread={40}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+          color="var(--color-theme-blue-light)"
+        />
+
         <div class="p-6">
           <div class="flex items-start justify-between">
             <div>
