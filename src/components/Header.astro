@@ -1,4 +1,4 @@
-<header class="relative">
+<header class="sticky top-0 z-60 animate-blur-header">
   <nav
     class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 pb-0 uppercase lg:px-8"
     aria-label="Global"
@@ -64,14 +64,13 @@
       </div>
     </div>
   </nav>
-  <div
-    class="fixed inset-0 z-[9999] h-full w-full -translate-x-full transform transition duration-300 lg:hidden"
+  <dialog
+    class="z-50 max-h-full max-w-full size-full lg:hidden starting:-translate-x-full transition-(display) translate-x-0 duration-300 transition-discrete [&:not([open])]:-translate-x-full"
     id="mobile-menu"
     role="dialog"
     aria-modal="true"
   >
-    <div class="fixed inset-0 z-10"></div>
-    <div class="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-white px-6 py-6">
+    <div class="z-10 overflow-y-auto bg-white px-6 py-6">
       <div class="flex items-center justify-between">
         <div class="flex flex-1">
           <button
@@ -117,7 +116,7 @@
         >
       </div>
     </div>
-  </div>
+  </dialog>
 </header>
 
 <script>
@@ -128,7 +127,9 @@
   const mobileItems = mobileMenu?.querySelectorAll("a")
 
   const toggleMenu = () => {
-    mobileMenu?.classList.toggle("-translate-x-full")
+    mobileMenu.open
+      ? mobileMenu.close()
+      : mobileMenu.showModal()
   }
 
   // Add event listener to open menu button
@@ -139,3 +140,24 @@
 
   mobileItems?.forEach((item) => item.addEventListener("click", toggleMenu))
 </script>
+
+<style>
+  header {
+    animation: blur-header .3s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 150px;
+  }
+
+  @keyframes blur-header {
+    0% {
+      backdrop-filter: blur(0);
+      background-color: transparent;
+    }
+
+    100% {
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.8);
+      padding-bottom: calc(var(--spacing)* 6);/* pb-6 */
+    }
+  }
+</style>
