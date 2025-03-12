@@ -67,6 +67,7 @@ const getGradient = (color: string) => {
 
 <script>
   import { animate } from "motion"
+  import { trimSlashes } from "node_modules/astro/dist/core/path"
 
   class GlowingEffect extends HTMLElement {
     inactiveZone = 0.7
@@ -95,7 +96,17 @@ const getGradient = (color: string) => {
       this.handleMove = this.handleMove.bind(this)
       this.handleScroll = this.handleScroll.bind(this)
       this.handlePointerMove = this.handlePointerMove.bind(this)
+      this.handleResize = this.handleResize.bind(this)
+      this.resizeBorderRadius = this.resizeBorderRadius.bind(this)
 
+      this.resizeBorderRadius()
+    }
+
+    /**
+     * Resize the border radius of the glowing effect to match the parent element
+     * border radius and the border width of the glowing effect.
+     */
+    resizeBorderRadius() {
       if (!this.parentElement) return
 
       const parentBorderRadius = window.getComputedStyle(this.parentElement).borderRadius
@@ -165,7 +176,12 @@ const getGradient = (color: string) => {
       this.handleMove(e)
     }
 
+    handleResize(e) {
+      this.resizeBorderRadius()
+    }
+
     connectedCallback() {
+      window.addEventListener("resize", this.handleResize, { passive: true })
       window.addEventListener("scroll", this.handleScroll, { passive: true })
       document.body.addEventListener("pointermove", this.handlePointerMove, {
         passive: true,
@@ -176,6 +192,7 @@ const getGradient = (color: string) => {
       if (this.animationFrame) {
         cancelAnimationFrame(this.animationFrame)
       }
+      window.removeEventListener("resize", this.handleResize)
       window.removeEventListener("scroll", this.handleScroll)
       document.body.removeEventListener("pointermove", this.handlePointerMove)
     }
