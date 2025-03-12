@@ -3,6 +3,7 @@ import InfoJobs from "@/assets/infojobs.svg"
 import Cerave from "@/assets/cerave.svg"
 
 import { Image } from "astro:assets"
+import GlowingEffect from "@/components/GlowingEffect.astro"
 ---
 
 <section
@@ -30,8 +31,16 @@ import { Image } from "astro:assets"
         href="https://www.infojobs.net/"
         target="_blank"
         rel="noopener noreferrer"
-        class="group col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
+        <GlowingEffect
+          blur={0}
+          spread={40}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+          color="#157DB7"
+        />
         <InfoJobs
           title="InfoJobs"
           width="158"
@@ -43,8 +52,15 @@ import { Image } from "astro:assets"
         href="https://www.cerave.es/"
         target="_blank"
         rel="noopener noreferrer"
-        class="group col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
+        <GlowingEffect
+          spread={40}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+          color="#0070CF"
+        />
         <Cerave
           title="Cerave"
           width="158"
@@ -56,8 +72,15 @@ import { Image } from "astro:assets"
         href="https://www.dkny.com/?srsltid=AfmBOoqVKqaSRmOPiTAZbK0hT30uT3KlKRZB2Z4LW2nRgMqAOH0FvrJu"
         target="_blank"
         rel="noopener noreferrer"
-        class="group col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
+        <GlowingEffect
+          spread={40}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+          color="#C70C62"
+        />
         <Image
           src="/src/assets/dkny.png"
           alt="DKNY"
@@ -85,8 +108,15 @@ import { Image } from "astro:assets"
         href="https://www.donettes.com/"
         target="_blank"
         rel="noopener noreferrer"
-        class="group col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
+        <GlowingEffect
+          spread={40}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+          color="#FDDA02"
+        />
         <Image
           src="/src/assets/donettes.png"
           title="Donnetes"
@@ -100,8 +130,15 @@ import { Image } from "astro:assets"
         href="https://trolli.es/"
         target="_blank"
         rel="noopener noreferrer"
-        class="group col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
+        <GlowingEffect
+          spread={40}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+          color="#F08100"
+        />
         <Image
           src="/src/assets/trolli.png"
           title="Trolli"
