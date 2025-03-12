@@ -4,6 +4,7 @@ import Logo from "../../public/favicon.svg"
 
 import DotBackground from "../components/DotBackground.astro"
 import CalendarImage from "@/assets/images/calendario.webp"
+import GlowingEffect from "@/components/GlowingEffect.astro"
 ---
 
 <section class="relative pb-24">
@@ -47,6 +48,17 @@ import CalendarImage from "@/assets/images/calendario.webp"
         >
         </div>
         <div
+          class="rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] lg:rounded-tl-[calc(2rem+1px)]"
+        >
+          <GlowingEffect
+            spread={40}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={3}
+            color="var(--color-theme-blue-light)"
+          />
+        </div>
+        <div
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] lg:rounded-tl-[calc(2rem+1px)]"
         >
           <div class="relative h-80 w-full overflow-hidden">
@@ -76,6 +88,16 @@ import CalendarImage from "@/assets/images/calendario.webp"
       </div>
       <div class="relative lg:col-span-3">
         <div class="absolute inset-px rounded-lg bg-white lg:rounded-tr-[2rem]"></div>
+        <div class="rounded-[calc(var(--radius-lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]">
+          <GlowingEffect
+            spread={40}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={3}
+            color="var(--color-theme-blue-light)"
+          />
+        </div>
+
         <div
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]"
         >
@@ -104,6 +126,15 @@ import CalendarImage from "@/assets/images/calendario.webp"
       </div>
       <div class="relative lg:col-span-2">
         <div class="absolute inset-px rounded-lg bg-white lg:rounded-bl-[2rem]"></div>
+        <div class="rounded-[calc(var(--radius-lg)+1px)] lg:rounded-bl-[calc(2rem+1px)]">
+          <GlowingEffect
+            spread={40}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={3}
+            color="var(--color-theme-blue-light)"
+          />
+        </div>
         <div
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-bl-[calc(2rem+1px)]"
         >
@@ -131,6 +162,15 @@ import CalendarImage from "@/assets/images/calendario.webp"
       </div>
       <div class="relative lg:col-span-2">
         <div class="absolute inset-px rounded-lg bg-white"></div>
+        <div class="rounded-[calc(var(--radius-lg)+1px)]">
+          <GlowingEffect
+            spread={40}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={3}
+            color="var(--color-theme-blue-light)"
+          />
+        </div>
         <div
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]"
         >
@@ -158,6 +198,17 @@ import CalendarImage from "@/assets/images/calendario.webp"
         <div
           class="absolute inset-px rounded-lg bg-white max-lg:rounded-b-[2rem] lg:rounded-br-[2rem]"
         >
+        </div>
+        <div
+          class="rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-br-[calc(2rem+1px)]"
+        >
+          <GlowingEffect
+            spread={40}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={3}
+            color="var(--color-theme-blue-light)"
+          />
         </div>
         <div
           class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-br-[calc(2rem+1px)]"
