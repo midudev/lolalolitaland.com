@@ -6,7 +6,7 @@ import "@fontsource/poppins/700.css"
 import "@fontsource/poppins/800.css"
 import "@fontsource/poppins/900.css"
 import Header from "@/components/Header.astro"
-
+import Arrow from "@/components/Arrow.astro"
 import "@/styles/global.css"
 
 interface Props {
@@ -49,6 +49,7 @@ const { title = "Lola Lolita Land · 14 y 15 de Junio en Aquopolis, Madrid" } = 
   <body class="w-screen overflow-x-hidden scroll-smooth">
     <Header />
     <slot />
+    <Arrow />
   </body>
 </html>
 
