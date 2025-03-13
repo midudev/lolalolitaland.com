@@ -1,6 +1,9 @@
 ---
 import InfoJobs from "@/assets/infojobs.svg"
 import Cerave from "@/assets/cerave.svg"
+import Donnetes from "@/assets/donettes.png"
+import Trolli from "@/assets/trolli.png"
+import Dkny from "@/assets/dkny.png"
 
 import { Image } from "astro:assets"
 import GlowingEffect from "@/components/GlowingEffect.astro"
@@ -17,21 +20,19 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
     <!-- Categoría oficial -->
     <div class="mt-16 flex items-center justify-center gap-1">
       <div class="flex w-full items-center">
-        <div class="border-primary-light border-2 flex-grow border-t"></div>
+        <div class="border-primary-light flex-grow border-2 border-t"></div>
         <div class="mx-4">
           <span class="text-center font-semibold text-white"> Patrocinadores Oficiales </span>
         </div>
-        <div class="border-primary-light border-2 flex-grow border-t"></div>
+        <div class="border-primary-light flex-grow border-2 border-t"></div>
       </div>
     </div>
-    <div
-      class="text-primary mx-auto mt-10 flex  flex-col items-center justify-center gap-10 md:flex-row"
-    >
+    <div class="mx-auto mt-10 flex flex-col items-center justify-center gap-10 md:flex-row">
       <a
         href="https://www.infojobs.net/"
         target="_blank"
         rel="noopener noreferrer"
-        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
         <GlowingEffect
           blur={0}
@@ -52,7 +53,7 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
         href="https://www.cerave.es/"
         target="_blank"
         rel="noopener noreferrer"
-        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
         <GlowingEffect
           spread={40}
@@ -72,7 +73,7 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
         href="https://www.dkny.com/?srsltid=AfmBOoqVKqaSRmOPiTAZbK0hT30uT3KlKRZB2Z4LW2nRgMqAOH0FvrJu"
         target="_blank"
         rel="noopener noreferrer"
-        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
         <GlowingEffect
           spread={40}
@@ -82,33 +83,31 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
           color="#C70C62"
         />
         <Image
-          src="/src/assets/dkny.png"
+          src={Dkny}
           alt="DKNY"
           title="DKNY"
-          width="100"
+          width="158"
           height="48"
-          class="mt-2 inline-block transition-transform group-hover:scale-110"
+          class="mt-2 inline-block w-24 transition-transform group-hover:scale-110"
         />
       </a>
     </div>
     <!-- Categoría colaboradores -->
     <div class="mt-16 flex items-center justify-center gap-1">
       <div class="flex w-full items-center">
-        <div class="border-primary-light border-2 flex-grow border-t"></div>
+        <div class="border-primary-light flex-grow border-2 border-t"></div>
         <div class="mx-4">
           <span class="text-center font-semibold text-white"> Colaboradores </span>
         </div>
-        <div class="border-primary-light border-2 flex-grow border-t"></div>
+        <div class="border-primary-light flex-grow border-2 border-t"></div>
       </div>
     </div>
-    <div
-      class="text-primary mx-auto mt-10 flex max-w-lg flex-col items-center justify-center gap-6 md:flex-row"
-    >
+    <div class="mx-auto mt-10 flex flex-col items-center justify-center gap-10 md:flex-row">
       <a
         href="https://www.donettes.com/"
         target="_blank"
         rel="noopener noreferrer"
-        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
         <GlowingEffect
           spread={40}
@@ -118,10 +117,10 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
           color="#FDDA02"
         />
         <Image
-          src="/src/assets/donettes.png"
+          src={Donnetes}
           title="Donnetes"
           alt="Donnetes"
-          width="140"
+          width="158"
           height="48"
           class="inline-block transition-transform group-hover:scale-110"
         />
@@ -130,7 +129,7 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
         href="https://trolli.es/"
         target="_blank"
         rel="noopener noreferrer"
-        class="group relative col-span-2 flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
       >
         <GlowingEffect
           spread={40}
@@ -140,12 +139,12 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
           color="#F08100"
         />
         <Image
-          src="/src/assets/trolli.png"
+          src={Trolli}
           title="Trolli"
           alt="Trolli"
-          width="120"
+          width="158"
           height="48"
-          class="inline-block transition-transform group-hover:scale-110"
+          class="inline-block w-32 transition-transform group-hover:scale-110"
         />
       </a>
     </div>

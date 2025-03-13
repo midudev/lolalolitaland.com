@@ -91,4 +91,25 @@ const { latitude, longitude, zoom, tileLayer, attribution, geoJSON } = Astro.pro
   .leaflet-pane {
     z-index: 10;
   }
+
+  .leaflet-control-zoom.leaflet-bar.leaflet-control {
+    border-radius: 24px;
+    overflow: hidden;
+    margin: 14px;
+    border-color: var(--color-primary);
+  }
+
+  a.leaflet-control-zoom-in,
+  a.leaflet-control-zoom-out {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  a.leaflet-control-zoom-in:hover,
+  a.leaflet-control-zoom-out:hover {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary-light);
+  }
 </style>

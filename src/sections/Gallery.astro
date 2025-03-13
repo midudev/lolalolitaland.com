@@ -34,7 +34,7 @@ import { Image } from "astro:assets"
               width={950}
               height={900}
               class="border-theme-blue-light h-full w-full rounded-md border border-dashed object-cover"
-              transition:name="ligtbox-1"
+              transition:name="lightbox-1"
               loading="lazy"
             />
           </li>
@@ -43,7 +43,7 @@ import { Image } from "astro:assets"
     </ul>
   </div>
   <div
-    class="bg-primary-light/90 pointer-events-none fixed inset-0 z-[999999] flex h-full w-full items-center justify-center p-4 opacity-0 transition-opacity duration-300 ease-in-out"
+    class="bg-primary-light/90 pointer-events-none fixed inset-0 z-[999999] flex h-full w-full items-center justify-center p-4 opacity-0 backdrop-blur-xs transition-opacity duration-300 ease-in-out"
     role="dialog"
     aria-modal="true"
     id="lightbox"
@@ -52,7 +52,7 @@ import { Image } from "astro:assets"
       <button
         type="button"
         id="close-lightbox"
-        class="hover:text-primary absolute -top-8 -right-1 -m-2.5 cursor-pointer rounded-full bg-white p-2.5 text-gray-700 transition-all duration-300 ease-in will-change-transform hover:scale-125"
+        class="hover:text-primary absolute top-4 right-4 z-[10000] -m-2.5 cursor-pointer rounded-full bg-white p-2.5 text-gray-700 transition-all duration-300 ease-in will-change-transform hover:scale-125 sm:top-6 sm:right-6 md:top-8 md:right-8 lg:top-10 lg:right-1"
       >
         <span class="sr-only">Cerrar Galería</span>
         <svg
@@ -67,13 +67,14 @@ import { Image } from "astro:assets"
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
         </svg>
       </button>
+
       <Image
         src={GalleryImg1}
         alt="Gallery Image 1"
-        class="h-full w-full rounded-md"
+        class="h-full w-max rounded-md"
         width={2000}
         height={1300}
-        transition:name="ligtbox-1"
+        transition:name="lightbox-1"
       />
     </div>
   </div>
@@ -96,8 +97,10 @@ import { Image } from "astro:assets"
 
   galleryItems.forEach((eachItem) => {
     eachItem.addEventListener("click", () => {
+      if (lightBoxImg) {
+        lightBoxImg.src = eachItem.src
+      }
       openLightBox()
-      lightBoxImg.src = eachItem.src
     })
   })
 
@@ -108,7 +111,12 @@ import { Image } from "astro:assets"
   lightBoxImg.addEventListener("click", (event) => {
     event.stopPropagation()
   })
-  btnCloseLightBox.addEventListener("click", (eent) => {
+  btnCloseLightBox.addEventListener("click", (event) => {
     closeLightBox()
+  })
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeLightBox()
+    }
   })
 </script>
