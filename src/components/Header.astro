@@ -16,6 +16,11 @@
           >Preguntas</a
         >
         <a
+          href="/#gallery"
+          class="relative text-sm/6 font-semibold text-white after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-0 after:bg-[#61E2E5] after:transition-all after:duration-300 hover:text-[#61E2E5] hover:after:w-full"
+          >Galeria 2024</a
+        >
+        <a
           href="/hoja-de-responsabilidad.pdf"
           class="relative text-sm/6 font-semibold text-white after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-0 after:bg-[#61E2E5] after:transition-all after:duration-300 hover:text-[#61E2E5] hover:after:w-full"
           >Aut. Menores</a
@@ -99,6 +104,11 @@
           >Preguntas</a
         >
         <a
+          href="/#gallery"
+          class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-[#FF0695]/10 hover:text-[#FF0695]"
+          >Galeria 2024</a
+        >
+        <a
           href="/hoja-de-responsabilidad.pdf"
           class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-[#FF0695]/10 hover:text-[#FF0695]"
           >Aut. Menores</a
@@ -115,7 +125,7 @@
 
 <script>
   // Get the menu elements
-  const mobileMenu = document.getElementById("mobile-menu")
+  const mobileMenu = document.getElementById("mobile-menu") as HTMLDialogElement
   const openMenuButton = document.getElementById("open-menu-button")
   const closeMenuButton = document.getElementById("close-menu-button")
   const mobileItems = mobileMenu?.querySelectorAll("a")
