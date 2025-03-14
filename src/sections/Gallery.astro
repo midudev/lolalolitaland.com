@@ -1,8 +1,6 @@
 ---
-import GalleryImg1 from "@/assets/images/gallery/gallery_01.webp"
 import GlowingEffect from "@/components/GlowingEffect.astro"
 import { galleryImages } from "@/consts/galleryImages"
-
 import { Image } from "astro:assets"
 ---
 
@@ -18,8 +16,11 @@ import { Image } from "astro:assets"
       class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 [&>*:nth-child(even)]:rotate-2 [&>*:nth-child(n)]:hover:scale-105 [&>*:nth-child(n)]:hover:rotate-0 [&>*:nth-child(n)]:hover:shadow-xl [&>*:nth-child(odd)]:rotate-[-2deg]"
     >
       {
-        galleryImages.map(({ image, alt }) => (
-          <li class="aspect-9/10 cursor-pointer rounded-md shadow-sm transition-transform duration-300 will-change-transform">
+        galleryImages.map(({ image, alt, thumb }) => (
+          <li
+            id={thumb}
+            class="aspect-9/10 cursor-pointer rounded-md shadow-sm transition-transform duration-300 will-change-transform"
+          >
             <GlowingEffect
               spread={40}
               proximity={64}
@@ -27,14 +28,13 @@ import { Image } from "astro:assets"
               borderWidth={2}
               color="var(--color-theme-blue-light)"
             />
-
             <Image
               src={image}
               alt={alt}
               width={950}
               height={900}
+              data-thumbID={thumb}
               class="border-theme-blue-light h-full w-full rounded-md border border-dashed object-cover"
-              transition:name="lightbox-1"
               loading="lazy"
             />
           </li>
@@ -43,16 +43,16 @@ import { Image } from "astro:assets"
     </ul>
   </div>
   <div
-    class="bg-primary-light/90 pointer-events-none fixed inset-0 z-[999999] flex h-full w-full items-center justify-center p-4 opacity-0 backdrop-blur-xs transition-opacity duration-300 ease-in-out"
+    class="pointer-events-none fixed inset-0 flex cursor-pointer items-center justify-center p-4 opacity-0 transition-opacity duration-300 ease-in-out"
     role="dialog"
     aria-modal="true"
     id="lightbox"
   >
-    <div class="relative w-full max-w-5xl p-4" id="light-box-content">
+    <div class="relative w-full max-w-5xl p-4">
       <button
         type="button"
         id="close-lightbox"
-        class="hover:text-primary absolute top-4 right-4 z-[10000] -m-2.5 cursor-pointer rounded-full bg-white p-2.5 text-gray-700 transition-all duration-300 ease-in will-change-transform hover:scale-125 sm:top-6 sm:right-6 md:top-8 md:right-8 lg:top-10 lg:right-1"
+        class="hover:text-primary absolute -top-8 -right-1 -m-2.5 cursor-pointer rounded-full bg-white p-2.5 text-gray-700 transition-all duration-300 ease-in will-change-transform hover:scale-125"
       >
         <span class="sr-only">Cerrar Galería</span>
         <svg
@@ -68,14 +68,7 @@ import { Image } from "astro:assets"
         </svg>
       </button>
 
-      <Image
-        src={GalleryImg1}
-        alt="Gallery Image 1"
-        class="h-full w-max rounded-md"
-        width={2000}
-        height={1300}
-        transition:name="lightbox-1"
-      />
+      <figure id="light-box-content" class="rotate-2"></figure>
     </div>
   </div>
 </section>
@@ -83,40 +76,77 @@ import { Image } from "astro:assets"
 <script>
   const galleryItems = document.querySelectorAll("#gallery li img") as NodeListOf<HTMLImageElement>
   const lightBox = document.getElementById("lightbox") as HTMLDivElement
-  const lightBoxImg = lightBox?.querySelector("img") as HTMLImageElement
+  const lightBoxImgContainer = document.getElementById("light-box-content") as HTMLDivElement
   const btnCloseLightBox = document.getElementById("close-lightbox") as HTMLButtonElement
 
-  const openLightBox = () => {
+  const openLightBox = (image: HTMLImageElement) => {
+    lightBoxImgContainer.appendChild(image)
     lightBox.classList.remove("opacity-0", "pointer-events-none")
-    lightBox.classList.add("opacity-100", "pointer-events-auto")
+    lightBox.classList.add(
+      "bg-[#ff0693a4]",
+      "z-[9999]",
+      "opacity-100",
+      "pointer-events-auto",
+      "backdrop-blur-[10px]"
+    )
   }
-  const closeLightBox = () => {
+  const closeLightBox = (image: HTMLImageElement) => {
     lightBox.classList.add("opacity-0", "pointer-events-none")
-    lightBox.classList.remove("opacity-100", "pointer-events-auto")
+    lightBox.classList.remove(
+      "bg-[#ff0693a4]",
+      "z-[9999]",
+      "opacity-100",
+      "pointer-events-auto",
+      "backdrop-blur-[10px]"
+    )
+    const galleryParentID = image.getAttribute("data-thumbID")
+    const galleryParent = document.getElementById(`${galleryParentID}`) as HTMLLIElement
+    galleryParent.appendChild(image)
   }
 
   galleryItems.forEach((eachItem) => {
-    eachItem.addEventListener("click", () => {
-      if (lightBoxImg) {
-        lightBoxImg.src = eachItem.src
+    eachItem.addEventListener("click", (event) => {
+      const image = event.target as HTMLImageElement
+      if (!document.startViewTransition) {
+        openLightBox(image)
+        return
       }
-      openLightBox()
+
+      image.style.viewTransitionName = "selected-img"
+      document.startViewTransition(() => {
+        openLightBox(image)
+      })
     })
   })
 
-  lightBox.addEventListener("click", (event) => {
-    closeLightBox()
+  lightBox.addEventListener("click", async () => {
+    const image = lightBoxImgContainer.querySelector("img") as HTMLImageElement
+    if (!document.startViewTransition) {
+      closeLightBox(image)
+      return
+    }
+
+    const animation = document.startViewTransition(() => {
+      closeLightBox(image)
+    })
+
+    await animation.finished
+    image.style.viewTransitionName = "none"
   })
 
-  lightBoxImg.addEventListener("click", (event) => {
+  btnCloseLightBox.addEventListener("click", async (event) => {
     event.stopPropagation()
-  })
-  btnCloseLightBox.addEventListener("click", (event) => {
-    closeLightBox()
-  })
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeLightBox()
+    const image = btnCloseLightBox.nextElementSibling!.querySelector("img") as HTMLImageElement
+    if (!document.startViewTransition) {
+      closeLightBox(image)
+      return
     }
+
+    const animation = document.startViewTransition(() => {
+      closeLightBox(image)
+    })
+
+    await animation.finished
+    image.style.viewTransitionName = "none"
   })
 </script>

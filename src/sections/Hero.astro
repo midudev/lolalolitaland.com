@@ -19,7 +19,26 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
       src="/images/hero.webp"
       alt="Fotografía de una joven recostada, que es Lola Lolita, sobre la arena con una cola de sirena azul, frente a una piscina con toboganes rosas en un entorno tropical, con el texto ‘Lola Lolita Land’ en la parte superior."
     />
-    <div class="absolute inset-0 z-20 bg-gradient-to-b from-transparent from-85% to-[#ff0695]">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent from-85% to-[#ff0695]">
+    </div>
+    <div class="absolute w-full z-20" id="header-waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+        <defs>
+          <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+        </defs>
+        <g class="wave4">
+          <use xlink:href="#wave-path" x="50" y="0" class="fill-[#ff0695] opacity-30" >
+        </g>
+        <g class="wave1">
+          <use xlink:href="#wave-path" x="50" y="3" class="fill-[#ff0695] opacity-50" >
+        </g>
+        <g class="wave2">
+          <use xlink:href="#wave-path" x="50" y="6" class="fill-[#ff0695] opacity-70">
+        </g>
+        <g class="wave3">
+          <use xlink:href="#wave-path" x="50" y="9" class="fill-[#ff0695] opacity-50">
+        </g>
+      </svg>
     </div>
   </div>
 
@@ -230,3 +249,133 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
     </div>
   </div>
 </section>
+
+
+<style>
+  .waves {
+    height: 80px;
+    width: 100%;
+    margin-top: -70px;
+  }
+  
+  .wave1 use {
+    -webkit-animation: move-forever1 10s linear infinite;
+    animation: move-forever1 10s linear infinite;
+    -webkit-animation-delay: -2s;
+    animation-delay: -2s;
+  }
+  
+  .wave2 use {
+    -webkit-animation: move-forever2 8s linear infinite;
+    animation: move-forever2 8s linear infinite;
+    -webkit-animation-delay: -2s;
+    animation-delay: -2s;
+  }
+  
+  .wave3 use {
+    -webkit-animation: move-forever3 6s linear infinite;
+    animation: move-forever3 6s linear infinite;
+    -webkit-animation-delay: -2s;
+    animation-delay: -2s;
+  }
+  
+  .wave4 use {
+    -webkit-animation: move-forever4 4s linear infinite;
+    animation: move-forever3 4s linear infinite;
+    -webkit-animation-delay: -2s;
+    animation-delay: -2s;
+  }
+  
+  @-webkit-keyframes move-forever1 {
+    0% {
+      transform: translate(85px, 0%);
+    }
+  
+    100% {
+      transform: translate(-90px, 0%);
+    }
+  }
+  
+  @keyframes move-forever1 {
+    0% {
+      transform: translate(85px, 0%);
+    }
+  
+    100% {
+      transform: translate(-90px, 0%);
+    }
+  }
+  
+  @-webkit-keyframes move-forever2 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+  
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+  
+  @keyframes move-forever2 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+  
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+  
+  @-webkit-keyframes move-forever3 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+  
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+  
+  @keyframes move-forever3 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+  
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+  
+  @-webkit-keyframes move-forever4 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+  
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+  
+  @keyframes move-forever4 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+  
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+  
+    .waves > .parallax use {
+      animation: wave 25s cubic-bezier(0.5, 0.5, 0.45, 0.5) infinite;
+    }
+  
+    @keyframes wave {
+      0% {
+        transform: translate3d(-90px, 0, 0);
+      }
+      100% {
+        transform: translate3d(85px, 0, 0);
+      }
+    }
+  </style>
