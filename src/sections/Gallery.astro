@@ -22,18 +22,17 @@ import WaveSeparator from "@/components/WaveSeparator.astro"
         galleryImages.map(({ image, alt, thumb }, index) => (
           <li
             id={thumb}
-            class="aspect-9/10 cursor-pointer rounded-md shadow-sm transition-transform duration-300 will-change-transform"
+            class="cursor-pointer bg-white px-2.5 pt-2.5 pb-14 shadow-sm transition-transform duration-300 will-change-transform"
             data-index={index}
           >
-            <Image
-              src={image}
-              alt={alt}
-              width={950}
-              height={900}
-              data-thumbID={thumb}
-              class="border-theme-blue-light h-full w-full rounded-md border border-dashed object-cover"
-              loading="lazy"
-            />
+            <div class="aspect-1/1 w-full overflow-hidden">
+              <Image
+                src={image}
+                alt={alt}
+                data-thumbID={thumb}
+                class="h-full w-full object-cover"
+              />
+            </div>
           </li>
         ))
       }
