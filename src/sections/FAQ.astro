@@ -3,66 +3,92 @@ import FaqImage from "@/assets/images/faq.webp"
 import { Image } from "astro:assets"
 ---
 
-<section id="faq">
-  <div class="mx-auto max-w-7xl px-6 py-24 sm:pt-32 lg:px-8 lg:py-40">
-    <div class="lg:grid lg:grid-cols-12 lg:gap-8">
-      <div
-        class="flex flex-col items-center justify-center sm:gap-y-4 lg:col-span-5 lg:items-start"
-      >
-        <h2 class="text-3xl font-semibold tracking-tight text-pretty text-white sm:text-4xl">
+<section id="faq" class="py-16 sm:py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="flex flex-col items-center gap-10 lg:grid lg:grid-cols-12 lg:gap-12">
+      <!-- Imagen y título -->
+      <div class="flex flex-col items-center text-center lg:col-span-5 lg:items-start lg:text-left">
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           Preguntas frecuentes
         </h2>
         <Image
           src={FaqImage}
-          width={384}
-          height={576}
+          width={416}
+          height={624}
           alt="Lola Lolita firmando autógrafos en un escenario."
-          class="mt-4 h-auto w-full max-w-sm rounded-[2rem]"
+          class="mt-6 w-auto max-w-sm rounded-2xl sm:max-w-md lg:max-w-lg xl:max-w-md"
         />
       </div>
-      <div class="mt-10 pt-12 lg:col-span-7 lg:mt-0">
-        <dl class="space-y-10">
-          <div>
-            <dt class="font-semibold text-white">¿Pueden ir menores de edad al evento?</dt>
-            <dd class="mt-1 max-w-2xl text-sm text-pretty text-pink-100">
+
+      <!-- Preguntas Frecuentes -->
+      <div class="w-full lg:col-span-7">
+        <dl class="space-y-6 sm:space-y-8">
+          <div class="border-b border-gray-700 pb-6">
+            <dt class="text-lg font-semibold text-white">¿Pueden ir menores de edad al evento?</dt>
+            <dd class="mt-2 text-sm leading-relaxed text-pink-100">
               Sí, los menores de edad pueden asistir al evento siempre y cuando estén acompañados
               por un adulto. Además, se requiere la firma de un documento de responsabilidad por
-              parte del adulto. <a
-                class="bg-primary-light hover:text-primary inline-block max-w-full rounded-lg p-1 px-2 text-center break-words text-white transition hover:bg-white"
+              parte del adulto.
+              <a
+                class="bg-primary-light hover:text-primary mt-2 inline-block rounded-lg px-3 py-1 text-white transition hover:bg-white"
                 href="/hoja-de-responsabilidad.pdf"
-                >Descarga el documento y llévalo firmado al evento.</a
               >
+                Descarga el documento aquí
+              </a>
             </dd>
           </div>
 
-          <div>
-            <dt class="font-semibold text-white">¿Cuántos días va a durar?</dt>
-            <dd class="mt-1 max-w-2xl text-sm text-pretty text-pink-100">
-              Son dos días, el 14 y 15 de junio de 2025.
+          <div class="border-b border-gray-700 pb-6">
+            <dt class="text-lg font-semibold text-white">
+              ¿Cuándo empieza el evento y cuándo termina?
+            </dt>
+            <dd class="mt-2 text-sm leading-relaxed text-pink-100">
+              El evento será los días 14 y 15 de junio de 2025. La apertura de las puertas será de
+              las X:XX AM a las X:XX PM en ambas jornadas.
             </dd>
           </div>
 
-          <div>
-            <dt class="font-semibold text-white">¿Dónde se celebra?</dt>
-            <dd class="mt-1 max-w-2xl text-sm text-pretty text-pink-100">
+          <div class="border-b border-gray-700 pb-6">
+            <dt class="text-lg font-semibold text-white">¿Dónde se celebra?</dt>
+            <dd class="mt-2 text-sm leading-relaxed text-pink-100">
               En el parque Aquopolis de Madrid, en Villanueva de la Cañada.
             </dd>
           </div>
 
-          <div>
-            <dt class="font-semibold text-white">¿Asistirá Lola Lolita?</dt>
-            <dd class="mt-1 max-w-2xl text-sm text-pretty text-pink-100">
+          <div class="border-b border-gray-700 pb-6">
+            <dt class="text-lg font-semibold text-white">¿Asistirá Lola Lolita?</dt>
+            <dd class="mt-2 text-sm leading-relaxed text-pink-100">
               Sí, Lola Lolita estará allí con unas cuantas sorpresas.
             </dd>
           </div>
 
-          <div>
-            <dt class="font-semibold text-white">
+          <div class="border-b border-gray-700 pb-6">
+            <dt class="text-lg font-semibold text-white">
+              ¿Habrá actividades o espectáculos especiales?
+            </dt>
+            <dd class="mt-2 text-sm leading-relaxed text-pink-100">
+              Sí, el evento contará con espectáculos en vivo, invitados especiales y muchas
+              sorpresas. Se anunciará el programa oficial próximamente.
+            </dd>
+          </div>
+
+          <div class="border-b border-gray-700 pb-6">
+            <dt class="text-lg font-semibold text-white">
               ¿Hay comida para celíacos, veganos y vegetarianos?
             </dt>
-            <dd class="mt-1 max-w-2xl text-sm text-pretty text-pink-100">
+            <dd class="mt-2 text-sm leading-relaxed text-pink-100">
               ¡Por supuesto que sí! Hay opciones para todos los gustos y necesidades. ¡Nadie se
               quedará sin disfrutar de este día!
+            </dd>
+          </div>
+
+          <div>
+            <dt class="text-lg font-semibold text-white">
+              ¿Habrá venta de productos oficiales o merchandising?
+            </dt>
+            <dd class="mt-2 text-sm leading-relaxed text-pink-100">
+              ¡Sí! Los asistentes podrán comprar productos oficiales y merchandising exclusivo del
+              evento y de los artistas invitados en los stands habilitados.
             </dd>
           </div>
         </dl>
