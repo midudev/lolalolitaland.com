@@ -1,5 +1,6 @@
 ---
-import FaqImage from "@/assets/images/faq.webp"
+// import FaqImage from "@/assets/images/faq.webp"
+import FaqImage from "@/assets/images/gallery/gallery_04.webp"
 import { Image } from "astro:assets"
 ---
 
@@ -12,15 +13,78 @@ import { Image } from "astro:assets"
         <h2 class="text-3xl font-semibold tracking-tight text-pretty text-white sm:text-4xl">
           Preguntas frecuentes
         </h2>
-        <Image
-          src={FaqImage}
-          width={384}
-          height={576}
-          alt="Lola Lolita firmando autógrafos en un escenario."
-          class="mt-4 h-auto w-full max-w-sm rounded-[2rem]"
-        />
+        <div
+          class="card group relative mt-4 bg-cover bg-center outline-0 transition-transform duration-100"
+          data-color="have"
+        >
+          <Image
+            src={FaqImage}
+            width={384}
+            height={576}
+            alt="Lola Lolita firmando autógrafos en un escenario."
+            class="card-front-image card-image h-auto w-full max-w-sm rounded-[2rem]"
+          />
+          <div class="card-faders">
+            <Image
+              width={384}
+              height={576}
+              alt={"Lola Lolita firmmando autografos1"}
+              class="card-fader card-image rounded-[2rem]"
+              src={FaqImage}
+            />
+            <Image
+              width={384}
+              height={576}
+              alt={"Lola Lolita firmmando autografos2"}
+              class="card-fader card-image rounded-[2rem]"
+              src={FaqImage}
+            />
+            <Image
+              width={384}
+              height={576}
+              alt={"Lola Lolita firmmando autografos3"}
+              class="card-fader card-image rounded-[2rem]"
+              src={FaqImage}
+            />
+            <Image
+              width={384}
+              height={576}
+              alt={"Lola Lolita firmmando autografos4"}
+              class="card-fader card-image rounded-[2rem]"
+              src={FaqImage}
+            />
+            <Image
+              width={384}
+              height={576}
+              alt={"Lola Lolita firmmando autografos5"}
+              class="card-fader card-image rounded-[2rem]"
+              src={FaqImage}
+            />
+            <Image
+              width={384}
+              height={576}
+              alt={"Lola Lolita firmmando autografos6"}
+              class="card-fader card-image rounded-[2rem]"
+              src={FaqImage}
+            />
+            <Image
+              width={384}
+              height={576}
+              alt={"Lola Lolita firmmando autografos7"}
+              class="card-fader card-image rounded-[2rem]"
+              src={FaqImage}
+            />
+            <Image
+              width={384}
+              height={576}
+              alt={"Lola Lolita firmmando autografos8"}
+              class="card-fader card-image rounded-[2rem]"
+              src={FaqImage}
+            />
+          </div>
+        </div>
       </div>
-      <div class="mt-10 pt-12 lg:col-span-7 lg:mt-0">
+      <div class="pt-[68px] lg:col-span-7 lg:mt-0">
         <dl class="space-y-10">
           <div>
             <dt class="font-semibold text-white">¿Pueden ir menores de edad al evento?</dt>
@@ -28,9 +92,10 @@ import { Image } from "astro:assets"
               Sí, los menores de edad pueden asistir al evento siempre y cuando estén acompañados
               por un adulto. Además, se requiere la firma de un documento de responsabilidad por
               parte del adulto. <a
-                class="bg-primary-light hover:text-primary inline-block max-w-full rounded-lg p-1 px-2 text-center break-words text-white transition hover:bg-white"
+                class="bg-primary-light hover:text-primary inline-block max-w-full rounded-lg p-1 px-2 text-center break-words text-white transition hover:bg-white/85"
                 href="/hoja-de-responsabilidad.pdf"
-                >Descarga el documento y llévalo firmado al evento.</a
+                target="_blank"
+                rel="noopener noreferrer">Descarga el documento y llévalo firmado al evento.</a
               >
             </dd>
           </div>
@@ -70,3 +135,121 @@ import { Image } from "astro:assets"
     </div>
   </div>
 </section>
+
+<style>
+  body:has(.card[data-color="have"]:hover) {
+    background-color: #66dfff;
+    transition: 0.5s ease-in-out;
+  }
+
+  body:has(.card[data-color="have"]:hover) h2,
+  body:has(.card[data-color="have"]:hover) dt,
+  body:has(.card[data-color="have"]:hover) dd,
+  body:has(.card[data-color="have"]:hover) a {
+    color: #393941;
+  }
+
+  .card {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    outline: none;
+  }
+
+  .card .card-front-image {
+    position: relative;
+    z-index: 2;
+  }
+
+  .card .card-image {
+    width: clamp(300px, 20vw, 500px);
+    aspect-ratio: 2 / 3;
+    border-radius: clamp(0.5rem, 0.75vw, 2rem);
+  }
+
+  .card-faders {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 1500ms;
+    pointer-events: none;
+  }
+
+  .card:hover .card-faders {
+    opacity: 1;
+  }
+
+  .card-fader {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+
+  .card-fader:nth-child(odd) {
+    animation: fade-left 3s linear infinite;
+  }
+
+  .card-fader:nth-child(even) {
+    animation: fade-right 3s linear infinite;
+  }
+
+  .card-fader:is(:nth-child(3), :nth-child(4)) {
+    animation-delay: 750ms;
+  }
+
+  .card-fader:is(:nth-child(5), :nth-child(6)) {
+    animation-delay: 1500ms;
+  }
+
+  .card-fader:is(:nth-child(7), :nth-child(8)) {
+    animation-delay: 2250ms;
+  }
+
+  @media (max-width: 1200px) {
+    .card .card-image {
+      width: 400px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .card {
+      width: 80%;
+    }
+
+    .card .card-image {
+      width: 100%;
+    }
+  }
+
+  @keyframes fade-left {
+    from {
+      scale: 1;
+      translate: 0%;
+      opacity: 1;
+    }
+
+    to {
+      scale: 0.8;
+      translate: -30%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-right {
+    from {
+      scale: 1;
+      translate: 0%;
+      opacity: 1;
+    }
+
+    to {
+      scale: 0.8;
+      translate: 30%;
+      opacity: 0;
+    }
+  }
+</style>

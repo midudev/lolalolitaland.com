@@ -2,13 +2,27 @@
 import GlowingEffect from "@/components/GlowingEffect.astro"
 import { galleryImages } from "@/consts/galleryImages"
 import { Image } from "astro:assets"
+import StarryBackground from "@/components/StarryBackground.astro"
+import WaveSeparator from "@/components/WaveSeparator.astro"
 ---
 
-<section class="bg-theme-blue px-6 py-16 lg:px-8">
+<WaveSeparator bottomColor="var(--color-theme-blue)" />
+
+<section class="bg-theme-blue relative px-6 py-16 lg:px-8">
+  <StarryBackground />
   <div class="mx-auto max-w-6xl" id="gallery">
-    <h2 class="mb-2 block p-4 text-center text-lg font-bold text-white lg:text-4xl xl:text-5xl">
-      ¡Así fue el año pasado!
-    </h2>
+    <div class="relative mb-12 flex items-center justify-center">
+      <h2
+        class="title mb-2 block p-4 text-center text-3xl font-bold text-white lg:text-4xl xl:text-5xl"
+      >
+        ¡Así fue el año pasado!
+      </h2>
+      <h2
+        class="title2 mb-2 block p-4 text-center text-3xl font-bold text-white lg:text-4xl xl:text-5xl"
+      >
+        ¡Así fue el año pasado!
+      </h2>
+    </div>
     <h3 class="block pb-20 text-center text-lg font-bold text-white opacity-80">
       Aquí tienes algunos recuerdos de la primera edición de LolaLolita Land
     </h3>
@@ -16,10 +30,11 @@ import { Image } from "astro:assets"
       class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 [&>*:nth-child(even)]:rotate-2 [&>*:nth-child(n)]:hover:scale-105 [&>*:nth-child(n)]:hover:rotate-0 [&>*:nth-child(n)]:hover:shadow-xl [&>*:nth-child(odd)]:rotate-[-2deg]"
     >
       {
-        galleryImages.map(({ image, alt, thumb }) => (
+        galleryImages.map(({ image, alt, thumb }, index) => (
           <li
             id={thumb}
             class="aspect-9/10 cursor-pointer rounded-md shadow-sm transition-transform duration-300 will-change-transform"
+            data-index={index}
           >
             <GlowingEffect
               spread={40}
@@ -52,7 +67,7 @@ import { Image } from "astro:assets"
       <button
         type="button"
         id="close-lightbox"
-        class="hover:text-primary absolute -top-8 -right-1 -m-2.5 cursor-pointer rounded-full bg-white p-2.5 text-gray-700 transition-all duration-300 ease-in will-change-transform hover:scale-125"
+        class="hover:text-primary absolute top-1 -right-16 z-[999999] cursor-pointer rounded-full bg-white p-2.5 text-gray-700 transition-all duration-300 ease-in will-change-transform hover:scale-125 sm:top-6 sm:right-6 md:top-8 md:right-8"
       >
         <span class="sr-only">Cerrar Galería</span>
         <svg
@@ -68,18 +83,54 @@ import { Image } from "astro:assets"
         </svg>
       </button>
 
+      <button
+        id="prev-image"
+        class="hover:text-primary absolute top-1/2 -left-16 z-50 flex h-12 w-12 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-white p-2.5 text-2xl text-gray-700 transition-all duration-300 ease-in-out hover:scale-125"
+      >
+        &#60;
+      </button>
+
+      <button
+        id="next-image"
+        class="hover:text-primary absolute top-1/2 -right-16 z-50 flex h-12 w-12 -translate-y-1/2 transform cursor-pointer items-center justify-center rounded-full bg-white p-2.5 text-2xl text-gray-700 transition-all duration-300 ease-in-out hover:scale-125"
+      >
+        &#62;
+      </button>
+
       <figure id="light-box-content"></figure>
     </div>
   </div>
 </section>
 
+<WaveSeparator bottomColor="var(--color-primary)" />
+
 <script>
-  const galleryItems = document.querySelectorAll("#gallery li img") as NodeListOf<HTMLImageElement>
+  const galleryItems = Array.from(
+    document.querySelectorAll("#gallery li img")
+  ) as HTMLImageElement[]
   const lightBox = document.getElementById("lightbox") as HTMLDivElement
   const lightBoxImgContainer = document.getElementById("light-box-content") as HTMLDivElement
   const btnCloseLightBox = document.getElementById("close-lightbox") as HTMLButtonElement
+  const btnPrev = document.getElementById("prev-image") as HTMLButtonElement
+  const btnNext = document.getElementById("next-image") as HTMLButtonElement
 
-  const openLightBox = (image: HTMLImageElement) => {
+  let currentIndex = 0
+
+  const openLightBox = (index: number) => {
+    if (index < 0 || index >= galleryItems.length) return
+    currentIndex = index
+    const image = galleryItems[index] as HTMLImageElement
+
+    const previousImage = lightBoxImgContainer.querySelector("img") as HTMLImageElement
+    if (previousImage) {
+      const galleryParentID = previousImage.getAttribute("data-thumbID")
+      const galleryParent = document.getElementById(`${galleryParentID}`) as HTMLLIElement
+      galleryParent.appendChild(previousImage)
+    }
+    // Evitamos el error de dupliacado de viewTransitionName
+    galleryItems.forEach((img) => (img.style.viewTransitionName = "none"))
+    image.style.viewTransitionName = "selected-img"
+
     lightBoxImgContainer.appendChild(image)
     lightBox.classList.remove("opacity-0", "pointer-events-none")
     lightBox.classList.add(
@@ -91,7 +142,9 @@ import { Image } from "astro:assets"
     )
 
     document.body.style.overflow = "hidden"
+    updateNavigationButtons()
   }
+
   const closeLightBox = (image: HTMLImageElement) => {
     lightBox.classList.add("opacity-0", "pointer-events-none")
     lightBox.classList.remove(
@@ -102,30 +155,56 @@ import { Image } from "astro:assets"
       "backdrop-blur-[10px]"
     )
     const galleryParentID = image.getAttribute("data-thumbID")
+
     const galleryParent = document.getElementById(`${galleryParentID}`) as HTMLLIElement
     galleryParent.appendChild(image)
-
-    lightBoxImgContainer.innerHTML = "" // Elimina la imagen ampliada
     document.body.style.overflow = "" // Restaurar scroll
   }
 
-  galleryItems.forEach((eachItem) => {
-    eachItem.addEventListener("click", (event) => {
-      const image = event.target as HTMLImageElement
+  const navigateLightBox = (direction: number) => {
+    let newIndex = currentIndex + direction
+    if (newIndex < 0 || newIndex >= galleryItems.length) return
+
+    if (!document.startViewTransition) {
+      openLightBox(newIndex)
+      return
+    }
+
+    document.startViewTransition(() => {
+      openLightBox(newIndex)
+    })
+  }
+
+  const updateNavigationButtons = () => {
+    if (btnPrev && btnNext) {
+      btnPrev.style.display = currentIndex > 0 ? "flex" : "none"
+      btnNext.style.display = currentIndex < galleryItems.length - 1 ? "flex" : "none"
+    }
+  }
+
+  galleryItems.forEach((image, index) => {
+    image.addEventListener("click", () => {
       if (!document.startViewTransition) {
-        openLightBox(image)
+        openLightBox(index)
         return
       }
+
+      galleryItems.forEach((img) => {
+        img.style.viewTransitionName = ""
+      })
 
       image.style.viewTransitionName = "selected-img"
+
       document.startViewTransition(() => {
-        openLightBox(image)
+        openLightBox(index)
       })
     })
   })
 
-  lightBox.addEventListener("click", async () => {
+  const handleClose = async () => {
     const image = lightBoxImgContainer.querySelector("img") as HTMLImageElement
+    if (!image) return
+
     if (!document.startViewTransition) {
       closeLightBox(image)
       return
@@ -137,39 +216,81 @@ import { Image } from "astro:assets"
 
     await animation.finished
     image.style.viewTransitionName = "none"
-  })
+  }
 
-  btnCloseLightBox.addEventListener("click", async (event) => {
+  lightBox.addEventListener("click", handleClose)
+  btnCloseLightBox.addEventListener("click", (event) => {
     event.stopPropagation()
-    const image = btnCloseLightBox.nextElementSibling!.querySelector("img") as HTMLImageElement
-    if (!document.startViewTransition) {
-      closeLightBox(image)
-      return
-    }
+    handleClose()
+  })
 
-    const animation = document.startViewTransition(() => {
-      closeLightBox(image)
+  if (btnPrev && btnNext) {
+    btnPrev.addEventListener("click", (event) => {
+      event.stopPropagation()
+      navigateLightBox(-1)
     })
 
-    await animation.finished
-    image.style.viewTransitionName = "none"
-  })
+    btnNext.addEventListener("click", (event) => {
+      event.stopPropagation()
+      navigateLightBox(1)
+    })
+  }
 
   document.addEventListener("keydown", async (event) => {
+    const isLightboxOpen = !lightBox.classList.contains("opacity-0")
+
     if (event.key === "Escape") {
-      const image = lightBoxImgContainer.querySelector("img") as HTMLImageElement
-
-      if (!document.startViewTransition) {
-        closeLightBox(image)
-        return
-      }
-
-      const animation = document.startViewTransition(() => {
-        closeLightBox(image)
-      })
-
-      await animation.finished
-      image.style.viewTransitionName = "none"
+      await handleClose()
+    } else if ((event.key === "ArrowRight" || event.key === "d") && isLightboxOpen) {
+      event.preventDefault()
+      navigateLightBox(1)
+    } else if ((event.key === "ArrowLeft" || event.key === "a") && isLightboxOpen) {
+      event.preventDefault()
+      navigateLightBox(-1)
     }
   })
 </script>
+
+<style>
+  .title {
+    position: absolute;
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+  }
+  .title2 {
+    position: absolute;
+    color: #ff0695;
+    animation: water 3s ease-in-out infinite;
+  }
+  @keyframes water {
+    0%,
+    100% {
+      clip-path: polygon(
+        0% 65%,
+        10% 50%,
+        25% 35%,
+        40% 50%,
+        55% 65%,
+        70% 50%,
+        85% 35%,
+        100% 50%,
+        100% 100%,
+        0% 100%
+      );
+    }
+    50% {
+      clip-path: polygon(
+        0% 35%,
+        15% 50%,
+        30% 65%,
+        45% 50%,
+        60% 35%,
+        75% 50%,
+        90% 65%,
+        100% 50%,
+        100% 100%,
+        0% 100%
+      );
+    }
+  }
+</style>

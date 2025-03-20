@@ -1,0 +1,41 @@
+---
+const starCount = 120
+const minDistance = 5
+
+// Función para calcular la distancia entre dos puntos
+const getDistance = (x1: number, y1: number, x2: number, y2: number) => {
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+}
+
+const stars: any[] = []
+
+while (stars.length < starCount) {
+  const newStar = {
+    top: Math.random() * 95,
+    left: Math.random() * 100,
+    size: Math.random() * 6 + 10, // Tamaño entre 10 y 16 px
+    opacity: Math.random() * 0.2 + 0.5, // Opacidad entre 0.5 y 1
+    rotation: Math.random() * 360, // Rotación entre 0 y 360 grados
+  }
+
+  // Verificar que la nueva estrella no esté demasiado cerca de otra
+  if (
+    stars.every(
+      (star) => getDistance(star.left, star.top, newStar.left, newStar.top) >= minDistance
+    )
+  ) {
+    stars.push(newStar)
+  }
+}
+---
+
+<div class="pointer-events-none absolute inset-0">
+  {
+    stars.map((star, index) => (
+      <div
+        class="bg-primary-light absolute animate-pulse shadow-[0_0_6px_rgba(255,182,193,0.8)]"
+        style={`top: ${star.top}%; left: ${star.left}%; width: ${star.size}px; height: ${star.size}px; opacity: ${star.opacity}; transform: rotate(${star.rotation}deg); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);`}
+      />
+    ))
+  }
+</div>

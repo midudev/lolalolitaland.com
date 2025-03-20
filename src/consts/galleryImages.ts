@@ -43,42 +43,42 @@ export const galleryImages = [
   },
   {
     image: GalleryImg2,
-    alt: "Lola Lolita Land festival de música.",
+    alt: "Lola Lolita Land, festival de música.",
     thumb: "thumb2",
   },
   {
     image: GalleryImg3,
-    alt: "Lla Índigo en un escenario en el festivas de Lola Lolita Land.",
+    alt: "Lola Índigo en un escenario en el festival de Lola Lolita Land.",
     thumb: "thumb3",
   },
   {
     image: GalleryImg5,
-    alt: "Lola Lolita justo a un grupo de bailarines.",
+    alt: "Lola Lolita junto a un grupo de bailarines.",
     thumb: "thumb4",
   },
   {
     image: GalleryImg6,
-    alt: "Lola Lolita justo a un grupo de bailarines.",
+    alt: "Lola Lolita junto a un grupo de bailarines.",
     thumb: "thumb5",
   },
   {
     image: GalleryImg7,
-    alt: "Lola Lolita justo a un grupo de bailarines.",
+    alt: "Lola Lolita junto a un grupo de bailarines.",
     thumb: "thumb6",
   },
   {
     image: GalleryImg8,
-    alt: "Lola Lolita justo a un grupo de bailarines.",
+    alt: "Lola Lolita junto a un grupo de bailarines.",
     thumb: "thumb7",
   },
   {
     image: GalleryImg9,
-    alt: "Lola Lolita justo a un grupo de bailarines.",
+    alt: "Lola Lolita junto a un grupo de bailarines.",
     thumb: "thumb8",
   },
   {
     image: GalleryImg10,
-    alt: "Lola Lolita justo a un grupo de bailarines.",
+    alt: "Lola Lolita junto a un grupo de bailarines.",
     thumb: "thumb9",
   },
   {
@@ -93,12 +93,12 @@ export const galleryImages = [
   },
   {
     image: GalleryImg13,
-    alt: "Dj en el evento de Lola Lolita Land.",
+    alt: "DJ en el evento de Lola Lolita Land.",
     thumb: "thumb12",
   },
   {
     image: GalleryImg14,
-    alt: "Dj en el evento de Lola Lolita Land.",
+    alt: "DJ en el evento de Lola Lolita Land.",
     thumb: "thumb13",
   },
   {
@@ -123,7 +123,7 @@ export const galleryImages = [
   },
   {
     image: GalleryImg19,
-    alt: "Lola Lolita en un escenario cantanto.",
+    alt: "Lola Lolita en un escenario cantando.",
     thumb: "thumb18",
   },
   {
@@ -133,20 +133,20 @@ export const galleryImages = [
   },
   {
     image: GalleryImg21,
-    alt: "Lola Lolita en un escenario bailando junto y Abraham Mateo cantando.",
+    alt: "Lola Lolita en un escenario bailando junto a Abraham Mateo cantando.",
     thumb: "thumb20",
   },
   {
     image: GalleryImg22,
-    alt: "2 personas lanzando regalos al público.",
+    alt: "Dos personas lanzando regalos al público.",
     thumb: "thumb21",
   },
   {
     image: GalleryImg23,
-    alt: "Lola Lolita dandose un abrazo con sus fans.",
+    alt: "Lola Lolita dándose un abrazo con sus fans.",
     thumb: "thumb22",
   },
-  { image: GalleryImg24, alt: "Dj", thumb: "thumb23" },
+  { image: GalleryImg24, alt: "DJ en el evento.", thumb: "thumb23" },
   {
     image: GalleryImg25,
     alt: "Gente de fiesta en el evento de Lola Lolita.",
@@ -164,7 +164,7 @@ export const galleryImages = [
   },
   {
     image: GalleryImg28,
-    alt: "Lola Lolita cantando, bailand justo a otras personas.",
+    alt: "Lola Lolita cantando y bailando junto a otras personas.",
     thumb: "thumb27",
   },
   { image: GalleryImg29, alt: "Lola Lolita Land.", thumb: "thumb28" },
@@ -180,7 +180,7 @@ export const galleryImages = [
   },
   {
     image: GalleryImg32,
-    alt: "Lola Lolita tomandose una foto con un grupo de personas",
+    alt: "Lola Lolita tomándose una foto con un grupo de personas.",
     thumb: "thumb31",
   },
   {
@@ -190,7 +190,7 @@ export const galleryImages = [
   },
   {
     image: GalleryImg34,
-    alt: "Lola Índigo y otras dos chicas cantando y bailando sobre el escenario..",
+    alt: "Lola Índigo y otras dos chicas cantando y bailando sobre el escenario.",
     thumb: "thumb33",
   },
   {
@@ -200,8 +200,8 @@ export const galleryImages = [
   },
   {
     image: GalleryImg36,
-    alt: "El público mirando la coreografía de Lola Lolita junto a su grupo",
+    alt: "El público mirando la coreografía de Lola Lolita junto a su grupo.",
     thumb: "thumb35",
   },
-  { image: GalleryImg37, alt: "Gallery Image 37", thumb: "thumb36" },
+  { image: GalleryImg37, alt: "Imagen de la galería 37.", thumb: "thumb36" },
 ]

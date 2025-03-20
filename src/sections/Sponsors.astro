@@ -1,18 +1,23 @@
 ---
-import InfoJobs from "@/assets/infojobs.svg"
 import Cerave from "@/assets/cerave.svg"
-import Donnetes from "@/assets/donettes.png"
-import Trolli from "@/assets/trolli.png"
 import Dkny from "@/assets/dkny.png"
+import Donnetes from "@/assets/donettes.png"
+import InfoJobs from "@/assets/infojobs.svg"
+import Trolli from "@/assets/trolli.png"
 
+import StarryBackground from "@/components/StarryBackground.astro"
+import WaveSeparator from "@/components/WaveSeparator.astro"
 import { Image } from "astro:assets"
-import GlowingEffect from "@/components/GlowingEffect.astro"
+import Sponsor from "@/components/Sponsor.astro"
 ---
 
-<section
-  class="view-animate-[--subjectReveal] animate-zoom-in animate-range-[entry_15%_contain_25%] py-24 sm:py-32"
->
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+<WaveSeparator bottomColor="var(--color-theme-blue)" />
+
+<section class="bg-theme-blue relative py-24 sm:py-32">
+  <StarryBackground />
+  <div
+    class="view-animate-[--subjectReveal] animate-zoom-in animate-range-[entry_15%_contain_25%] mx-auto max-w-7xl px-6 lg:px-8"
+  >
     <h2 class="text-center text-lg/8 font-semibold text-white">
       ¡Con el apoyo de empresas increíbles! 🚀
     </h2>
@@ -28,60 +33,26 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
       </div>
     </div>
     <div class="mx-auto mt-10 flex flex-col items-center justify-center gap-10 md:flex-row">
-      <a
-        href="https://www.infojobs.net/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
-      >
-        <GlowingEffect
-          blur={0}
-          spread={40}
-          proximity={64}
-          inactiveZone={0.01}
-          borderWidth={3}
-          color="#157DB7"
-        />
+      <Sponsor href="https://www.infojobs.net/" isOfficial>
         <InfoJobs
           title="InfoJobs"
           width="158"
           height="48"
           class="inline-block transition-transform group-hover:scale-110"
         />
-      </a>
-      <a
-        href="https://www.cerave.es/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
-      >
-        <GlowingEffect
-          spread={40}
-          proximity={64}
-          inactiveZone={0.01}
-          borderWidth={3}
-          color="#0070CF"
-        />
+      </Sponsor>
+      <Sponsor href="https://www.cerave.es/" isOfficial>
         <Cerave
           title="Cerave"
           width="158"
           height="48"
           class="inline-block transition-transform group-hover:scale-110"
         />
-      </a>
-      <a
+      </Sponsor>
+      <Sponsor
         href="https://www.dkny.com/?srsltid=AfmBOoqVKqaSRmOPiTAZbK0hT30uT3KlKRZB2Z4LW2nRgMqAOH0FvrJu"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
+        isOfficial
       >
-        <GlowingEffect
-          spread={40}
-          proximity={64}
-          inactiveZone={0.01}
-          borderWidth={3}
-          color="#C70C62"
-        />
         <Image
           src={Dkny}
           alt="DKNY"
@@ -90,7 +61,7 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
           height="48"
           class="mt-2 inline-block w-24 transition-transform group-hover:scale-110"
         />
-      </a>
+      </Sponsor>
     </div>
     <!-- Categoría colaboradores -->
     <div class="mt-16 flex items-center justify-center gap-1">
@@ -103,19 +74,7 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
       </div>
     </div>
     <div class="mx-auto mt-10 flex flex-col items-center justify-center gap-10 md:flex-row">
-      <a
-        href="https://www.donettes.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
-      >
-        <GlowingEffect
-          spread={40}
-          proximity={64}
-          inactiveZone={0.01}
-          borderWidth={3}
-          color="#FDDA02"
-        />
+      <Sponsor href="https://www.donettes.com/">
         <Image
           src={Donnetes}
           title="Donnetes"
@@ -124,20 +83,8 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
           height="48"
           class="inline-block transition-transform group-hover:scale-110"
         />
-      </a>
-      <a
-        href="https://trolli.es/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group relative flex max-h-12 w-full items-center justify-center rounded-[2rem] bg-white object-contain p-10 lg:col-span-1"
-      >
-        <GlowingEffect
-          spread={40}
-          proximity={64}
-          inactiveZone={0.01}
-          borderWidth={3}
-          color="#F08100"
-        />
+      </Sponsor>
+      <Sponsor href="https://trolli.es/">
         <Image
           src={Trolli}
           title="Trolli"
@@ -146,7 +93,8 @@ import GlowingEffect from "@/components/GlowingEffect.astro"
           height="48"
           class="inline-block w-32 transition-transform group-hover:scale-110"
         />
-      </a>
+      </Sponsor>
     </div>
   </div>
 </section>
+<WaveSeparator bottomColor="var(--color-primary)" />

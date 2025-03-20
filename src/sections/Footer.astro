@@ -1,19 +1,22 @@
 ---
-import Logo from "../../public/favicon.svg"
 import Instagram from "../../public/icons/instagram.svg"
 import TikTok from "../../public/icons/tiktok.svg"
 ---
 
 <footer
-  class="footer footer-horizontal footer-center bg- text-primary-content flex flex-col items-center justify-center p-10 text-center"
+  class="footer footer-horizontal footer-center text-primary-content flex flex-col items-center justify-center p-10 text-center"
 >
   <aside class="flex flex-col items-center">
-    <Logo title="Logo de Lola Lolita Land" class="size-20 fill-white" />
+    <div
+      class="logo lazy_background_image_maskImage lazy_background_image relative size-28 lg:size-32"
+    >
+      <div></div>
+    </div>
     <p class="font-semibold text-white">
       Lola Lolita Land
-      <p class="mt-2 mb-2 text-xs text-pretty text-white/90">
+      <span class="block mt-2 mb-2 text-xs text-pretty text-white/90">
         Copyright © {new Date().getFullYear()} - Todos los derechos reservados
-      </p>
+      </span>
     </p>
     <nav>
       <div class="grid grid-flow-col gap-4">
@@ -37,3 +40,44 @@ import TikTok from "../../public/icons/tiktok.svg"
     </nav>
   </aside>
 </footer>
+
+<style>
+  .logo {
+    -webkit-mask-image: url("/favicon.svg");
+    mask-image: url("/favicon.svg");
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    background-color: rgb(243, 243, 243);
+    position: relative;
+    overflow: hidden;
+  }
+  .lazy_background_image_maskImage {
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url("/favicon.svg");
+    mask-image: url("/favicon.svg");
+  }
+  .lazy_background_image {
+    transition: 1s cubic-bezier(0.6, 0.6, 0, 1) opacity;
+  }
+  .logo div {
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    animation: 8s linear infinite;
+    background: #383acf;
+    transform: translate(-300px, -70px) rotate(20deg);
+    animation-name: logo_animation !important;
+  }
+
+  @keyframes logo_animation {
+    0% {
+      transform: translate(-300px, -70px) rotate(20deg);
+    }
+    100% {
+      transform: translate(600px, -70px) rotate(20deg);
+    }
+  }
+</style>

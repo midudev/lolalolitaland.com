@@ -60,6 +60,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  transition: background-color 1000ms;
 }
 
 .text-stroke {
