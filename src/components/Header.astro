@@ -113,6 +113,8 @@
   </dialog>
 </header>
 
+<div data-target class="absolute top-[150px]"></div>
+
 <script>
   // Get the menu elements
   const mobileMenu = document.getElementById("mobile-menu") as HTMLDialogElement
@@ -130,28 +132,47 @@
   // Add event listener to close menu button
   closeMenuButton?.addEventListener("click", toggleMenu)
 
+  document.addEventListener("click", (event) => {
+    const isClickInsideMenu = mobileMenu.contains(event.target as Node)
+    const isClickInsideButton = openMenuButton?.contains(event.target as Node)
+
+    if (isClickInsideMenu && !isClickInsideButton) {
+      mobileMenu.close()
+    }
+  })
+
   mobileItems?.forEach((item) => item.addEventListener("click", toggleMenu))
+
+  const target = document.querySelector("[data-target]")
+  const header = document.querySelector("header")
+
+  const handleIntersection = ([entry]: IntersectionObserverEntry[]) => {
+    if (!entry.isIntersecting) return header?.classList.add("end-state")
+    header?.classList.remove("end-state")
+  }
+
+  const createObserver = (target: Element, callback: IntersectionObserverCallback) => {
+    const observer = new IntersectionObserver(callback, { threshold: 0.5 })
+    observer.observe(target)
+  }
+
+  if (target) {
+    createObserver(target, handleIntersection)
+  }
 </script>
 
 <style>
+  @reference "../styles/global.css";
+
   header {
-    animation: blur-header 0.3s linear both;
-    animation-timeline: scroll();
-    animation-range: 0 150px;
-    border-bottom: 1px solid transparent;
+    @apply border border-b-transparent;
+    transition:
+      background 0.3s,
+      padding-bottom 0.2s,
+      border-bottom-color 0.1s;
   }
 
-  @keyframes blur-header {
-    0% {
-      backdrop-filter: blur(0);
-      background-color: transparent;
-    }
-
-    100% {
-      backdrop-filter: blur(10px);
-      background-color: #ff0693a4;
-      padding-bottom: calc(var(--spacing) * 6); /* pb-6 */
-      border-bottom-color: #b50066;
-    }
+  .end-state {
+    @apply bg-primary/60 border-b-[#b50066] pb-6 backdrop-blur-md;
   }
 </style>
