@@ -1,6 +1,6 @@
 ---
+import GlowingEffect from "@/components/GlowingEffect.astro"
 import { galleryImages } from "@/consts/galleryImages"
-
 import { Image } from "astro:assets"
 import StarryBackground from "@/components/StarryBackground.astro"
 import WaveSeparator from "@/components/WaveSeparator.astro"
@@ -36,6 +36,13 @@ import WaveSeparator from "@/components/WaveSeparator.astro"
             class="aspect-9/10 cursor-pointer rounded-md shadow-sm transition-transform duration-300 will-change-transform"
             data-index={index}
           >
+            <GlowingEffect
+              spread={40}
+              proximity={64}
+              inactiveZone={0.01}
+              borderWidth={2}
+              color="var(--color-theme-blue-light)"
+            />
             <Image
               src={image}
               alt={alt}
