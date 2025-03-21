@@ -66,3 +66,34 @@ body {
 .text-stroke {
   -webkit-text-stroke: 0.1rem white;
 }
+
+@keyframes borderAnimation {
+  0% {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  25% {
+    border-top-color: var(--color-primary);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  50% {
+    border-right-color: var(--color-primary);
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  75% {
+    border-bottom-color: var(--color-primary);
+    border-left-color: transparent;
+  }
+  100% {
+    border-left-color: var(--color-primary);
+  }
+}
+
+.animationSponsors {
+  animation: borderAnimation 4s infinite;
+}
