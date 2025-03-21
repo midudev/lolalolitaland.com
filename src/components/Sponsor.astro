@@ -6,8 +6,9 @@ const { href, isOfficial } = Astro.props
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class="group flex max-h-12 w-64 grow-0 items-center justify-center rounded-[2rem] bg-white object-contain p-11 lg:col-span-1"
+  class="group flex max-h-12 w-64 grow-0 items-center justify-center rounded-[2rem] bg-white object-contain p-11 lg:col-span-1 relative"
   class:list={[isOfficial ? "border-primary" : "border-primary-light", "border-2", "border-t"]}
 >
   <slot />
+  <div class="pointer-events-none absolute inset-0 w-full h-full bg-[linear-gradient(110deg,transparent_0%,transparent_43%,rgba(255,255,255,0.95)_50%,transparent_57%,transparent_100%)] bg-[length:200%_100%] animate-shiny rounded-[2rem]" />
 </a>

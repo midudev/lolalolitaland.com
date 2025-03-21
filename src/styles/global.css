@@ -16,6 +16,7 @@
   /* animations */
 
   --animate-marquee: slide-left 10s linear infinite;
+  --animate-shiny: shiny 5s linear forwards infinite;
 
   @keyframes slide-left {
     0% {
@@ -24,6 +25,16 @@
 
     100% {
       transform: translateX(calc(-100% - 1rem));
+    }
+  }
+
+  @keyframes shiny {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -200% 0;
     }
   }
 }
