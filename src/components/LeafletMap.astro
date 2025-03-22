@@ -39,7 +39,7 @@ const { latitude, longitude, zoom, tileLayer, attribution, geoJSON } = Astro.pro
       const map = L.map(this, {
         scrollWheelZoom: false,
         dragging: false,
-        attributionControl: false,
+        attributionControl: true,
       }).setView(latlng, Number(zoom))
 
       // Habilitar interactividad al hacer clic
