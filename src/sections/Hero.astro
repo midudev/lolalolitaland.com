@@ -7,13 +7,13 @@ import CalendarImage from "@/assets/images/calendario.webp"
 
 <section class="relative pb-24">
   <DotBackground />
-  <div class="bg-theme-blue-light relative mx-auto mb-16 aspect-video h-full w-full object-cover">
+  <div class="bg-theme-blue-light relative mx-auto mb-16 h-screen md:h-full w-full md:aspect-video md:object-cover">
     <div
       title="Logo de Lola Lolita Land"
-      class="absolute top-0 right-0 left-0 z-50 mx-auto flex justify-center lg:top-14"
+      class="absolute top-15 right-0 left-0 z-50 mx-auto flex justify-center md:top-0 lg:top-14"
     >
       <div
-        class="logo lazy_background_image_maskImage lazy_background_image relative sm:size-32 md:size-44 lg:size-56"
+        class="logo lazy_background_image_maskImage lazy_background_image relative size-56 md:size-44 lg:size-56"
       >
         <div></div>
       </div>
@@ -44,7 +44,7 @@ import CalendarImage from "@/assets/images/calendario.webp"
           </filter>
         </defs>
       </svg>
-      
+
     </div>
     <div class="absolute inset-0 bg-gradient-to-b from-transparent from-85% to-[#ff0695]">
     </div>
@@ -279,6 +279,7 @@ import CalendarImage from "@/assets/images/calendario.webp"
     z-index: 20;
 
   }
+
   .water{
     position: absolute;
     top: 0;
@@ -288,6 +289,15 @@ import CalendarImage from "@/assets/images/calendario.webp"
     background-image: url('/images/mask_hero.webp');
     background-size: cover;
     filter: url('#turbulence');
+  }
+
+  @media (max-width: 640px) and (orientation: portrait) {
+    .image {
+      background-image: url('/images/hero_sm_portrait.webp');
+    }
+    .water {
+      background-image: url('/images/mask_hero_sm_portrait.webp');
+    }
   }
 
   .logo {
