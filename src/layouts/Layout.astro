@@ -5,6 +5,7 @@ import "@fontsource/poppins/600.css"
 import "@fontsource/poppins/700.css"
 import "@fontsource/poppins/900.css"
 import Header from "@/components/Header.astro"
+import BackToTop from "@/components/BackToTop.astro"
 
 import "@/styles/global.css"
 
@@ -50,5 +51,6 @@ const preloadImg = "https://www.lolalolitaland.com/images/hero.webp"
   <body class="bg-primary w-screen overflow-x-hidden">
     <Header />
     <slot />
+    <BackToTop />
   </body>
 </html>

@@ -1,0 +1,46 @@
+<button
+  id="back-to-top"
+  class="group fixed right-4 bottom-4 z-50 flex h-12 w-12 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-gradient-to-b from-blue-200 to-blue-100 opacity-0 shadow-lg transition-all duration-300 hover:w-36 hover:rounded-[50px] hover:bg-purple-600"
+  aria-label="Back to top"
+>
+  <svg
+    viewBox="0 0 384 512"
+    class="h-3 w-3 transition-all duration-300 group-hover:-translate-y-[200%]"
+  >
+    <path
+      fill="#383acf"
+      d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+    ></path>
+  </svg>
+  <span
+    class="text-primary absolute -bottom-5 text-sm font-medium whitespace-nowrap opacity-0 transition-all duration-300 group-hover:bottom-2 group-hover:opacity-100"
+  >
+    Volver Arriba
+  </span>
+</button>
+
+<script>
+  const toggleVisibility = () => {
+    const button = document.getElementById("back-to-top")
+    if (!button) return
+    if (window.scrollY > 300) {
+      button.classList.remove("opacity-0")
+      button.classList.add("opacity-100")
+    } else {
+      button.classList.remove("opacity-100")
+      button.classList.add("opacity-0")
+    }
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }
+
+  window.addEventListener("scroll", toggleVisibility)
+
+  const button = document.getElementById("back-to-top")
+  button?.addEventListener("click", scrollToTop)
+</script>
