@@ -1,8 +1,8 @@
 ---
 import Marquee from "@/components/Marquee.astro"
 
-import Ticket from "public/icons/ticket.svg"
 import Clock from "public/icons/clock.svg"
+import ButtonTicket from "@/components/ButtonTicket.astro"
 ---
 
 <section class="relative w-full overflow-hidden" id="tickets">
@@ -48,13 +48,8 @@ import Clock from "public/icons/clock.svg"
             </div>
           </div>
           <div class="mt-6">
-            <button
-              disabled
-              class="flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-lg bg-gray-300 px-4 py-3 font-medium text-gray-600"
-            >
-              <Ticket title="ticket" class="h-5 w-5 -rotate-18 fill-gray-700" />
-              Comprar entrada
-            </button>
+            <!-- <Ticket title="ticket" class="h-5 w-5 -rotate-18 fill-gray-700" /> -->
+            <ButtonTicket disabled={true} />
           </div>
         </div>
       </div>
@@ -72,13 +67,7 @@ import Clock from "public/icons/clock.svg"
             </div>
           </div>
           <div class="mt-6">
-            <button
-              disabled
-              class="flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-lg bg-gray-300 px-4 py-3 font-medium text-gray-600"
-            >
-              <Ticket title="ticket" class="h-5 w-5 -rotate-18 fill-gray-700" />
-              Comprar entrada
-            </button>
+            <ButtonTicket disabled={false} />
           </div>
         </div>
       </div>
