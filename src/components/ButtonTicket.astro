@@ -8,7 +8,7 @@ const { disabled } = Astro.props;
 ---
 
 <button
-    disabled
+    disabled={disabled}
     class={`${disabled ? 'disabled--button disabled:cursor-not-allowed':'hover:cursor-pointer'} button button--animate w-full rounded-lg`}
 >
     <div class="wave"></div>
