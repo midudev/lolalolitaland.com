@@ -61,243 +61,242 @@ import DotBackground from "../components/DotBackground.astro"
         <defs>
           <path
             id="wave-path"
-            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-          >
-          </path>
-          <g class="wave4">
-            <use xlink:href="#wave-path" x="50" y="0" class="fill-[#383acf] opacity-30"></use>
-          </g>
-          <g class="wave1">
-            <use xlink:href="#wave-path" x="50" y="3" class="fill-[#ff0695] opacity-50"></use>
-          </g>
-          <g class="wave2">
-            <use xlink:href="#wave-path" x="50" y="6" class="fill-[#ff0695] opacity-70"></use>
-          </g>
-          <g class="wave3">
-            <use xlink:href="#wave-path" x="50" y="9" class="fill-[#ff0695] opacity-50"></use>
-          </g>
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
         </defs>
+
+        <g class="wave4">
+          <use xlink:href="#wave-path" x="50" y="0" class="fill-[#383acf] opacity-30"></use>
+        </g>
+        <g class="wave1">
+          <use xlink:href="#wave-path" x="50" y="3" class="fill-[#ff0695] opacity-50"></use>
+        </g>
+        <g class="wave2">
+          <use xlink:href="#wave-path" x="50" y="6" class="fill-[#ff0695] opacity-70"></use>
+        </g>
+        <g class="wave3">
+          <use xlink:href="#wave-path" x="50" y="9" class="fill-[#ff0695] opacity-50"></use>
+        </g>
       </svg>
     </div>
   </div>
-
-  <style>
-    .image {
-      background-image: url("/images/hero.webp");
-      height: 100%;
-      width: 100%;
-      background-size: cover;
-      z-index: 20;
-    }
-
-    .water {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("/images/mask_hero.webp");
-      background-size: cover;
-      filter: url("#turbulence");
-    }
-
-    @media (max-width: 640px) and (orientation: portrait) {
-      .image {
-        background-image: url("/images/hero_sm_portrait.webp");
-      }
-      .water {
-        background-image: url("/images/mask_hero_sm_portrait.webp");
-      }
-    }
-
-    .logo {
-      -webkit-mask-image: url("/favicon.svg");
-      mask-image: url("/favicon.svg");
-      -webkit-mask-size: cover;
-      mask-size: cover;
-      background-color: rgb(243, 243, 243);
-      position: relative;
-      overflow: hidden;
-    }
-    .lazy_background_image_maskImage {
-      -webkit-mask-size: cover;
-      mask-size: cover;
-      -webkit-mask-image: url("/favicon.svg");
-      mask-image: url("/favicon.svg");
-    }
-    .lazy_background_image {
-      transition: 1s cubic-bezier(0.6, 0.6, 0, 1) opacity;
-    }
-    .logo svg {
-      width: 250px;
-      height: 300px;
-      position: absolute;
-      top: 30px;
-      left: 0;
-      animation: 8s linear infinite;
-      transform: translate(-300px, -70px) rotate(20deg);
-      animation-name: logo_animation !important;
-    }
-
-    @keyframes logo_animation {
-      0% {
-        transform: translate(-300px, -70px) rotate(20deg);
-      }
-      100% {
-        transform: translate(600px, -70px) rotate(20deg);
-      }
-    }
-
-    /* wave animation start */
-
-    .waves {
-      height: 80px;
-      width: 100%;
-      margin-top: -70px;
-    }
-
-    .wave1 use {
-      animation: move-forever1 10s linear infinite;
-      animation-delay: -2s;
-    }
-
-    .wave2 use {
-      animation: move-forever2 8s linear infinite;
-      animation-delay: -2s;
-    }
-
-    .wave3 use {
-      animation: move-forever3 6s linear infinite;
-      animation-delay: -2s;
-    }
-
-    .wave4 use {
-      animation: move-forever3 4s linear infinite;
-      animation-delay: -2s;
-    }
-
-    @-webkit-keyframes move-forever1 {
-      0% {
-        transform: translate(85px, 0%);
-      }
-
-      100% {
-        transform: translate(-90px, 0%);
-      }
-    }
-
-    @keyframes move-forever1 {
-      0% {
-        transform: translate(85px, 0%);
-      }
-
-      100% {
-        transform: translate(-90px, 0%);
-      }
-    }
-
-    @-webkit-keyframes move-forever2 {
-      0% {
-        transform: translate(-90px, 0%);
-      }
-
-      100% {
-        transform: translate(85px, 0%);
-      }
-    }
-
-    @keyframes move-forever2 {
-      0% {
-        transform: translate(-90px, 0%);
-      }
-
-      100% {
-        transform: translate(85px, 0%);
-      }
-    }
-
-    @-webkit-keyframes move-forever3 {
-      0% {
-        transform: translate(-90px, 0%);
-      }
-
-      100% {
-        transform: translate(85px, 0%);
-      }
-    }
-
-    @keyframes move-forever3 {
-      0% {
-        transform: translate(-90px, 0%);
-      }
-
-      100% {
-        transform: translate(85px, 0%);
-      }
-    }
-
-    @-webkit-keyframes move-forever4 {
-      0% {
-        transform: translate(-90px, 0%);
-      }
-
-      100% {
-        transform: translate(85px, 0%);
-      }
-    }
-
-    @keyframes move-forever4 {
-      0% {
-        transform: translate(-90px, 0%);
-      }
-
-      100% {
-        transform: translate(85px, 0%);
-      }
-    }
-
-    .waves > use {
-      animation: wave 25s cubic-bezier(0.5, 0.5, 0.45, 0.5) infinite;
-    }
-
-    @keyframes wave {
-      0% {
-        transform: translate3d(-90px, 0, 0);
-      }
-      100% {
-        transform: translate3d(85px, 0, 0);
-      }
-    }
-
-    @keyframes background-pan {
-      from {
-        background-position: 0% center;
-      }
-
-      to {
-        background-position: -200% center;
-      }
-    }
-
-    @keyframes scale {
-      from,
-      to {
-        transform: scale(0);
-      }
-
-      50% {
-        transform: scale(1);
-      }
-    }
-
-    @keyframes rotate {
-      from {
-        transform: rotate(0deg);
-      }
-
-      to {
-        transform: rotate(180deg);
-      }
-    }
-  </style>
 </section>
+
+<style>
+  .image {
+    background-image: url("/images/hero.webp");
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    z-index: 20;
+  }
+
+  .water {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/images/mask_hero.webp");
+    background-size: cover;
+    filter: url("#turbulence");
+  }
+
+  @media (max-width: 640px) and (orientation: portrait) {
+    .image {
+      background-image: url("/images/hero_sm_portrait.webp");
+    }
+    .water {
+      background-image: url("/images/mask_hero_sm_portrait.webp");
+    }
+  }
+
+  .logo {
+    -webkit-mask-image: url("/favicon.svg");
+    mask-image: url("/favicon.svg");
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    background-color: rgb(243, 243, 243);
+    position: relative;
+    overflow: hidden;
+  }
+  .lazy_background_image_maskImage {
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url("/favicon.svg");
+    mask-image: url("/favicon.svg");
+  }
+  .lazy_background_image {
+    transition: 1s cubic-bezier(0.6, 0.6, 0, 1) opacity;
+  }
+  .logo svg {
+    width: 250px;
+    height: 300px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    animation: 8s linear infinite;
+    transform: translate(-300px, -70px) rotate(20deg);
+    animation-name: logo_animation !important;
+  }
+
+  @keyframes logo_animation {
+    0% {
+      transform: translate(-300px, -70px) rotate(20deg);
+    }
+    100% {
+      transform: translate(600px, -70px) rotate(20deg);
+    }
+  }
+
+  /* wave animation start */
+
+  .waves {
+    height: 80px;
+    width: 100%;
+    margin-top: -70px;
+  }
+
+  .wave1 use {
+    animation: move-forever1 10s linear infinite;
+    animation-delay: -2s;
+  }
+
+  .wave2 use {
+    animation: move-forever2 8s linear infinite;
+    animation-delay: -2s;
+  }
+
+  .wave3 use {
+    animation: move-forever3 6s linear infinite;
+    animation-delay: -2s;
+  }
+
+  .wave4 use {
+    animation: move-forever3 4s linear infinite;
+    animation-delay: -2s;
+  }
+
+  @-webkit-keyframes move-forever1 {
+    0% {
+      transform: translate(85px, 0%);
+    }
+
+    100% {
+      transform: translate(-90px, 0%);
+    }
+  }
+
+  @keyframes move-forever1 {
+    0% {
+      transform: translate(85px, 0%);
+    }
+
+    100% {
+      transform: translate(-90px, 0%);
+    }
+  }
+
+  @-webkit-keyframes move-forever2 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+
+  @keyframes move-forever2 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+
+  @-webkit-keyframes move-forever3 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+
+  @keyframes move-forever3 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+
+  @-webkit-keyframes move-forever4 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+
+  @keyframes move-forever4 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+
+  .waves > use {
+    animation: wave 25s cubic-bezier(0.5, 0.5, 0.45, 0.5) infinite;
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+      transform: translate3d(85px, 0, 0);
+    }
+  }
+
+  @keyframes background-pan {
+    from {
+      background-position: 0% center;
+    }
+
+    to {
+      background-position: -200% center;
+    }
+  }
+
+  @keyframes scale {
+    from,
+    to {
+      transform: scale(0);
+    }
+
+    50% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(180deg);
+    }
+  }
+</style>
