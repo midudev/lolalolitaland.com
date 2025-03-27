@@ -22,10 +22,8 @@ import { Image } from "astro:assets"
     >
   </h4>
 </section>
-<div class="m-auto grid max-w-[1315px] grid-cols-1 gap-8 p-4 lg:h-[630px] lg:grid-cols-6">
-  <div
-    class="relative h-[630px] w-full overflow-hidden rounded-[2rem] bg-black lg:col-span-4 lg:mx-auto lg:h-auto"
-  >
+<div class="m-auto flex max-w-[1315px] flex-row flex-wrap gap-8 p-4">
+  <div class="relative h-[630px] min-w-[300px] flex-1 overflow-hidden rounded-[2rem] bg-black">
     <LeafletMap
       latitude={40.45673263671421}
       longitude={-3.990346247363024}
@@ -38,7 +36,9 @@ import { Image } from "astro:assets"
       ]}
     />
   </div>
-  <div class="image overflow-hidden rounded-[2rem] lg:col-span-2">
+  <div
+    class="image w-full flex-shrink-0 overflow-hidden rounded-[2rem] md:w-[250px] lg:w-[400px] xl:w-[500px]"
+  >
     <div class="water hidden lg:block" title="Lola Lolita Land - ZIG ZAG tobogan"></div>
     <Image
       class="h-full w-full object-cover lg:hidden"

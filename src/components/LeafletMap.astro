@@ -1,5 +1,5 @@
 ---
-import "leaflet/dist/leaflet.css"
+// Leaflet CSS and dependencies will be loaded dynamically
 import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson"
 
 export interface Props {
@@ -28,13 +28,112 @@ const { latitude, longitude, zoom, tileLayer, attribution, geoJSON } = Astro.pro
 </leaflet-map>
 
 <script>
-  import L, { type LatLngTuple } from "leaflet"
-  import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson"
-
   class LeafletMap extends HTMLElement {
+    private observer: IntersectionObserver | null = null
+    private initialized = false
+
     connectedCallback() {
+      // Create an intersection observer to detect when the map is about to be visible
+      this.observer = new IntersectionObserver(this.handleIntersection.bind(this), {
+        rootMargin: "200px", // Load when map is within 200px of viewport
+        threshold: 0,
+      })
+
+      this.observer.observe(this)
+    }
+
+    disconnectedCallback() {
+      // Clean up the observer when the element is removed from the DOM
+      if (this.observer) {
+        this.observer.disconnect()
+        this.observer = null
+      }
+    }
+
+    async handleIntersection(entries: IntersectionObserverEntry[]) {
+      const isIntersecting = entries[0]?.isIntersecting
+
+      if (isIntersecting && !this.initialized) {
+        this.initialized = true
+
+        // Stop observing once we've initialized
+        if (this.observer) {
+          this.observer.disconnect()
+          this.observer = null
+        }
+
+        // Dynamically load Leaflet CSS
+        await this.loadLeafletCSS()
+
+        // Dynamically import Leaflet
+        const leafletModule = await import("leaflet")
+        const L = leafletModule.default
+
+        // Initialize the map
+        await this.initializeMap(L)
+      }
+    }
+
+    async loadLeafletCSS() {
+      return new Promise<void>((resolve) => {
+        const link = document.createElement("link")
+        link.rel = "stylesheet"
+        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        link.integrity = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        link.crossOrigin = ""
+
+        link.onload = () => {
+          // Add custom CSS for the pink color theme after Leaflet CSS is loaded
+          this.addCustomStyles()
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    }
+
+    addCustomStyles() {
+      // Add the custom CSS for the pink color theme
+      const style = document.createElement("style")
+      style.textContent = `
+        .leaflet-tile {
+          filter: hue-rotate(220deg);
+        }
+
+        .leaflet-pane {
+          z-index: 10;
+        }
+
+        .leaflet-top {
+          z-index: 11;
+        }
+
+        .leaflet-control-zoom.leaflet-bar.leaflet-control {
+          border-radius: 24px;
+          overflow: hidden;
+          margin: 14px;
+          border-color: var(--color-primary);
+        }
+
+        a.leaflet-control-zoom-in,
+        a.leaflet-control-zoom-out {
+          background-color: var(--color-primary-light);
+          color: var(--color-primary);
+          border-color: var(--color-primary);
+        }
+
+        a.leaflet-control-zoom-in:hover,
+        a.leaflet-control-zoom-out:hover {
+          background-color: var(--color-primary);
+          color: white;
+          border-color: var(--color-primary-light);
+        }
+      `
+      document.head.appendChild(style)
+    }
+
+    async initializeMap(L: any) {
       const { latitude, longitude, zoom, tiles, attribution, geojson } = this.dataset
-      const latlng: LatLngTuple = [Number(latitude), Number(longitude)]
+      const latlng = [Number(latitude), Number(longitude)]
 
       const map = L.map(this, {
         scrollWheelZoom: false,
@@ -64,56 +163,15 @@ const { latitude, longitude, zoom, tileLayer, attribution, geoJSON } = Astro.pro
       if (!geojson) return
 
       const geoJSONData = JSON.parse(geojson as string)
-      geoJSONData.forEach(
-        ({
-          data,
-          color,
-        }: {
-          data: FeatureCollection<Geometry, GeoJsonProperties>
-          color: string
-        }) => {
-          L.geoJSON(data, {
-            style: { color, weight: 5, opacity: 0.65 },
-          }).addTo(map)
-        }
-      )
+      geoJSONData.forEach(({ data, color }: { data: any; color: string }) => {
+        L.geoJSON(data, {
+          style: { color, weight: 5, opacity: 0.65 },
+        }).addTo(map)
+      })
     }
   }
 
   window.customElements.define("leaflet-map", LeafletMap)
 </script>
 
-<style is:global>
-  .leaflet-tile {
-    filter: hue-rotate(220deg);
-  }
-
-  .leaflet-pane {
-    z-index: 10;
-  }
-
-  .leaflet-top {
-    z-index: 11;
-  }
-
-  .leaflet-control-zoom.leaflet-bar.leaflet-control {
-    border-radius: 24px;
-    overflow: hidden;
-    margin: 14px;
-    border-color: var(--color-primary);
-  }
-
-  a.leaflet-control-zoom-in,
-  a.leaflet-control-zoom-out {
-    background-color: var(--color-primary-light);
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-  }
-
-  a.leaflet-control-zoom-in:hover,
-  a.leaflet-control-zoom-out:hover {
-    background-color: var(--color-primary);
-    color: white;
-    border-color: var(--color-primary-light);
-  }
-</style>
+<!-- Styles are now added dynamically in JavaScript -->
