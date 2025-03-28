@@ -6,7 +6,7 @@ import Clock from "public/icons/clock.svg"
 ---
 
 <section class="relative w-full overflow-hidden" id="tickets">
-  <div class="bg-primary-light mx-auto my-[3%] -ml-2 w-[110%] -rotate-3 text-white">
+  <div class="bg-primary-light mx-auto my-[3%] -ml-2 w-[120%] -rotate-3 text-white">
     <Marquee
       content={[
         "Entradas",
@@ -26,10 +26,10 @@ import Clock from "public/icons/clock.svg"
       <p class="mx-auto max-w-2xl text-lg text-balance text-white">
         Elige el día que mejor se adapte a ti para vivir la experiencia Lolalolitaland.
       </p>
-      <div class="bg-primary-light mt-6 inline-block rounded-lg px-4 py-2">
-        <p class="flex items-center gap-2 font-medium text-white">
+      <div class="mt-6 inline-block rounded-lg bg-pink-100 px-4 py-2">
+        <p class="flex items-center gap-2 font-medium text-pink-900">
           <Clock class="h-5 w-5" />
-          Próximamente disponibles
+          Entradas próximamente disponibles
         </p>
       </div>
     </div>
@@ -78,7 +78,10 @@ import Clock from "public/icons/clock.svg"
               disabled
               class="tickets-button relative flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#ff0695] via-[#ff99d1] to-[#ff0695] px-4 py-3 font-bold text-white shadow-lg shadow-[#ff0695]/30 transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#ff0695]/40"
             >
-              <Ticket title="ticket" class="hidden h-5 w-5 -rotate-12 animate-bounce fill-white sm:inline-block" />
+              <Ticket
+                title="ticket"
+                class="hidden h-5 w-5 -rotate-12 animate-bounce fill-white sm:inline-block"
+              />
               <span class="text-sm sm:text-base">Comprar entrada</span>
             </button>
           </div>
@@ -128,57 +131,54 @@ import Clock from "public/icons/clock.svg"
               disabled
               class="tickets-button relative flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#ff0695] via-[#ff99d1] to-[#ff0695] px-4 py-3 font-bold text-white shadow-lg shadow-[#ff0695]/30 transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#ff0695]/40"
             >
-              <Ticket title="ticket" class="hidden h-5 w-5 -rotate-12 animate-bounce fill-white sm:inline-block" />
+              <Ticket
+                title="ticket"
+                class="hidden h-5 w-5 -rotate-12 animate-bounce fill-white sm:inline-block"
+              />
               <span class="text-sm sm:text-base">Comprar entrada</span>
             </button>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="mt-12 text-center">
-      <p class="text-sm text-white">
-        Las entradas estarán disponibles próximamente. ¡Mantente atento!
-      </p>
-    </div>
   </div>
+
+  <style>
+    .tickets-button {
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tickets-button::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: rotate(30deg);
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 0% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    @keyframes shine {
+      0% {
+        transform: translateX(-100%) rotate(30deg);
+      }
+      100% {
+        transform: translateX(100%) rotate(30deg);
+      }
+    }
+  </style>
 </section>
-
-<style>
-  .tickets-button {
-    background-size: 200% 100%;
-    animation: shimmer 3s linear infinite;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tickets-button::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transform: rotate(30deg);
-    animation: shine 3s linear infinite;
-  }
-
-  @keyframes shimmer {
-    0% {
-      background-position: 0% 0;
-    }
-    100% {
-      background-position: 200% 0;
-    }
-  }
-
-  @keyframes shine {
-    0% {
-      transform: translateX(-100%) rotate(30deg);
-    }
-    100% {
-      transform: translateX(100%) rotate(30deg);
-    }
-  }
-</style>
