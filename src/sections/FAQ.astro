@@ -384,10 +384,12 @@ import { Image } from "astro:assets"
   }
 
   body:has(.card[data-color="have"]:hover) .magic > .magic-text {
+    animation: background-pan 3s linear infinite;
     background: linear-gradient(to right, var(--color-primary), var(--color-primary-light), var(--color-primary), var(--color-primary));
+    background-size: 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: all 0.5s ease-in-out;
+    white-space: nowrap;
   }
 </style>
 
