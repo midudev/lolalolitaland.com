@@ -26,7 +26,7 @@ import WaveSeparator from "@/components/WaveSeparator.astro"
     <h3
       class="block pb-20 text-center text-lg font-bold text-white opacity-80 max-md:px-6 max-md:pb-5"
     >
-      Aquí tienes algunos recuerdos de la primera edición de LolaLolita Land
+      Aquí tienes algunos recuerdos de la primera edición de Lola Lolita Land
     </h3>
 
     <ul
@@ -37,7 +37,7 @@ import WaveSeparator from "@/components/WaveSeparator.astro"
         galleryImages.map(({ image, alt, thumb }, index) => (
           <li
             class="-m-1 aspect-9/10 w-72 shrink-0 cursor-pointer snap-center rounded-md shadow-sm transition-transform duration-300 will-change-transform"
-            id={thumb}
+            id={thumb + 'slider'}
             data-index={index}
           >
             <Image
@@ -45,7 +45,7 @@ import WaveSeparator from "@/components/WaveSeparator.astro"
               alt={alt}
               width={950}
               height={900}
-              data-thumbID={thumb}
+              data-thumbID={thumb+ 'slider'}
               class="border-theme-blue-light h-full w-full rounded-md border border-dashed object-cover"
               loading="lazy"
             />
