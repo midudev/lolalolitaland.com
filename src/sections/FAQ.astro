@@ -113,38 +113,89 @@ import { Image } from "astro:assets"
           </div>
         </div>
       </div>
-      <div class="pt-16 lg:col-span-7 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 w-full">
-        <div class="lg:col-span-1 flex flex-col gap-6">
-          <div class="bg-theme-blue rounded-lg p-4 text-white flex flex-col h-full">
-            <dt class="font-bold">¿Pueden ir menores de edad al evento?</dt>
-            <hr class="border-primary my-2" />
-            <dd class="flex-grow">Se prohíbe el acceso a los <span class="text-pink-300 font-bold">menores de 12 años</span> que no vayan acompañados por un adulto.</dd>
+      <div class="pt-[68px] lg:col-span-7 lg:mt-0">
+        <dl class="space-y-10">
+          <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl" data-card-faq>
+            <dt class="px-4 pt-4 font-semibold text-white">
+              ¿Pueden ir menores de edad al evento?
+            </dt>
+            <hr class="text-primary mx-4 my-2" data-card-hr />
+            <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+              Se prohíbe el acceso a los menores de 12 años que no vayan acompañados por un adulto
+              que se haga responsable de la custodia y comportamiento de los mismos.
+            </dd>
+            <div
+              class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+              data-wave-saparator-primary
+            >
+              <WaveSeparator bottomColor="var(--color-primary)" />
+            </div>
           </div>
-          <div class="bg-theme-blue rounded-lg p-4 text-white flex flex-col h-full">
-            <dt class="font-bold">¿Hay comida para celíacos, veganos y vegetarianos?</dt>
-            <hr class="border-primary my-2" />
-            <dd class="flex-grow"><span class="text-pink-300 font-bold">¡Por supuesto que sí!</span> Hay opciones para <span class="text-pink-300 font-bold">todos los gustos y necesidades</span>. 🍽️🌱</dd>
+
+          <div class="flex flex-col items-start justify-between gap-10 lg:flex-row">
+            <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl w-full md:w-auto" data-card-faq>
+              <dt class="px-4 pt-4 font-semibold text-white">¿Cuántos días va a durar?</dt>
+              <hr class="text-primary mx-4 my-2" data-card-hr />
+              <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+                Son dos días, el 14 y 15 de junio de 2025.
+              </dd>
+              <div
+                class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+                data-wave-saparator-primary
+              >
+                <WaveSeparator bottomColor="var(--color-primary)" />
+              </div>
+            </div>
+
+            <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl" data-card-faq>
+              <dt class="px-4 pt-4 font-semibold text-white">¿Dónde se celebra?</dt>
+              <hr class="text-primary mx-4 my-2" data-card-hr />
+              <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+                En el parque Aquopolis de Madrid, en Villanueva de la Cañada.
+              </dd>
+              <div
+                class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+                data-wave-saparator-primary
+              >
+                <WaveSeparator bottomColor="var(--color-primary)" />
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="lg:col-span-1 flex flex-col gap-6">
-          <div class="bg-theme-blue rounded-lg p-4 text-white flex flex-col h-full">
-            <dt class="font-bold">¿Cuántos días va a durar?</dt>
-            <hr class="border-primary my-2" />
-            <dd class="flex-grow">Son <span class="text-pink-300 font-bold">dos días</span>, el <span class="text-pink-300 font-bold">14 y 15 de junio de 2025</span>.</dd>
+
+          <div class="flex flex-col items-start justify-between gap-10 lg:flex-row">
+            <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl" data-card-faq>
+              <dt class="px-4 pt-4 font-semibold text-white">¿Asistirá Lola Lolita?</dt>
+              <hr class="text-primary mx-4 my-2" data-card-hr />
+              <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+                Sí, Lola Lolita estará allí con unas cuantas sorpresas.
+              </dd>
+              <div
+                class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+                data-wave-saparator-primary
+              >
+                <WaveSeparator bottomColor="var(--color-primary)" />
+              </div>
+            </div>
+
+            <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl" data-card-faq>
+              <dt class="px-4 pt-4 font-semibold text-white">
+                ¿Hay comida para celíacos, veganos y vegetarianos?
+              </dt>
+              <hr class="text-primary mx-4 my-2" data-card-hr />
+              <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+                ¡Por supuesto que sí! Hay opciones para todos los gustos y necesidades. ¡Nadie se
+                quedará sin disfrutar de este día!
+              </dd>
+              <div
+                class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+                data-wave-saparator-primary
+              >
+                <WaveSeparator bottomColor="var(--color-primary)" />
+              </div>
+            </div>
           </div>
-          <div class="bg-theme-blue rounded-lg p-4 text-white flex flex-col h-full">
-            <dt class="font-bold">¿Dónde se celebra?</dt>
-            <hr class="border-primary my-2" />
-            <dd class="flex-grow">En el <span class="text-pink-300 font-bold">parque Aquopolis de Madrid</span>, en Villanueva de la Cañada.</dd>
-          </div>
-          <div class="bg-theme-blue rounded-lg p-4 text-white flex flex-col h-full">
-            <dt class="font-bold">¿Asistirá Lola Lolita?</dt>
-            <hr class="border-primary my-2" />
-            <dd class="flex-grow"><span class="text-pink-300 font-bold">Sí</span>, Lola Lolita estará allí con <span class="text-pink-300 font-bold">unas cuantas sorpresas</span>. 🎉</dd>
-          </div>
-        </div>
+        </dl>
       </div>
-    </div>
     </div>
   </div>
 </section>
