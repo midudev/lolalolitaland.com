@@ -13,12 +13,12 @@ const instanceId = Math.random().toString(36).substring(2, 9);
 
 <style lang="postcss">
   .bubble {
-    @apply absolute rounded-full bg-radial-[at_50%_75%] from-[transparent] via-[#bedbff] to-[transparent] to-90%;
+    @apply absolute rounded-full bg-radial-[at_50%_75%] from-[transparent] via-[#bedbff6f] to-[transparent] to-90%;
     bottom: -10px; /* Start slightly below the container */
     will-change: transform, opacity;
     /*animation: bubble linear infinite; */
     opacity: 0; /* Start transparent */
-    border: 1px solid #fff;
+    border: 1px solid #e4e4e4;
   }
 
   .tickets-button {
@@ -26,7 +26,6 @@ const instanceId = Math.random().toString(36).substring(2, 9);
     animation: shimmer 3s linear infinite;
     position: relative;
     overflow: hidden;
-    opacity: 1 !important;
   }
 
   .tickets-button::before {
@@ -55,7 +54,7 @@ const instanceId = Math.random().toString(36).substring(2, 9);
 <div class="pointer-events-none absolute inset-0 overflow-hidden h-full ocean" data-id={instanceId}>
   {bubbles.map((bubble) => (
     <div
-      class="bubble tickets-button"
+      class="bubble tickets-button "
       style={`
         width: ${bubble.size};
         height: ${bubble.size};
@@ -88,6 +87,7 @@ const instanceId = Math.random().toString(36).substring(2, 9);
               0% {
                 transform: translateY(0);
                 opacity: 0;
+                   background-position: 0% 0;
               }
               10% {
                 opacity: 0.7; /* Fade in */
@@ -96,8 +96,9 @@ const instanceId = Math.random().toString(36).substring(2, 9);
                 opacity: 0.5;
               }
               100% {
-                transform: translateY(-${oceanHeight + 20}px);
+                transform: translateY(-${oceanHeight + 20}px) ;
                 opacity: 0; /* Fade out at the top */
+                 background-position: 200% 0;
               }
             }
           `;
