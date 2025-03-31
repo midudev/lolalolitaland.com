@@ -13,19 +13,49 @@ const instanceId = Math.random().toString(36).substring(2, 9);
 
 <style lang="postcss">
   .bubble {
-    @apply absolute rounded-full;
+    @apply absolute rounded-full bg-radial-[at_50%_75%] from-[transparent] via-[#bedbff] to-[transparent] to-90%;
     bottom: -10px; /* Start slightly below the container */
-    background-color: rgba(255, 255, 255, 0.6);
     will-change: transform, opacity;
-    animation: bubble linear infinite;
+    /*animation: bubble linear infinite; */
     opacity: 0; /* Start transparent */
+    border: 1px solid #fff;
+  }
+
+  .tickets-button {
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+    position: relative;
+    overflow: hidden;
+    opacity: 1 !important;
+  }
+
+  .tickets-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(30deg);
+    animation: shine 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    100% { transform: translateX(100%) rotate(50deg); }
   }
 </style>
 
 <div class="pointer-events-none absolute inset-0 overflow-hidden h-full ocean" data-id={instanceId}>
   {bubbles.map((bubble) => (
     <div
-      class="bubble"
+      class="bubble tickets-button"
       style={`
         width: ${bubble.size};
         height: ${bubble.size};
