@@ -1,23 +1,106 @@
-<button
+---
+
+---
+<button 
+  class="fixed right-8 bottom-8 h-12 w-12 z-40 cursor-pointer overflow-hidden rounded-full bg-gradient-to-r from-blue-500 via-theme-blue to-blue-400 opacity-0 shadow-lg hover:to-theme-blue flex justify-center items-center flex-col"
   id="back-to-top"
-  class="group fixed right-4 bottom-4 z-50 flex h-12 w-12 cursor-pointer flex-row items-center justify-center overflow-hidden rounded-full bg-gradient-to-b from-blue-200 to-blue-100 opacity-0 shadow-lg transition-all duration-300 hover:w-36 hover:rounded-[50px] hover:bg-purple-600"
-  aria-label="Back to top"
 >
   <svg
-    viewBox="0 0 384 512"
-    class="absolute h-3 w-3 transition-all duration-300 group-hover:-translate-x-[425%]"
+  viewBox="0 0 384 512"
+  class="absolute h-5 w-4"
   >
     <path
-      fill="#383acf"
+      fill="#fff"
       d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
     ></path>
   </svg>
-  <span
-    class="text-primary absolute left-full pl-8 text-sm font-medium whitespace-nowrap opacity-0 transition-all duration-300 group-hover:left-0 group-hover:opacity-100"
-  >
-    Volver Arriba
-  </span>
 </button>
+
+  <style>
+
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 50%;
+      transition: 500ms;
+      animation: shimmer 3s linear infinite;
+    }
+
+    button svg {
+      fill: white;
+      position: absolute;
+    }
+
+    button::after {
+      content: 'Volver Arriba';
+      position: fixed;
+      transform: translateY(35px);
+      font-size: 14px;
+      transition: 500ms;
+      color: transparent;
+      user-select: none;
+    }
+
+    button:hover::after {
+      color: white;
+      mix-blend-mode: difference;
+    }
+
+    button:hover svg {
+        animation: bounce 2s infinite linear;
+    }
+
+    button::before {
+        content: "";
+        z-index: 10;
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            to right,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+        );
+        transform: rotate(30deg);
+        animation: shine 3s linear infinite;
+    }
+
+    @keyframes bounce {
+      0% {transform: translateY(4%)}
+      25% {transform: translateY(-8%)}
+      50% {transform: translateY(4%)}
+      75% {transform: translateY(-8%)}
+      100% {transform: translateY(4%)}
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: 0% 0;
+        }
+        100% {
+            background-position: 200% 0;
+        }
+    }
+
+    @keyframes shine {
+        0% {
+            transform: translateX(-100%) rotate(30deg);
+        }
+        100% {
+            transform: translateX(100%) rotate(30deg);
+        }
+    }
+
+
+
+</style>
 
 <script>
   const toggleVisibility = () => {
@@ -41,6 +124,6 @@
 
   window.addEventListener("scroll", toggleVisibility)
 
-  const button = document.getElementById("back-to-top")
-  button?.addEventListener("click", scrollToTop)
+  const button = document.getElementById("back-to-top") as HTMLElement;
+  button.addEventListener("click", scrollToTop)
 </script>
