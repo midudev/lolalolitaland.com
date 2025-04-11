@@ -37,7 +37,7 @@ import WaveSeparator from "@/components/WaveSeparator.astro"
         galleryImages.map(({ image, alt, thumb }, index) => (
           <li
             class="-m-1 aspect-9/10 w-72 shrink-0 cursor-pointer snap-center rounded-md shadow-sm transition-transform duration-300 will-change-transform"
-            id={thumb + 'slider'}
+            id={thumb + "slider"}
             data-index={index}
           >
             <Image
@@ -45,7 +45,7 @@ import WaveSeparator from "@/components/WaveSeparator.astro"
               alt={alt}
               width={950}
               height={900}
-              data-thumbID={thumb+ 'slider'}
+              data-thumbID={thumb + "slider"}
               class="border-theme-blue-light h-full w-full rounded-md border border-dashed object-cover"
               loading="lazy"
             />
@@ -82,8 +82,10 @@ import WaveSeparator from "@/components/WaveSeparator.astro"
     class="pointer-events-none fixed inset-0 flex cursor-pointer items-center justify-center p-4 opacity-0 transition-opacity duration-300 ease-in-out"
     role="dialog"
     aria-modal="true"
+    aria-labelledby="lightbox-title"
     id="lightbox"
   >
+    <h2 id="lightbox-title" class="sr-only">Galería de imágenes de Lola Lolita Land</h2>
     <div class="relative w-full max-w-5xl p-4">
       <button
         type="button"
