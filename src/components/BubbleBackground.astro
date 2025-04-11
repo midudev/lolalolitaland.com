@@ -1,10 +1,11 @@
 ---
-const bubbles = Array.from({ length: 25 }, (_, i) => ({
+const bubbles = Array.from({ length: 30 }, (_, i) => ({
   id: i + 1,
   size: `${Math.random() * 30 + 10}px`,
   left: `${Math.random() * 95}%`,
-  delay: `${Math.random() * 8}s`, // Positive delays only
-  duration: `${Math.random() * 10 + 8}s`, // Slightly faster animations
+  top: `${Math.random() * 95}%`,
+  delay: `${Math.random() * 3}s`, // Minimal delay for faster start
+  duration: `${Math.random() * 3 + 2}s`, // Super fast animations (2-5s)
 }))
 
 const instanceId = Math.random().toString(36).substring(2, 9)
@@ -15,14 +16,13 @@ const instanceId = Math.random().toString(36).substring(2, 9)
     @apply absolute rounded-full bg-radial-[at_50%_75%] from-[transparent] via-[#bedbff6f] to-[transparent] to-90%;
     bottom: -10px; /* Start slightly below the container */
     will-change: transform, opacity;
-    /*animation: bubble linear infinite; */
     opacity: 0; /* Start transparent */
     border: 1px solid #e4e4e4;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Enhanced glow */
   }
 
   .tickets-button {
     background-size: 200% 100%;
-    animation: shimmer 3s linear infinite;
     position: relative;
     overflow: hidden;
   }
@@ -53,72 +53,52 @@ const instanceId = Math.random().toString(36).substring(2, 9)
       transform: translateX(100%) rotate(50deg);
     }
   }
+
+  @keyframes bubbles {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+      background-position: 0% 0;
+    }
+
+    3% {
+      /* Even faster fade in */
+      transform: translateY(-10%);
+    }
+
+    30% {
+      /* Faster midpoint */
+      transform: translateY(-100%);
+      opacity: 0.7;
+    }
+
+    70% {
+      transform: translateY(-200%);
+      opacity: 0.5;
+    }
+
+    100% {
+      transform: translateY(-300%); /* Much longer travel distance */
+      opacity: 0;
+      background-position: 200% 0;
+    }
+  }
 </style>
 
 <div class="ocean pointer-events-none absolute inset-0 h-full overflow-hidden" data-id={instanceId}>
   {
-    bubbles.map((bubble) => (
+    bubbles.map(({ size, left, duration, delay }) => (
       <div
         class="bubble tickets-button"
         style={`
-        width: ${bubble.size};
-        height: ${bubble.size};
-        left: ${bubble.left};
-        animation-duration: ${bubble.duration};
-        animation-delay: ${bubble.delay};
+        width: ${size};
+        height: ${size};
+        left: ${left};
+        animation:
+          bubbles ${duration} linear infinite ${delay},
+          shimmer 3s linear infinite;
       `}
       />
     ))
   }
 </div>
-
-<script>
-  if (typeof document !== "undefined") {
-    // Use requestAnimationFrame for better performance
-    const initBubbles = () => {
-      const oceanContainers = document.querySelectorAll(".ocean")
-      oceanContainers.forEach((ocean) => {
-        if (ocean instanceof HTMLElement) {
-          const instanceId = ocean.getAttribute("data-id")
-          const oceanHeight = ocean.offsetHeight
-          const style = document.createElement("style")
-          document.head.appendChild(style)
-
-          style.innerHTML = `
-            .ocean[data-id="${instanceId}"] .bubble {
-              animation-name: bubble-${instanceId};
-            }
-
-            @keyframes bubble-${instanceId} {
-              0% {
-                transform: translateY(0);
-                opacity: 0;
-                   background-position: 0% 0;
-              }
-              10% {
-                opacity: 0.7; /* Fade in */
-              }
-              90% {
-                opacity: 0.5;
-              }
-              100% {
-                transform: translateY(-${oceanHeight + 20}px) ;
-                opacity: 0; /* Fade out at the top */
-                 background-position: 200% 0;
-              }
-            }
-          `
-        }
-      })
-    }
-
-    // Initialize on load and resize for responsive behavior
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initBubbles)
-    } else {
-      initBubbles()
-    }
-
-    window.addEventListener("resize", initBubbles)
-  }
-</script>
