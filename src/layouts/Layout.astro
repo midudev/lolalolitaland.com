@@ -46,6 +46,46 @@ const preloadImg = "/images/hero.webp"
     />
     <meta name="twitter:image" content="/images/hero.webp" />
     <meta name="twitter:url" content="https://www.lolalolitaland.com/" />
+    
+    <!-- Structured Data for Event -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Lola Lolita Land",
+        "description": "Lola Lolita Land te espera el 14 y 15 de junio en Aquópolis Madrid. Vive dos días de diversión con un parque acuático lleno de sorpresas, toboganes y piscinas. Celebra el inicio del verano con una experiencia única, la segunda edición de este evento lleno de invitados especiales y momentos inolvidables.",
+        "image": "https://www.lolalolitaland.com/images/hero.webp",
+        "startDate": "2025-06-14T10:00:00+02:00",
+        "endDate": "2025-06-15T20:00:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Aquópolis Madrid",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Madrid",
+            "addressRegion": "Madrid",
+            "addressCountry": "ES"
+          }
+        },
+        "performer": {
+          "@type": "Person",
+          "name": "Lola Lolita"
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Lola Lolita",
+          "url": "https://www.lolalolitaland.com"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.lolalolitaland.com",
+          "availability": "https://schema.org/InStock",
+          "priceCurrency": "EUR"
+        }
+      }
+    </script>
   </head>
 
   <body class="bg-primary w-screen overflow-x-hidden">
