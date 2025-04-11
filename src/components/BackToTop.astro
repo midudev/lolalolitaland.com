@@ -7,7 +7,7 @@
 </div>
 
 <a
-  class="via-theme-blue hover:to-theme-blue fixed right-8 bottom-8 z-40 flex h-12 w-12 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-blue-400 shadow-lg"
+  class="via-theme-blue hover:to-theme-blue fixed right-8 bottom-8 z-40 flex h-12 w-12 flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-blue-400 opacity-0 shadow-lg"
   id="back-to-top"
   href="#top"
   aria-label="Volver arriba"
@@ -22,7 +22,6 @@
 
 <style>
   a {
-    cursor: pointer;
     border: none;
     border-radius: 50%;
     transition: 500ms;
@@ -115,17 +114,20 @@
 
       if (!button || !observerTarget) return
 
-      const buttonParent = button.parentNode
-      let isButtonInDOM = true
-
       const updateButtonVisibility = (shouldShow: boolean) => {
         requestAnimationFrame(() => {
-          if (shouldShow && !isButtonInDOM) {
-            buttonParent?.appendChild(button)
-            isButtonInDOM = true
-          } else if (!shouldShow && isButtonInDOM) {
-            button.remove()
-            isButtonInDOM = false
+          if (shouldShow) {
+            button.classList.remove("opacity-0")
+            button.classList.add("opacity-100")
+
+            button.classList.add("cursor-pointer")
+            button.classList.remove("cursor-default")
+          } else {
+            button.classList.remove("opacity-100")
+            button.classList.add("opacity-0")
+
+            button.classList.remove("cursor-pointer")
+            button.classList.add("cursor-default")
           }
         })
       }
@@ -135,17 +137,13 @@
           const isScrolledDown = !entries[0].isIntersecting
           updateButtonVisibility(isScrolledDown)
         },
-        { threshold: 0, rootMargin: "0px" }
+        { threshold: 0 }
       )
 
       observer.observe(observerTarget)
 
       return () => {
         observer.disconnect()
-        if (isButtonInDOM) {
-          button.remove()
-          isButtonInDOM = false
-        }
       }
     }
 
