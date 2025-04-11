@@ -2,7 +2,7 @@
 
 Este proyecto es una iniciativa de la influencer [@lolalolita](https://www.instagram.com/lolalolita) se realiza el 15 y 16 de Junio del 2025 en Aquopolis, Madrid. Sitio web desarrollado por [midudev](https://twitch.tv/midudev), gracias a la colaboración de [@infojobs](https://www.infojobs.net/).
 
-![banner](./public/images/lolalolitaland-hero.webp)
+![banner](./public/images/hero.webp)
 
 🖼️ Diseño en Figma (Pendiente...)
 
