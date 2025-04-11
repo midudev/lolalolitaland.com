@@ -178,7 +178,6 @@ import CalendarImage from "@/assets/images/calendario.webp"
             >
               <svg
                 class="text-white transition-all"
-                xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
@@ -204,7 +203,6 @@ import CalendarImage from "@/assets/images/calendario.webp"
             >
               <svg
                 class="text-white transition-all"
-                xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
@@ -242,8 +240,6 @@ import CalendarImage from "@/assets/images/calendario.webp"
     star.style.setProperty("--star-top", `${rand(-40, 80)}%`)
 
     star.style.animation = "none"
-    star.offsetHeight
-    star.style.animation = ""
   }
 
   for (const star of document.getElementsByClassName(
@@ -253,7 +249,7 @@ import CalendarImage from "@/assets/images/calendario.webp"
       () => {
         animate(star)
 
-        setInterval(() => animate(star), 1000)
+        setInterval(() => animate(star), interval)
       },
       index++ * (interval / 3)
     )
