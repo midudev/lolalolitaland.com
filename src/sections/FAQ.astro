@@ -114,18 +114,20 @@ import { Image } from "astro:assets"
         </div>
       </div>
       <div class="pt-[68px] lg:col-span-7 lg:mt-0">
-        <dl class="space-y-10">
+        <div class="space-y-10">
           <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl" data-card-faq>
-            <dt class="px-4 pt-4 font-semibold text-white">
-              ¿Pueden ir menores de edad al evento?
-            </dt>
-            <hr class="text-primary mx-4 my-2" data-card-hr />
-            <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
-              Se prohíbe el acceso a los menores de 12 años que no vayan acompañados por un adulto
-              que se haga responsable de la custodia y comportamiento de los mismos.
-            </dd>
+            <dl>
+              <dt class="px-4 pt-4 font-semibold text-white">
+                ¿Pueden ir menores de edad al evento?
+              </dt>
+              <hr class="text-primary mx-4 my-2" data-card-hr />
+              <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+                Se prohíbe el acceso a los menores de 12 años que no vayan acompañados por un adulto
+                que se haga responsable de la custodia y comportamiento de los mismos.
+              </dd>
+            </dl>
             <div
-              class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+              class="hidden opacity-100 transition-all duration-500 ease-in-out sm:block"
               data-wave-saparator-primary
             >
               <WaveSeparator bottomColor="var(--color-primary)" />
@@ -133,14 +135,19 @@ import { Image } from "astro:assets"
           </div>
 
           <div class="flex flex-col items-start justify-between gap-10 lg:flex-row">
-            <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl w-full md:w-auto" data-card-faq>
-              <dt class="px-4 pt-4 font-semibold text-white">¿Cuántos días va a durar?</dt>
-              <hr class="text-primary mx-4 my-2" data-card-hr />
-              <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
-                Son dos días, el 14 y 15 de junio de 2025.
-              </dd>
+            <div
+              class="bg-theme-blue relative w-full rounded-xl md:w-auto md:rounded-t-xl"
+              data-card-faq
+            >
+              <dl>
+                <dt class="px-4 pt-4 font-semibold text-white">¿Cuántos días va a durar?</dt>
+                <hr class="text-primary mx-4 my-2" data-card-hr />
+                <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+                  Son dos días, el 14 y 15 de junio de 2025.
+                </dd>
+              </dl>
               <div
-                class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+                class="hidden opacity-100 transition-all duration-500 ease-in-out sm:block"
                 data-wave-saparator-primary
               >
                 <WaveSeparator bottomColor="var(--color-primary)" />
@@ -148,13 +155,15 @@ import { Image } from "astro:assets"
             </div>
 
             <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl" data-card-faq>
-              <dt class="px-4 pt-4 font-semibold text-white">¿Dónde se celebra?</dt>
-              <hr class="text-primary mx-4 my-2" data-card-hr />
-              <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
-                En el parque Aquopolis de Madrid, en Villanueva de la Cañada.
-              </dd>
+              <dl>
+                <dt class="px-4 pt-4 font-semibold text-white">¿Dónde se celebra?</dt>
+                <hr class="text-primary mx-4 my-2" data-card-hr />
+                <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+                  En el parque Aquopolis de Madrid, en Villanueva de la Cañada.
+                </dd>
+              </dl>
               <div
-                class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+                class="hidden opacity-100 transition-all duration-500 ease-in-out sm:block"
                 data-wave-saparator-primary
               >
                 <WaveSeparator bottomColor="var(--color-primary)" />
@@ -164,13 +173,15 @@ import { Image } from "astro:assets"
 
           <div class="flex flex-col items-start justify-between gap-10 lg:flex-row">
             <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl" data-card-faq>
-              <dt class="px-4 pt-4 font-semibold text-white">¿Asistirá Lola Lolita?</dt>
-              <hr class="text-primary mx-4 my-2" data-card-hr />
-              <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
-                Sí, Lola Lolita estará allí con unas cuantas sorpresas.
-              </dd>
+              <dl>
+                <dt class="px-4 pt-4 font-semibold text-white">¿Asistirá Lola Lolita?</dt>
+                <hr class="text-primary mx-4 my-2" data-card-hr />
+                <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+                  Sí, Lola Lolita estará allí con unas cuantas sorpresas.
+                </dd>
+              </dl>
               <div
-                class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+                class="hidden opacity-100 transition-all duration-500 ease-in-out sm:block"
                 data-wave-saparator-primary
               >
                 <WaveSeparator bottomColor="var(--color-primary)" />
@@ -178,23 +189,25 @@ import { Image } from "astro:assets"
             </div>
 
             <div class="bg-theme-blue relative rounded-xl md:rounded-t-xl" data-card-faq>
-              <dt class="px-4 pt-4 font-semibold text-white">
-                ¿Hay comida para celíacos, veganos y vegetarianos?
-              </dt>
-              <hr class="text-primary mx-4 my-2" data-card-hr />
-              <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
-                ¡Por supuesto que sí! Hay opciones para todos los gustos y necesidades. ¡Nadie se
-                quedará sin disfrutar de este día!
-              </dd>
+              <dl>
+                <dt class="px-4 pt-4 font-semibold text-white">
+                  ¿Hay comida para celíacos, veganos y vegetarianos?
+                </dt>
+                <hr class="text-primary mx-4 my-2" data-card-hr />
+                <dd class="mt-1 max-w-2xl px-4 pb-6 text-sm text-pretty text-pink-100">
+                  ¡Por supuesto que sí! Hay opciones para todos los gustos y necesidades. ¡Nadie se
+                  quedará sin disfrutar de este día!
+                </dd>
+              </dl>
               <div
-                class="opacity-100 transition-all duration-500 ease-in-out hidden sm:block"
+                class="hidden opacity-100 transition-all duration-500 ease-in-out sm:block"
                 data-wave-saparator-primary
               >
                 <WaveSeparator bottomColor="var(--color-primary)" />
               </div>
             </div>
           </div>
-        </dl>
+        </div>
       </div>
     </div>
   </div>
