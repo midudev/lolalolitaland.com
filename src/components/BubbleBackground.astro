@@ -15,9 +15,9 @@ const instanceId = Math.random().toString(36).substring(2, 9)
     @apply absolute rounded-full bg-radial-[at_50%_75%] from-[transparent] via-[#bedbff6f] to-[transparent] to-90%;
     bottom: -10px; /* Start slightly below the container */
     will-change: transform, opacity;
+    /*animation: bubble linear infinite; */
     opacity: 0; /* Start transparent */
     border: 1px solid #e4e4e4;
-    contain: strict;
   }
 
   .tickets-button {
@@ -74,76 +74,51 @@ const instanceId = Math.random().toString(36).substring(2, 9)
 
 <script>
   if (typeof document !== "undefined") {
-    // Store style elements to avoid creating new ones on resize
-    const styleCache = new Map()
-
     // Use requestAnimationFrame for better performance
     const initBubbles = () => {
-      // Use requestAnimationFrame to sync with browser rendering cycle
-      requestAnimationFrame(() => {
-        const oceanContainers = document.querySelectorAll(".ocean")
-
-        oceanContainers.forEach((ocean) => {
-          if (!(ocean instanceof HTMLElement)) return
-
+      const oceanContainers = document.querySelectorAll(".ocean")
+      oceanContainers.forEach((ocean) => {
+        if (ocean instanceof HTMLElement) {
           const instanceId = ocean.getAttribute("data-id")
-          if (!instanceId) return
-
           const oceanHeight = ocean.offsetHeight
+          const style = document.createElement("style")
+          document.head.appendChild(style)
 
-          // Check if we already have a style element for this instance
-          let style = styleCache.get(instanceId)
-
-          // Create style element only if it doesn't exist yet
-          if (!style) {
-            style = document.createElement("style")
-            document.head.appendChild(style)
-            styleCache.set(instanceId, style)
-          }
-
-          // Update animation keyframes with current height
-          style.textContent = `
+          style.innerHTML = `
             .ocean[data-id="${instanceId}"] .bubble {
               animation-name: bubble-${instanceId};
-              will-change: transform, opacity;
             }
 
             @keyframes bubble-${instanceId} {
               0% {
-                transform: translate3d(0, 0, 0);
+                transform: translateY(0);
                 opacity: 0;
+                   background-position: 0% 0;
               }
               10% {
-                opacity: 0.7;
+                opacity: 0.7; /* Fade in */
               }
               90% {
                 opacity: 0.5;
               }
               100% {
-                transform: translate3d(0, -${oceanHeight + 20}px, 0);
-                opacity: 0;
+                transform: translateY(-${oceanHeight + 20}px) ;
+                opacity: 0; /* Fade out at the top */
+                 background-position: 200% 0;
               }
             }
           `
-        })
+        }
       })
     }
 
-    // Debounce resize events to prevent excessive calculations
-    let resizeTimer: number | undefined
-    const handleResize = () => {
-      if (resizeTimer) clearTimeout(resizeTimer)
-      resizeTimer = setTimeout(initBubbles, 200) as unknown as number
-    }
-
-    // Initialize on load
+    // Initialize on load and resize for responsive behavior
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", initBubbles)
     } else {
       initBubbles()
     }
 
-    // Use passive event listener for better scroll performance
-    window.addEventListener("resize", handleResize, { passive: true })
+    window.addEventListener("resize", initBubbles)
   }
 </script>
