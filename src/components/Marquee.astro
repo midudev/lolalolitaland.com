@@ -6,13 +6,13 @@ export type Props = {
 const { content } = Astro.props
 ---
 
-<div class="flex gap-x-4 overflow-hidden py-8">
+<div class="flex mt-10 gap-x-4 overflow-hidden py-4 md:py-6 lg:py-8">
   {
     content.map((item, index) => (
       <div class="marquee-content animate-marquee flex flex-none justify-around gap-x-4 [&>*]:leading-none [&>*]:font-black [&>*]:uppercase">
-        <div class="text-[5vh] text-[#6c4bbc] md:text-[4vw]">{item}</div>
+        <div class="text-[5vh] text-[#6c4bbc] md:text-[6vh] lg:text-[4vw]">{item}</div>
         {index !== content.length - 1 && (
-          <div class="text-[5vh] text-[#6c4bbc] md:text-[4vw]"> · </div>
+          <div class="text-[5vh] text-[#6c4bbc] md:text-[6vh] lg:text-[4vw]"> · </div>
         )}
       </div>
     ))
