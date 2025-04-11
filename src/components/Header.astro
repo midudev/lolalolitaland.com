@@ -1,3 +1,7 @@
+---
+import HeaderLink, { Device, Target } from "@/components/HeaderLink.astro"
+---
+
 <header class="animate-blur-header fixed top-0 z-60 w-screen">
   <nav
     class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 pb-0 uppercase lg:px-8"
@@ -5,21 +9,14 @@
   >
     <div class="flex">
       <div class="hidden lg:flex lg:gap-x-12">
-        <a
-          href="/#info"
-          class="relative text-sm/6 font-semibold text-white after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
-          >Info</a
-        >
-        <a
-          href="/#faq"
-          class="relative text-sm/6 font-semibold text-white after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
-          >Preguntas</a
-        >
-        <a
+        <HeaderLink text="Info" href="/#info" device={Device.DESKTOP} />
+        <HeaderLink text="Preguntas" href="/#faq" device={Device.DESKTOP} />
+        <HeaderLink
+          text="Aut. Menores"
           href="/hoja-de-responsabilidad.pdf"
-          class="relative text-sm/6 font-semibold text-white after:absolute after:bottom-[-2px] after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
-          target="_blank">Aut. Menores</a
-        >
+          device={Device.DESKTOP}
+          target={Target.BLANK}
+        />
       </div>
       <div class="flex lg:hidden">
         <button
@@ -90,26 +87,20 @@
         </div>
       </div>
       <div class="mt-6 space-y-2">
-        <a
-          href="/#info"
-          class="hover:text-primary-light border-primary-light -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white"
-          >Info</a
-        >
-        <a
-          href="/#faq"
-          class="hover:text-primary-light border-primary-light -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white"
-          >Preguntas</a
-        >
-        <a
+        <HeaderLink text="Info" href="/#info" device={Device.MOBILE} />
+        <HeaderLink text="Preguntas" href="/#faq" device={Device.MOBILE} />
+        <HeaderLink
+          text="Aut. Menores"
           href="/hoja-de-responsabilidad.pdf"
-          class="hover:text-primary-light border-primary-light -mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white"
-          >Aut. Menores</a
-        >
-        <a
+          device={Device.MOBILE}
+          target={Target.BLANK}
+        />
+        <HeaderLink
+          text="Comprar Entradas"
           href="/#tickets"
-          class="border-primary-light hover:text-primary-light -mx-3 block rounded-lg border bg-white/60 px-3 py-2 text-base/7 font-semibold text-white hover:bg-white"
-          >Comprar Entradas</a
-        >
+          device={Device.MOBILE}
+          extraClasses="border bg-white/60"
+        />
       </div>
     </div>
   </dialog>
