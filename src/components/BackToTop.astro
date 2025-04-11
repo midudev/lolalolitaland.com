@@ -7,7 +7,7 @@
 </div>
 
 <a
-  class="via-theme-blue hover:to-theme-blue fixed right-8 bottom-8 z-40 flex h-12 w-12 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-blue-400 opacity-0 shadow-lg"
+  class="via-theme-blue hover:to-theme-blue fixed right-8 bottom-8 z-40 flex h-12 w-12 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-blue-400 shadow-lg"
   id="back-to-top"
   href="#top"
   aria-label="Volver arriba"
@@ -109,46 +109,54 @@
 
 <script>
   if (typeof document !== "undefined") {
-    // Use IntersectionObserver to detect when user has scrolled enough
-    const setupScrollObserver = () => {
+    const manageBackToTopButton = () => {
       const button = document.getElementById("back-to-top")
       const observerTarget = document.getElementById("scroll-observer")
+
       if (!button || !observerTarget) return
 
-      // Create the observer
+      const buttonParent = button.parentNode
+      let isButtonInDOM = true
+
+      const updateButtonVisibility = (shouldShow: boolean) => {
+        requestAnimationFrame(() => {
+          if (shouldShow && !isButtonInDOM) {
+            buttonParent?.appendChild(button)
+            isButtonInDOM = true
+          } else if (!shouldShow && isButtonInDOM) {
+            button.remove()
+            isButtonInDOM = false
+          }
+        })
+      }
+
       const observer = new IntersectionObserver(
         (entries) => {
-          // If target is not intersecting, we've scrolled past 300px
           const isScrolledDown = !entries[0].isIntersecting
-
-          // Use requestAnimationFrame for smoother UI updates
-          requestAnimationFrame(() => {
-            if (isScrolledDown) {
-              button.classList.remove("opacity-0")
-              button.classList.add("opacity-100")
-            } else {
-              button.classList.remove("opacity-100")
-              button.classList.add("opacity-0")
-            }
-          })
+          updateButtonVisibility(isScrolledDown)
         },
-        { threshold: 0 }
+        { threshold: 0, rootMargin: "0px" }
       )
 
-      // Start observing
       observer.observe(observerTarget)
 
-      // Return cleanup function
       return () => {
         observer.disconnect()
+        if (isButtonInDOM) {
+          button.remove()
+          isButtonInDOM = false
+        }
       }
     }
 
-    // Initialize when DOM is ready
+    const initialize = () => {
+      manageBackToTopButton()
+    }
+
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", setupScrollObserver)
+      document.addEventListener("DOMContentLoaded", initialize)
     } else {
-      setupScrollObserver()
+      initialize()
     }
   }
 </script>
