@@ -1,10 +1,15 @@
----
+<!-- Div para observar el scroll y mostrar/ocultar el botón -->
+<div
+  id="scroll-observer"
+  class="pointer-events-none absolute top-[300px] left-0 h-[1px] w-[1px]"
+  aria-hidden="true"
+>
+</div>
 
----
-
-<button
+<a
   class="via-theme-blue hover:to-theme-blue fixed right-8 bottom-8 z-40 flex h-12 w-12 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-blue-400 opacity-0 shadow-lg"
   id="back-to-top"
+  href="#top"
   aria-label="Volver arriba"
 >
   <svg viewBox="0 0 384 512" class="absolute h-5 w-4">
@@ -13,10 +18,10 @@
       d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
     ></path>
   </svg>
-</button>
+</a>
 
 <style>
-  button {
+  a {
     cursor: pointer;
     border: none;
     border-radius: 50%;
@@ -24,12 +29,12 @@
     animation: shimmer 3s linear infinite;
   }
 
-  button svg {
+  a svg {
     fill: white;
     position: absolute;
   }
 
-  button::after {
+  a::after {
     content: "Volver Arriba";
     position: fixed;
     transform: translateY(35px);
@@ -39,16 +44,16 @@
     user-select: none;
   }
 
-  button:hover::after {
+  a:hover::after {
     color: white;
     mix-blend-mode: difference;
   }
 
-  button:hover svg {
+  a:hover svg {
     animation: bounce 2s infinite linear;
   }
 
-  button::before {
+  a::before {
     content: "";
     z-index: 10;
     position: absolute;
@@ -103,27 +108,47 @@
 </style>
 
 <script>
-  const toggleVisibility = () => {
-    const button = document.getElementById("back-to-top")
-    if (!button) return
-    if (window.scrollY > 300) {
-      button.classList.remove("opacity-0")
-      button.classList.add("opacity-100")
+  if (typeof document !== "undefined") {
+    // Use IntersectionObserver to detect when user has scrolled enough
+    const setupScrollObserver = () => {
+      const button = document.getElementById("back-to-top")
+      const observerTarget = document.getElementById("scroll-observer")
+      if (!button || !observerTarget) return
+
+      // Create the observer
+      const observer = new IntersectionObserver(
+        (entries) => {
+          // If target is not intersecting, we've scrolled past 300px
+          const isScrolledDown = !entries[0].isIntersecting
+
+          // Use requestAnimationFrame for smoother UI updates
+          requestAnimationFrame(() => {
+            if (isScrolledDown) {
+              button.classList.remove("opacity-0")
+              button.classList.add("opacity-100")
+            } else {
+              button.classList.remove("opacity-100")
+              button.classList.add("opacity-0")
+            }
+          })
+        },
+        { threshold: 0 }
+      )
+
+      // Start observing
+      observer.observe(observerTarget)
+
+      // Return cleanup function
+      return () => {
+        observer.disconnect()
+      }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupScrollObserver)
     } else {
-      button.classList.remove("opacity-100")
-      button.classList.add("opacity-0")
+      setupScrollObserver()
     }
   }
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  }
-
-  window.addEventListener("scroll", toggleVisibility)
-
-  const button = document.getElementById("back-to-top") as HTMLElement
-  button.addEventListener("click", scrollToTop)
 </script>
