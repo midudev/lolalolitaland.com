@@ -9,70 +9,74 @@ import { Image } from "astro:assets"
 ---
 
 <!-- Floating sponsor logos section -->
-<div class="relative w-full overflow-hidden bg-gradient-to-b from-[#ff0695] to-primary py-4 -mt-16 text-center">
+<div
+  class="to-primary relative -mt-16 w-full overflow-hidden bg-gradient-to-b from-[#ff0695] py-4 text-center"
+>
   <div class="container mx-auto px-4">
     <!-- Sponsors container with floating animation -->
-    <div class="relative z-10 mx-auto flex justify-center animate-float-1">
-      <div class="inline-flex flex-wrap items-center justify-center gap-x-10 gap-y-6 whitespace-nowrap">
-          <!-- Official Sponsors -->
-          <div class="flex flex-col items-center bg-white rounded-[2rem] px-5 py-3 shadow-lg">
-            <h3 class="mb-2 text-xs font-semibold text-primary">Patrocinadores oficiales</h3>
-            <div class="flex flex-wrap items-center justify-center gap-6">
-              <Sponsor href="https://www.infojobs.net/" isOfficial>
-                <InfoJobs
-                  title="InfoJobs"
-                  width="90"
-                  height="27"
-                  class="inline-block transition-transform group-hover:scale-110"
-                />
-              </Sponsor>
-              <Sponsor href="https://www.cerave.es/" isOfficial>
-                <Cerave
-                  title="Cerave"
-                  width="90"
-                  height="27"
-                  class="inline-block transition-transform group-hover:scale-110"
-                />
-              </Sponsor>
-              <Sponsor href="https://www.dkny.com/" isOfficial>
-                <Image
-                  src={Dkny}
-                  alt="DKNY"
-                  title="DKNY"
-                  width="90"
-                  height="27"
-                  class="inline-block w-14 transition-transform group-hover:scale-110"
-                />
-              </Sponsor>
-            </div>
+    <div class="animate-float-1 relative z-10 mx-auto flex justify-center">
+      <div
+        class="inline-flex flex-wrap items-center justify-center gap-x-10 gap-y-6 whitespace-nowrap"
+      >
+        <!-- Official Sponsors -->
+        <div class="flex flex-col items-center rounded-[2rem] bg-white px-5 py-3 shadow-lg">
+          <h3 class="text-primary-dark mb-2 text-xs font-semibold">Patrocinadores oficiales</h3>
+          <div class="flex flex-wrap items-center justify-center gap-6">
+            <Sponsor href="https://www.infojobs.net/" isOfficial>
+              <InfoJobs
+                title="InfoJobs"
+                width="90"
+                height="27"
+                class="inline-block transition-transform group-hover:scale-110"
+              />
+            </Sponsor>
+            <Sponsor href="https://www.cerave.es/" isOfficial>
+              <Cerave
+                title="Cerave"
+                width="90"
+                height="27"
+                class="inline-block transition-transform group-hover:scale-110"
+              />
+            </Sponsor>
+            <Sponsor href="https://www.dkny.com/" isOfficial>
+              <Image
+                src={Dkny}
+                alt="DKNY"
+                title="DKNY"
+                width="90"
+                height="27"
+                class="inline-block w-14 transition-transform group-hover:scale-110"
+              />
+            </Sponsor>
           </div>
+        </div>
 
-          <!-- Collaborators -->
-          <div class="flex flex-col items-center bg-white rounded-[2rem] px-5 py-3 shadow-lg">
-            <h3 class="mb-2 text-xs font-semibold text-primary">Colaboradores</h3>
-            <div class="flex items-center gap-6">
-              <Sponsor href="https://www.donettes.com/">
-                <Image
-                  src={Donettes}
-                  title="Donettes"
-                  alt="Donettes"
-                  width="90"
-                  height="27"
-                  class="inline-block transition-transform group-hover:scale-110"
-                />
-              </Sponsor>
-              <Sponsor href="https://trolli.es/">
-                <Image
-                  src={Trolli}
-                  title="Trolli"
-                  alt="Trolli"
-                  width="90"
-                  height="27"
-                  class="inline-block w-16 transition-transform group-hover:scale-110"
-                />
-              </Sponsor>
-            </div>
+        <!-- Collaborators -->
+        <div class="flex flex-col items-center rounded-[2rem] bg-white px-5 py-3 shadow-lg">
+          <h3 class="text-primary-dark mb-2 text-xs font-semibold">Colaboradores</h3>
+          <div class="flex items-center gap-6">
+            <Sponsor href="https://www.donettes.com/">
+              <Image
+                src={Donettes}
+                title="Donettes"
+                alt="Donettes"
+                width="90"
+                height="27"
+                class="inline-block transition-transform group-hover:scale-110"
+              />
+            </Sponsor>
+            <Sponsor href="https://trolli.es/">
+              <Image
+                src={Trolli}
+                title="Trolli"
+                alt="Trolli"
+                width="90"
+                height="27"
+                class="inline-block w-16 transition-transform group-hover:scale-110"
+              />
+            </Sponsor>
           </div>
+        </div>
       </div>
     </div>
 
@@ -88,7 +92,8 @@ import { Image } from "astro:assets"
 <style>
   /* Floating animations for sponsor logos */
   @keyframes float-1 {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {
@@ -97,9 +102,15 @@ import { Image } from "astro:assets"
   }
 
   @keyframes float-2 {
-    0% { transform: translateY(-5px); }
-    50% { transform: translateY(5px); }
-    100% { transform: translateY(-5px); }
+    0% {
+      transform: translateY(-5px);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+    100% {
+      transform: translateY(-5px);
+    }
   }
 
   .animate-float-1 {
