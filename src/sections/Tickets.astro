@@ -77,16 +77,21 @@ import Clock from "public/icons/clock.svg"
           </div>
 
           <div class="mt-8">
-            <button
-              disabled
+            <a
+              href="https://lolalolitaland.deporticket.com/web-evento/11028-lola-lolita-land-14"
               class="tickets-button relative flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#ff0695] via-[#ff99d1] to-[#ff0695] px-4 py-3 font-bold text-white shadow-lg shadow-[#ff0695]/30 transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#ff0695]/40"
+              tabindex="0"
+              aria-label="Comprar entrada para Lola Lolita Land para el 14 de junio (enlace externo, se abre en una pestaña nueva)"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Ticket
-                title="ticket"
+                aria-hidden="true"
+                focusable="false"
                 class="hidden h-5 w-5 -rotate-12 animate-bounce fill-white sm:inline-block"
               />
               <span class="text-sm sm:text-base">Comprar entrada</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -130,16 +135,21 @@ import Clock from "public/icons/clock.svg"
           </div>
 
           <div class="mt-8">
-            <button
-              disabled
+            <a
+              href="https://lolalolitaland.deporticket.com/web-evento/11215-lola-lolita-land-15"
               class="tickets-button relative flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#ff0695] via-[#ff99d1] to-[#ff0695] px-4 py-3 font-bold text-white shadow-lg shadow-[#ff0695]/30 transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#ff0695]/40"
+              tabindex="0"
+              aria-label="Comprar entrada para Lola Lolita Land para el 15 de junio (enlace externo, se abre en una pestaña nueva)"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Ticket
-                title="ticket"
+                aria-hidden="true"
+                focusable="false"
                 class="hidden h-5 w-5 -rotate-12 animate-bounce fill-white sm:inline-block"
               />
               <span class="text-sm sm:text-base">Comprar entrada</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -147,7 +157,6 @@ import Clock from "public/icons/clock.svg"
   </div>
 
   <style>
-
     .tickets-button {
       background-size: 200% 100%;
       animation: shimmer 3s linear infinite;
