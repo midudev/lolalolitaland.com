@@ -1,6 +1,8 @@
 ---
+import Sponsor from "@/components/Sponsor.astro"
 import Instagram from "../../public/icons/instagram.svg"
 import TikTok from "../../public/icons/tiktok.svg"
+import InfoJobs from "../assets/infojobs.svg"
 ---
 
 <footer
@@ -67,7 +69,21 @@ import TikTok from "../../public/icons/tiktok.svg"
       </a>
     </div>
 
-    <p class="mt-6 text-xs text-pretty text-white/90">
+    <div
+      class="mt-8 mb-8 flex items-center justify-center gap-2 rounded bg-white px-4 text-xs text-black"
+    >
+      Web patrocinada por:
+      <Sponsor href="https://www.infojobs.net/" isOfficial>
+        <InfoJobs
+          title="InfoJobs"
+          width="90"
+          height="27"
+          class="inline-block transition-transform group-hover:scale-110"
+        />
+      </Sponsor>
+    </div>
+
+    <p class="90 mt-2 text-xs text-pretty text-white">
       Copyright © {new Date().getFullYear()} - Todos los derechos reservados
     </p>
   </aside>
