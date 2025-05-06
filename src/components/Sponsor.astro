@@ -6,8 +6,11 @@ const { href, isOfficial } = Astro.props
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class="group flex max-h-12 grow-0 items-center justify-center bg-transparent object-contain p-4 lg:col-span-1 relative"
+  class="group relative flex max-h-12 grow-0 items-center justify-center bg-transparent object-contain p-1 lg:col-span-1"
 >
   <slot />
-  <div class="pointer-events-none absolute inset-0 w-full h-full bg-[linear-gradient(110deg,transparent_0%,transparent_43%,rgba(255,255,255,0.3)_50%,transparent_57%,transparent_100%)] bg-[length:200%_100%] animate-shiny" />
+  <div
+    class="animate-shiny pointer-events-none absolute inset-0 h-full w-full bg-[linear-gradient(110deg,transparent_0%,transparent_43%,rgba(255,255,255,0.3)_50%,transparent_57%,transparent_100%)] bg-[length:200%_100%]"
+  >
+  </div>
 </a>

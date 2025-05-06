@@ -6,6 +6,8 @@ import Donettes from "@/assets/donettes.svg"
 import InfoJobs from "@/assets/infojobs.svg"
 import Trolli from "@/assets/trolli.svg"
 import Grefusa from "@/assets/grefusa.webp"
+import Snacking from "@/assets/snacking.svg"
+import Novotel from "@/assets/novotel.webp"
 import { Image } from "astro:assets"
 ---
 
@@ -66,6 +68,22 @@ import { Image } from "astro:assets"
         <div class="flex flex-col items-center rounded-[2rem] bg-white px-5 py-3 shadow-lg">
           <h3 class="text-primary-dark mb-2 text-xs font-semibold">Colaboradores</h3>
           <div class="flex items-center gap-6">
+            <Sponsor href="https://www.novotelmadridcenter.com/">
+              <Image
+                src={Novotel}
+                title="Novotel"
+                alt="Novotel"
+                class="inline-block h-auto w-20 rounded transition-transform group-hover:scale-110"
+              />
+            </Sponsor>
+            <Sponsor href="https://www.campofrio.es/marcas/snackin">
+              <Image
+                src={Snacking}
+                title="Snacking"
+                alt="Snacking"
+                class="inline-block h-auto w-20 rounded bg-[#6a3f6e] px-2 transition-transform group-hover:scale-110"
+              />
+            </Sponsor>
             <Sponsor href="https://www.donettes.com/">
               <Image
                 src={Donettes}
