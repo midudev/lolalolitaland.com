@@ -9,6 +9,8 @@ import Grefusa from "@/assets/grefusa.webp"
 import Snacking from "@/assets/snacking.svg"
 import Novotel from "@/assets/novotel.webp"
 import Flamingueo from "@/assets/flamingueo.webp"
+import LOreal from "@/assets/loreal.webp"
+import Uber from "@/assets/uber.webp"
 import { Image } from "astro:assets"
 ---
 
@@ -20,12 +22,12 @@ import { Image } from "astro:assets"
     <!-- Sponsors container with floating animation -->
     <div class="animate-float-1 relative z-10 mx-auto flex justify-center">
       <div
-        class="inline-flex flex-wrap items-center justify-center gap-x-10 gap-y-6 whitespace-nowrap"
+        class="inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-4 whitespace-nowrap"
       >
         <!-- Official Sponsors -->
         <div class="flex flex-col items-center rounded-[2rem] bg-white px-5 py-3 shadow-lg">
           <h3 class="text-primary-dark mb-2 text-xs font-semibold">Patrocinadores oficiales</h3>
-          <div class="flex flex-wrap items-center justify-center gap-6">
+          <div class="flex flex-wrap items-center justify-center gap-2">
             <Sponsor href="https://www.infojobs.net/" isOfficial>
               <InfoJobs
                 title="InfoJobs"
@@ -77,6 +79,14 @@ import { Image } from "astro:assets"
         <div class="flex flex-col items-center rounded-[2rem] bg-white px-5 py-3 shadow-lg">
           <h3 class="text-primary-dark mb-2 text-xs font-semibold">Colaboradores</h3>
           <div class="flex items-center gap-6">
+            <Sponsor href="https://www.loreal.com/es-es/espana/">
+              <Image
+                src={LOreal}
+                title="Loreal"
+                alt="Loreal"
+                class="inline-block w-24 transition-transform group-hover:scale-110"
+              />
+            </Sponsor>
             <Sponsor href="https://www.donettes.com/">
               <Image
                 src={Donettes}
@@ -113,6 +123,14 @@ import { Image } from "astro:assets"
                 title="Novotel"
                 alt="Novotel"
                 class="inline-block h-auto w-20 rounded transition-transform group-hover:scale-110"
+              />
+            </Sponsor>
+            <Sponsor href="https://www.uber.com/es/es-es/ride/?utm_source=LolaLolitaLand">
+              <Image
+                src={Uber}
+                title="Uber"
+                alt="Uber"
+                class="-mt-2 inline-block w-20 transition-transform group-hover:scale-110"
               />
             </Sponsor>
           </div>
