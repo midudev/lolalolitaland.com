@@ -11,18 +11,18 @@
   "dependencies": {
     "@fontsource/poppins": "5.2.6",
     "@midudev/tailwind-animations": "0.2.0",
-    "@tailwindcss/vite": "4.1.5",
+    "@tailwindcss/vite": "4.1.8",
     "astro": "5.5.6",
     "geojson": "0.5.0",
     "leaflet": "1.9.4",
-    "sharp": "0.34.1",
-    "tailwindcss": "4.1.5"
+    "sharp": "0.34.2",
+    "tailwindcss": "4.1.8"
   },
   "devDependencies": {
     "@types/geojson": "7946.0.16",
-    "@types/leaflet": "1.9.17",
+    "@types/leaflet": "1.9.18",
     "prettier": "3.5.3",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.6.11"
+    "prettier-plugin-tailwindcss": "0.6.12"
   }
 }

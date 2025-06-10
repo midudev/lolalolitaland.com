@@ -1,5 +1,5 @@
 ---
-import MapImage from "@/assets/images/map_image.webp"
+import Uber from "@/assets/uber.webp"
 
 import LeafletMap from "@/components/LeafletMap.astro"
 import BubbleBackground from "@/components/BubbleBackground.astro"
@@ -27,7 +27,7 @@ import { Image } from "astro:assets"
     >
   </h3>
 
-  <div class="m-auto flex max-w-[1315px] flex-row flex-wrap gap-8 p-4">
+  <div class="m-auto mt-4 flex max-w-[1315px] flex-row flex-wrap gap-8 p-4">
     <div class="relative h-[630px] min-w-[300px] flex-1 overflow-hidden rounded-[2rem] bg-black">
       <LeafletMap
         latitude={40.45673263671421}
@@ -42,56 +42,69 @@ import { Image } from "astro:assets"
       />
     </div>
     <div
-      class="image w-full flex-shrink-0 overflow-hidden rounded-[2rem] md:w-[250px] lg:w-[400px] xl:w-[500px]"
+      class="flex w-full flex-shrink-0 flex-col gap-y-8 overflow-hidden md:w-[375px] lg:w-[550px]"
     >
-      <div class="water hidden lg:block" title="Lola Lolita Land - ZIG ZAG tobogan"></div>
-      <Image
-        class="h-full w-full object-cover lg:hidden"
-        src={MapImage}
-        width={900}
-        height={900}
-        alt={"Lola Lolita Land - ZIG ZAG tobogan"}
-      />
-
-      <svg>
-        <defs>
-          <filter id="turbulence" x="0" y="0" width="100%" height="100%">
-            <feTurbulence
-              id="sea-filter"
-              type="fractalNoise"
-              numOctaves="3"
-              seed="2"
-              baseFrequency="0.01 0.5"></feTurbulence>
-            <feDisplacementMap scale="20" in="SourceGraphic"></feDisplacementMap>
-            <animate
-              xlink:href="#sea-filter"
-              attributeName="baseFrequency"
-              dur="60s"
-              keyTimes="0;0.5;1"
-              values="0.01 0.03;0.04 0.06;0.02 0.06"
-              repeatCount="indefinite"></animate>
-          </filter>
-        </defs>
-      </svg>
+      <div class="flex flex-col gap-2 px-4">
+        <h3
+          class="mb-2 flex w-fit flex-0 items-center gap-x-1 rounded-[2rem] bg-white px-4 py-2 text-base font-bold text-black"
+        >
+          Cómo llegar con <a
+            target="_blank"
+            rel="noopener"
+            href="https://www.uber.com/es/es-es/ride/?utm_source=LolaLolitaLand"
+          >
+            <Image
+              src={Uber}
+              title="Uber"
+              alt="Uber"
+              class="-mt-1 inline-block w-14 transition-transform group-hover:scale-110"
+            />
+          </a>
+        </h3>
+        <p class="text-white">
+          ¿Primera vez con UBER Teens? ¡Tienes un 50% de descuento pillando tu viaje a Lola Lolita
+          land!<br />
+          <span class="font-semibold"
+            >Código: <span class="text-primary-light">UBER_X_LOLALOLITA</span></span
+          >
+        </p>
+        <p class="text-xs text-white/90">
+          Te recogen en la entrada del Aquopolis. Más fácil, ¡ni hecho por nosotras!
+        </p>
+      </div>
+      {/* TRANSPORTE PÚBLICO */}
+      <div class="flex flex-col gap-2 px-4">
+        <h3
+          class="mb-2 flex w-fit flex-0 items-center gap-x-1 rounded-[2rem] bg-white px-4 py-2 text-base font-bold text-black"
+        >
+          En Transporte Público
+        </h3>
+        <p class="text-white">
+          Coge el bus 627 desde Moncloa (nivel -1, isla 1) y en nada estás en el parque.
+        </p>
+        <h4 class="font-semibold text-white">¿Vienes de fuera de Madrid?</h4>
+        <p class="text-white">
+          Desde Atocha puedes pillar el bus 001 (<span class="italic">¡gratis!</span>) hasta
+          Moncloa, o bajarte en metro directo al intercambiador.
+        </p>
+      </div>
+      {/* COCHE PROPIO */}
+      <div class="flex flex-col gap-2 px-4">
+        <h3
+          class="mb-2 flex w-fit flex-0 items-center gap-x-1 rounded-[2rem] bg-white px-4 py-2 text-base font-bold text-black"
+        >
+          Cómo llegar en coche
+        </h3>
+        <ul class="list-disc pl-6 text-left text-white">
+          <li><b>M-600:</b> conecta El Escorial con Brunete</li>
+          <li><b>M-501:</b> une la M-40 / M-50 con la M-600</li>
+          <li><b>M-503:</b> va desde Villanueva de la Cañada hasta la M-50 / Majadahonda</li>
+        </ul>
+        <p class="text-white">Y tranqui, ¡Aquopolis tiene parking!</p>
+        <p class="mt-2 text-xs text-white">
+          Pon buena música, activa el GPS y... ¡nos vemos en Lola Lolita land!
+        </p>
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  .image {
-    position: relative;
-    background-image: url("/images/map_image.webp");
-    background-size: cover;
-  }
-  .water {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background-image: url("/images/map_image_mask.webp");
-    background-size: cover;
-    filter: url(#turbulence);
-  }
-</style>
